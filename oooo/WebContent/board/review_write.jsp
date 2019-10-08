@@ -12,16 +12,16 @@
 	$(function(){
 		$('#btnWrite').click(function(){
 			console.log("sxfxfsf...");
-			if ($('#comment').val() == null) {
+			if ($('#rcomment').val() == "") {
 				alert("리뷰를 입력해주세요.");
-				$('#comment').focus();
+				$('#rcomment').focus();
 				return;
 			}
 			document.writeform.action = "${path}/Board/review_insert.do";
 			document.writeform.submit();
 		});
 		$('#btnPrevious').click(function(){
-			location.href = "${path}/";
+			location.href = "${path}/Board/info.do?num=${num}";
 		});
 	});
 </script>
@@ -29,15 +29,15 @@
 <body>
 <h1>리뷰작성</h1>
 <hr />
-
+${num }
 <form name="writeform" action="" method="post">
 	<table border="1">
 		<tr>
 			<td>작성자</td>
-			<td><input type="text" id="writer"></td>
+			<td><input type="text" name="writer" value="홍길동" readonly="readonly"></td>
 			<td>평점</td>
 			<td>
-				<select name="mark" >
+				<select name="rmark" >
 					<option value="0" selected="selected">0</option>
 					<option value="1">1</option>
 					<option value="2">2</option>
@@ -51,11 +51,12 @@
 		<tr>
 			<td>리뷰</td>
 			<td colspan="2">
-				<textarea name="comment" id="comment" cols="30" rows="10"></textarea>
+				<textarea name="rcomment" id="rcomment" cols="30" rows="10"></textarea>
 			</td>
 			<td>
 				<button id="btnWrite">작성</button><br />
 				<input type="reset" value="다시입력"/>
+				<input type="hidden" name="movie_num" value="${num }" />
 			</td>
 		</tr>
 	</table>

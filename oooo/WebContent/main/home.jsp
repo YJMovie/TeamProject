@@ -17,9 +17,10 @@
 		
 		<section>
 			<div id="contents">
+				<h2>영화목록</h2>
 				<table border="1" style="margin: 0 auto;">
 					<tr>
-						<c:forEach var="list" items="${list }">
+						<c:forEach var="list" items="${listRandom }">
 							<td>
 								${list.title } <br />
 								<a href="${path }/Board/info.do?num=${list.num}">이미지</a> <br />
@@ -29,6 +30,27 @@
 						</c:forEach>
 					</tr>
 				</table>
+				<h2>평점순</h2>
+				<table border="1" style="margin: 0 auto;">
+					<tr>
+						<c:if test="${curPage > 1 }">						
+							<td><a href="${path }/Board/home.do?curPage=${curPage-1}">◀</a></td>
+						</c:if>
+						<c:forEach var="list" items="${listMark }">
+							<td>
+								${list.title } <br />
+								<a href="${path }/Board/info.do?num=${list.num}">이미지</a> <br />
+								${list.open }<br />
+								${list.director }<br />
+								평점:${list.mark }
+							</td>						
+						</c:forEach>
+						<c:if test="${curPage < totPage }">
+							<td><a href="${path }/Board/home.do?curPage=${curPage+1}">▶</a></td>
+						</c:if>
+					</tr>
+				</table>
+				
 			</div>
 			<%@ include file="ad.jsp" %>
 		</section>

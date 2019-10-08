@@ -1,4 +1,6 @@
 @charset "UTF-8";
+
+/* 메인페이지 css */
 body {
 	padding: 0;
 	margin: 0;
@@ -52,4 +54,15 @@ footer {
 	color: white;
 	height: 50px;
 	margin: 0;
+}
+
+/* 영화리스트 css */
+#listMenu {
+	border: 1px solid black;
+	display: inline-block;
+	background-color: ccc;
+}
+#listMenu ul li {
+	display: inline-block;
+	margin-right: 15px;
 }

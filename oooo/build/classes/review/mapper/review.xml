@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="review">
+	<insert id="insert">
+		insert into review values (
+		    (select nvl(max(rnum)+1,1) from review),
+		    #{writer},sysdate+1,#{rmark},#{rcomment},
+		    (select nvl(max(rnum)+1,1) from review),
+		    #{movie_num}
+		)
+	</insert>
+	<select id="read" resultType="review.dto.ReviewDTO">
+		<!-- select * from review where movie_num = #{movie_num}
+		order by rnum -->
+		select * from (
+		    select rownum rn, A.* from (
+		        select * from review where movie_num = #{movie_num} order by rnum
+		    )A
+		)where rn between #{start} and #{end}
+	</select>
+</mapper>

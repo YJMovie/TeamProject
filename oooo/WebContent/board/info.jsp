@@ -18,6 +18,19 @@
 			document.infoform.action = "${path}/Board/review_write.do?num=${dto.num}";
 			document.infoform.submit();
 		});
+		review_list();
+		function review_list() {
+			var param = "movie_num=${dto.num}"
+			$.ajax({
+				type : "get",
+				url : "${path}/Board/review_reply.do",
+				data : param,
+				success : function(result){
+					console.log("success..");
+					$('#reviewList').html(result);
+				}
+			});
+		}
 	});
 </script>
 </head>
@@ -67,8 +80,8 @@ ${dto.num }
 	<br />
 	<button id="btnList">목록</button>
 	<button id="btnReview">리뷰하기</button>
-	<input type="hidden" name="num" value="${dto.num }"/>
 </form>
-
+<hr />
+<div id="reviewList"></div>
 </body>
 </html>

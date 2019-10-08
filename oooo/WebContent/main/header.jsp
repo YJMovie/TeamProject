@@ -8,8 +8,8 @@
 	</div>
 	<div>
 		<ul>
-			<li><a href="login/login.jsp"><button>로그인</button></a></li>
-			<li><a href="member/form.jsp"><button>회원가입</button></a></li>
+			<li><a href="${path }/login/login.jsp"><button>로그인</button></a></li>
+			<li><a href="${path }/member/form.jsp"><button>회원가입</button></a></li>
 		</ul>
 	</div>
 </header>

@@ -14,6 +14,13 @@ public class BoardDTO {
 	private String director;
 	private String lines;
 	private Date open;
+	private int totreview;
+	public int getTotreview() {
+		return totreview;
+	}
+	public void setTotreview(int totreview) {
+		this.totreview = totreview;
+	}
 	public int getNum() {
 		return num;
 	}
@@ -84,6 +91,6 @@ public class BoardDTO {
 	public String toString() {
 		return "BoardDTO [num=" + num + ", title=" + title + ", genre=" + genre + ", postfname=" + postfname
 				+ ", photofname=" + photofname + ", mark=" + mark + ", review=" + review + ", actor=" + actor
-				+ ", director=" + director + ", lines=" + lines + ", open=" + open + "]";
+				+ ", director=" + director + ", lines=" + lines + ", open=" + open + ", totreview=" + totreview + "]";
 	}
 }
