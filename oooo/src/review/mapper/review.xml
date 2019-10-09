@@ -20,4 +20,7 @@
 		    )A
 		)where rn between #{start} and #{end}
 	</select>
+	<select id="count" resultType="int">
+		select count(*) from review where movie_num = ${movie_num}
+	</select>
 </mapper>

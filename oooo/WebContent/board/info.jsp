@@ -20,7 +20,7 @@
 		});
 		review_list();
 		function review_list() {
-			var param = "movie_num=${dto.num}"
+			var param = "movie_num=${dto.num}&curPage=${curPage}";
 			$.ajax({
 				type : "get",
 				url : "${path}/Board/review_reply.do",
@@ -37,7 +37,8 @@
 <body>
 <h1>게시판 내용</h1>
 <hr />
-${dto.num }
+${dto.num } <br />
+${curPage }
 <form action="" method="post" name="infoform">
 	<table border="1">
 		<tr>

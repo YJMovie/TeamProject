@@ -23,7 +23,7 @@
 						<c:forEach var="list" items="${listRandom }">
 							<td>
 								${list.title } <br />
-								<a href="${path }/Board/info.do?num=${list.num}">이미지</a> <br />
+								<a href="${path }/Board/info.do?num=${list.num}&curPage=1">이미지</a> <br />
 								${list.open }<br />
 								${list.director }<br />
 							</td>						
@@ -39,7 +39,7 @@
 						<c:forEach var="list" items="${listMark }">
 							<td>
 								${list.title } <br />
-								<a href="${path }/Board/info.do?num=${list.num}">이미지</a> <br />
+								<a href="${path }/Board/info.do?num=${list.num}&curPage=1">이미지</a> <br />
 								${list.open }<br />
 								${list.director }<br />
 								평점:${list.mark }

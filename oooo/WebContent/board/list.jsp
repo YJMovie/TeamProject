@@ -33,7 +33,7 @@
 		<c:if test="${status.count%3 == 1 }"><tr></c:if>
 			<td>
 				${list.title } <br />
-				<a href="${path }/Board/info.do?num=${list.num}">이미지</a> <br />
+				<a href="${path }/Board/info.do?num=${list.num}&curPage=1">이미지</a> <br />
 				${list.open } <br />
 				${list.director } <br />
 				${list.mark } <br />

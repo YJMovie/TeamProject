@@ -26,4 +26,10 @@ public class ReviewDAO {
 		session.close();
 		return list;
 	}
+	public int reviewCount(int movie_num) {
+		SqlSession session = MybatisManager.getInstance().openSession();
+		int result = session.selectOne("review.count",movie_num);
+		session.close();
+		return result;
+	}
 }

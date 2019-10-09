@@ -21,7 +21,7 @@
 			document.writeform.submit();
 		});
 		$('#btnPrevious').click(function(){
-			location.href = "${path}/Board/info.do?num=${num}";
+			location.href = "${path}/Board/info.do?num=${num}&curPage=1";
 		});
 	});
 </script>

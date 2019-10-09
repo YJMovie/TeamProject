@@ -84,6 +84,9 @@ public class BoardController extends HttpServlet {
 			BoardDTO dto = dao.info(num);
 			request.setAttribute("dto", dto);
 			
+			int curPage = Integer.parseInt(request.getParameter("curPage"));
+			request.setAttribute("curPage", curPage);
+			
 			String page = "/board/info.jsp";
 			RequestDispatcher rd = request.getRequestDispatcher(page);
 			rd.forward(request, response);
@@ -113,23 +116,46 @@ public class BoardController extends HttpServlet {
 			
 			rdao.reviewInsert(rdto);
 			
-			String page = "info.do?num="+movie_num;
+			String page = "info.do?num="+movie_num+"&curPage=1";
 			response.sendRedirect(page);
 		} else if (url.contains("review_reply.do")) {
 			System.out.println("리뷰 리스트띄우기");
 			int movie_num = Integer.parseInt(request.getParameter("movie_num"));
+			request.setAttribute("movie_num", movie_num);
 			System.out.println("m_n:"+movie_num);
 			
 			int curPage = 1;
 			if (request.getParameter("curPage") != null) {
 				curPage = Integer.parseInt(request.getParameter("curPage"));
 			}
-			int count = 14;
+			int count = rdao.reviewCount(movie_num); //해당 영화 리뷰 총 레코드 수
 			int page_scale = 5;
 			int totPage = (int)Math.ceil(count*1.0/page_scale);
 			int start = (curPage-1)*page_scale+1;
 			int end = start+page_scale-1;
 			
+			request.setAttribute("curPage", curPage);
+			request.setAttribute("totPage", totPage);
+			
+			int block_scale = 5;
+			int totBlock = (int)Math.ceil(totPage*1.0/block_scale);
+			int curBlock = (curPage-1)/block_scale+1;
+			int block_start = (curBlock-1)*block_scale+1;
+			int block_end = block_start+block_scale-1;
+			
+			int prev_page = 
+					curBlock == 1 ? 1 : (curBlock-1)*block_scale;
+			int next_page = 
+					curBlock > totBlock ? (curBlock*block_scale) : curBlock*block_scale+1;
+			if (block_end>totPage) block_end = totPage;
+			if (next_page>=totPage) next_page = totPage;
+			
+			request.setAttribute("totBlock", totBlock);
+			request.setAttribute("curBlock", curBlock);
+			request.setAttribute("block_start", block_start);
+			request.setAttribute("block_end", block_end);
+			request.setAttribute("prev_page", prev_page);
+			request.setAttribute("next_page", next_page);
 			
 			List<ReviewDTO> list = rdao.reviewRead(movie_num,start,end);
 			request.setAttribute("list", list);
