@@ -10,9 +10,13 @@ import board.dto.BoardDTO;
 import sqlMap.MybatisManager;
 
 public class BoardDAO {
-	public List<BoardDTO> list(String cat) {
+	public List<BoardDTO> list(String cat, int start, int end) {
 		SqlSession session = MybatisManager.getInstance().openSession();
-		List<BoardDTO> list = session.selectList("board.list",cat);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("cat", cat);
+		map.put("start", start);
+		map.put("end", end);
+		List<BoardDTO> list = session.selectList("board.list",map);
 		session.close();
 		
 		return list;
@@ -32,6 +36,12 @@ public class BoardDAO {
 		map.put("start", start);
 		map.put("end", end);
 		List<BoardDTO> list = session.selectList("board.listMark",map);
+		session.close();
+		return list;
+	}
+	public List<BoardDTO> searchList(String keyword) {
+		SqlSession session = MybatisManager.getInstance().openSession();
+		List<BoardDTO> list = session.selectList("search.list","%"+keyword+"%");
 		session.close();
 		return list;
 	}

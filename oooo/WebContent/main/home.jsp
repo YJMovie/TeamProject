@@ -7,7 +7,10 @@
 <head>
 <meta charset="UTF-8">
 <title>영화가즈아</title>
-<link rel="stylesheet" href="../css/style.css" />
+<!-- <link rel="stylesheet" href="../css/style.css" /> -->
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<script src="../js/bootstrap.min.js"></script>
+
 </head>
 <body>
 <div id="wapper">
@@ -50,7 +53,6 @@
 						</c:if>
 					</tr>
 				</table>
-				
 			</div>
 			<%@ include file="ad.jsp" %>
 		</section>

@@ -48,32 +48,36 @@ update movie set open = to_date('2019-01-01','yyyy-mm-dd');
 update movie set totreview = 0;
 update review set movie_num = 1;
 -- 필드 내용 삭제
---delete from review;
+delete from review;
 --declare
---i int := 10;
+--i int := 11;
 --j number := 0;
 --begin
---while i<50 loop
+--while i<15 loop
 --i := i + 1;
+--update movie set title = title || '다' where num = i;
 ----insert into movie values (
 ----    (select nvl(max(num)+1,1) from movie),
 ----    '영화'||i,'장르'||i,'포스터'||i,'포토'||i,0.1,'리뷰'||i,'배우'||i,'감독'||i,'명대사'||i,
-----    sysdate+1
+----    sysdate+1,0
 ----);
 ----update movie set mark = mark + 0.3 where num = i;
 ----j := j + 0.3;
 ----update movie set totreview = totreview + 1 where num = i;
 ----insert into mem values ('user'||i, '1111', '이름'||i, '주소'||i, '이메일'||i);
---insert into review values (
---    (select nvl(max(rnum)+1,1) from review),
---    '작성자6',sysdate,0.1,'6내용'||i,
---    (select nvl(max(rnum)+1,1) from review),6
---);
+----insert into review values (
+----    (select nvl(max(rnum)+1,1) from review),
+----    '작성자6',sysdate,0.1,'6내용'||i,
+----    (select nvl(max(rnum)+1,1) from review),6
+----);
 --end loop;
 --end;
 commit;
 
 drop table movie;
+
+update movie set title = title || '3' where num = 3;
+select * from movie where num = 3;
 
 select title, open, director, actor from movie;
 select num, review from movie;
@@ -103,7 +107,11 @@ select count(*) as records from movie;
 
 -- 카테고리에 따른 영화리스트 정렬
 select * from movie order by mark desc;
-select * from movie order by totreview desc;
+select * from (
+    select rownum rn, A.* from(
+        select * from movie order by totreview desc
+    )A
+)where rn between 1 and 16;
 
 -- 리뷰 입력하기
 insert into review values (
@@ -121,5 +129,8 @@ select * from (
 )where rn between 6 and 10;
 -- 리뷰 총 레코드 수 추출
 select count(*) from review where movie_num = 6;
+
+-- 영화 리스트 검색 결과
+select * from movie where title like '%가';
 
 commit;

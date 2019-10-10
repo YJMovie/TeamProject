@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>영화가즈아</title>
+<link rel="stylesheet" href="../css/style.css" />
 <script src="../script/jquery-3.4.1.min.js"></script>
 <script>
 	$(function(){
@@ -27,9 +28,9 @@
 </script>
 </head>
 <body>
-<h1>리뷰작성</h1>
-<hr />
-${num }
+<%@ include file="../main/header.jsp" %>
+<%@ include file="../main/menu.jsp" %>
+<%-- ${num } --%>
 <form name="writeform" action="" method="post">
 	<table border="1">
 		<tr>

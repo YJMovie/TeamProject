@@ -58,23 +58,59 @@ public class BoardController extends HttpServlet {
 		}
 		if (url.contains("list.do")) {
 			
+			int curPage = 1;
+			if (request.getParameter("curPage") != null) {
+				curPage = Integer.parseInt(request.getParameter("curPage"));
+			}
+			int count = dao.recordCount();
+			int page_scale = 16;
+			int totPage = (int)Math.ceil(count*1.0/page_scale);
+			int start = (curPage-1)*page_scale+1;
+			int end = start+page_scale-1;
+			
+			request.setAttribute("curPage", curPage);
+			request.setAttribute("totPage", totPage);
+			System.out.println("총페이지:"+totPage);
+			
+			int block_scale = 3;
+			int totBlock = (int)Math.ceil(totPage*1.0/block_scale);
+			int curBlock = (curPage-1)/block_scale+1;
+			int block_start = (curBlock-1)*block_scale+1;
+			int block_end = block_start+block_scale-1;
+			
+			int prev_page = 
+					curBlock == 1 ? 1 : (curBlock-1)*block_scale;
+			int next_page = 
+					curBlock > totBlock ? (curBlock*block_scale) : curBlock*block_scale+1;
+			if (block_end>totPage) block_end = totPage;
+			if (next_page>=totPage) next_page = totPage;
+			
+			request.setAttribute("totBlock", totBlock);
+			request.setAttribute("curBlock", curBlock);
+			request.setAttribute("block_start", block_start);
+			request.setAttribute("block_end", block_end);
+			request.setAttribute("prev_page", prev_page);
+			request.setAttribute("next_page", next_page);
+			System.out.println("총 블록:"+totBlock);
+			System.out.println("현재 블록:"+curBlock);
+			
 			int category = 1;
 			if (request.getParameter("category") != null) {
 				category = Integer.parseInt(request.getParameter("category"));
 			}
 			if (category == 1) {
 				System.out.println("평점순...");
-				List<BoardDTO> list = dao.list("mark");
+				List<BoardDTO> list = dao.list("mark",start,end);
 				request.setAttribute("list", list);
 			} else if (category == 2) {
 				System.out.println("리뷰순...");
-				List<BoardDTO> list = dao.list("totreview");
+				List<BoardDTO> list = dao.list("totreview",start,end);
 				request.setAttribute("list", list);
 			} else {
 				System.out.println("예매율...");
 				
 			}
-			
+			request.setAttribute("category", category);
 			
 			String page = "/board/list.jsp";
 			RequestDispatcher rd = request.getRequestDispatcher(page);

@@ -2,12 +2,12 @@
     pageEncoding="UTF-8"%>
 
 
-<header>
-	<div >
-		<h2>영화가즈아</h2>
-		<ul>
-			<li><a href="${path }/login/login.jsp"><button>로그인</button></a></li>
-			<li><a href="${path }/member/form.jsp"><button>회원가입</button></a></li>
-		</ul>
-	</div>
-</header>
+
+
+<div class="card">
+  <div class="card-header">
+    <h2>영화가즈아</h2>
+    <a href="${path }/login/login.jsp"><button type="button" class="btn btn-outline-primary">로그인</button></a>
+  	<a href="${path }/member/form.jsp"><button type="button" class="btn btn-outline-primary">회원가입</button></a>
+  </div>
+</div>
