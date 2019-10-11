@@ -31,7 +31,7 @@ public class BoardController extends HttpServlet {
 			if (request.getParameter("curPage") != null) {
 				curPage = Integer.parseInt(request.getParameter("curPage"));
 			}
-			int count = dao.recordCount(); //총 레코드 수 계산
+			int count = dao.TotMovieCount(); //총 레코드 수 계산
 			int page_scale = 5;
 			int totPage = (int)Math.ceil(count*1.0/page_scale);
 			
@@ -62,7 +62,7 @@ public class BoardController extends HttpServlet {
 			if (request.getParameter("curPage") != null) {
 				curPage = Integer.parseInt(request.getParameter("curPage"));
 			}
-			int count = dao.recordCount();
+			int count = dao.TotMovieCount();
 			int page_scale = 16;
 			int totPage = (int)Math.ceil(count*1.0/page_scale);
 			int start = (curPage-1)*page_scale+1;

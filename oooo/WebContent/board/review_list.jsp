@@ -7,6 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>영화가즈아</title>
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<script src="../js/bootstrap.min.js"></script>
 <script src="../script/jquery-3.4.1.min.js"></script>
 <script>
 	$(function(){

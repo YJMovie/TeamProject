@@ -27,7 +27,7 @@
 		    )A
 		)where rn between #{start} and #{end}
 	</select>
-	<select id="recordCount" resultType="String">
+	<select id="TotMovieCount" resultType="String">
 		select count(*) as records from movie
 	</select>
 	<select id="info" resultType="board.dto.BoardDTO">

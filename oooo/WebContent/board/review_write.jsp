@@ -7,7 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>영화가즈아</title>
-<link rel="stylesheet" href="../css/style.css" />
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<script src="../js/bootstrap.min.js"></script>
 <script src="../script/jquery-3.4.1.min.js"></script>
 <script>
 	$(function(){
@@ -31,6 +32,8 @@
 <%@ include file="../main/header.jsp" %>
 <%@ include file="../main/menu.jsp" %>
 <%-- ${num } --%>
+<div style="height: 1000px;background-color: white;">
+<div id="contents" style="margin:0 auto;height: 1000px; width: 60%;background-color: #EAEAEA;padding-top: 40px;">
 <form name="writeform" action="" method="post">
 	<table border="1">
 		<tr>
@@ -63,5 +66,7 @@
 	</table>
 </form>
 <button id="btnPrevious">뒤로</button>
+</div>
+</div>
 </body>
 </html>

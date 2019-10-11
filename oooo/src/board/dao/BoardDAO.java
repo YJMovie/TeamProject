@@ -39,15 +39,25 @@ public class BoardDAO {
 		session.close();
 		return list;
 	}
-	public List<BoardDTO> searchList(String keyword) {
+	public List<BoardDTO> searchList(String keyword, int start, int end) {
 		SqlSession session = MybatisManager.getInstance().openSession();
-		List<BoardDTO> list = session.selectList("search.list","%"+keyword+"%");
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("start", start);
+		map.put("end", end);
+		map.put("keyword", "%"+keyword+"%");
+		List<BoardDTO> list = session.selectList("search.list",map);
 		session.close();
 		return list;
 	}
-	public int recordCount() {
+	public int TotMovieCount() {
 		SqlSession session = MybatisManager.getInstance().openSession();
-		int result = Integer.parseInt(session.selectOne("board.recordCount"));
+		int result = Integer.parseInt(session.selectOne("board.TotMovieCount"));
+		session.close();
+		return result;
+	}
+	public int TotalSearchCount(String keyword) {
+		SqlSession session = MybatisManager.getInstance().openSession();
+		int result = Integer.parseInt(session.selectOne("search.TotSearchCount","%"+keyword+"%"));
 		session.close();
 		return result;
 	}

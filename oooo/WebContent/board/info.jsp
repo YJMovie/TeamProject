@@ -7,7 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>영화가즈아</title>
-<link rel="stylesheet" href="../css/style.css" />
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<script src="../js/bootstrap.min.js"></script>
 <script src="../script/jquery-3.4.1.min.js"></script>
 <script>
 	$(function(){
@@ -40,9 +41,10 @@
 <%@ include file="../main/menu.jsp" %>
 <%-- ${dto.num } <br />
 ${curPage } --%>
-<div style="height: 800px; width: 100%; border: 1px dotted black; margin: 0;">
+<!-- <div style="height: 800px; width: 100%; border: 1px dotted black; margin: 0;"> -->
+<div style="height: 1000px;background-color: white;">
 <section>
-<div id="contents">
+<div id="contents" style="margin:0 auto;height: 1000px; width: 60%;background-color: #EAEAEA;padding-top: 40px;">
 <form action="" method="post" name="infoform">
 	<table border="1">
 		<tr>

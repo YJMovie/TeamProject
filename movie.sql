@@ -129,8 +129,18 @@ select * from (
 )where rn between 6 and 10;
 -- 리뷰 총 레코드 수 추출
 select count(*) from review where movie_num = 6;
-
 -- 영화 리스트 검색 결과
-select * from movie where title like '%가';
+select * from (
+    select rownum rn, A.* from movie A where title like '%화3%'
+)
+--where rn between 11 and 20
+;
+-- 검색 키워드별 레코드 수 추출
+select count(*) from (
+    select * from (
+        select rownum rn, A.* from movie A where title like '%화3%'
+    )
+);
+
 
 commit;
