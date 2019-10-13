@@ -1,0 +1,73 @@
+--------회원정보테이블--------
+테이블명:member_info
+필드명
+ 회원번호:inum
+ 아이디:userid
+ 비밀번호:userpwd
+ 이름:name
+ 성별:gender
+ 핸드폰:phone
+ 주소:address
+ 이메일:email
+ 가입날짜:userdate
+ 회원등급:grade
+ 
+필드타입
+ usernum : number primary key not null
+ userid : varchar2(50)
+ userpwd : varchar2(50)
+ name : varchar2(50)
+ gender : varchar2(10)
+ phone : varchar2(20)
+ address : varchar2(100)
+ email : varchar2(50)
+ userdate : date
+ grade : int
+-----------------------------------
+------------리뷰테이블-------------
+테이블명:review
+필드명
+ 리뷰번호:rnum
+ 영화번호:rmnum
+ 회원번호:runum
+ 작성자:writer
+ 리뷰시간:rdate
+ 평점:rscore
+ 리뷰내용:rcomment
+필드타입
+ rnum : number not null primary key
+ rmnum : number references movie_info(mnum)
+ runum : number references member_info(runum)
+ writer : varchar2(30) references member_info(name)
+ rdate : date
+ rscore : number
+ rcomment : varchar2(100)
+-----------------------------------
+---------영화정보테이블------------
+테이블명:movie_info
+필드명
+ 영화번호:mnum
+ 영화제목:mtitle
+ 영화장르:mgenre
+ 영화평점:mscore
+ 영화감독:mdir
+ 영화배우:mact
+ 영화명대사:mlines
+ 영화개봉일:mopen
+필드타입
+ mnum : number primary key not null
+ mtitle : varchar2(50)
+ mgenre : varchar2(10)
+ mscore : number
+ mdir : varchar2(50)
+ mact : varchar2(80)
+ mlines : varchar2(100)
+ mopen : date
+-----------------------------------
+--------회원리스트테이블-----------
+테이블명:member_list
+필드명
+ 회원번호:lnum
+ 선호장르:lgenre
+ 리뷰번호:lrnum
+ 회원등급:grade
