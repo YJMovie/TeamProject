@@ -10,7 +10,10 @@
  주소:address
  이메일:email
  가입날짜:userdate
- 회원등급:grade
+ 회원등급:usergrade
+ 선호장르:usergenre
+ 선호배우:useractor
+ 선호감독:userdirector
  
 필드타입
  usernum : number primary key not null
@@ -22,22 +25,36 @@
  address : varchar2(100)
  email : varchar2(50)
  userdate : date
- grade : int
+ usergrade : int
+ usergenre: int
+ useractor: int
+ userdirector: int
 -----------------------------------
+------------회원등급테이블-------
+테이블명:member_grade
+필드명
+ 등급코드:gradecode
+ 등급명:gradename
+
+필드타입
+ gradecode : int not null primary key
+ gradename : varchar2(50)
+------------------------------------
 ------------리뷰테이블-------------
-테이블명:review
+테이블명:movie_review
 필드명
  리뷰번호:rnum
  영화번호:rmnum
- 회원번호:runum
+ 회원번호:rinum
  작성자:writer
  리뷰시간:rdate
  평점:rscore
  리뷰내용:rcomment
+
 필드타입
  rnum : number not null primary key
  rmnum : number references movie_info(mnum)
- runum : number references member_info(runum)
+ rinum : number references member_info(inum)
  writer : varchar2(30) references member_info(name)
  rdate : date
  rscore : number
