@@ -63,28 +63,61 @@
 ---------영화정보테이블------------
 테이블명:movie_info
 필드명
- 영화번호:mnum
- 영화제목:mtitle
- 영화장르:mgenre
- 영화평점:mscore
- 영화감독:mdir
- 영화배우:mact
- 영화명대사:mlines
- 영화개봉일:mopen
+ 식별번호:movienum
+ 영화코드:mvcode
+ 영화제목:title
+ 영화장르:grcode
+ 영화평점:score
+ 인물코드:pscode
+ 
+ 영화명대사:lines
+ 영화개봉일:open
 필드타입
- mnum : number primary key not null
- mtitle : varchar2(50)
- mgenre : varchar2(10)
- mscore : number
- mdir : varchar2(50)
- mact : varchar2(80)
- mlines : varchar2(100)
- mopen : date
+ movienum : number not null primary key
+ moviecode : varchar2(50)
+ title : varchar2(50)
+ grcode : varchar2(20)
+ score : number
+ personcode : varchar2(20)
+ 
+ lines : varchar2(100)
+ open : date
 -----------------------------------
---------회원리스트테이블-----------
-테이블명:member_list
+----------장르테이블--------------
+테이블명:genre
 필드명
- 회원번호:lnum
- 선호장르:lgenre
- 리뷰번호:lrnum
- 회원등급:grade
+ 장르코드:genrecode
+ 장르명:genrename
+
+필드타입
+ genrecode : varchar2(20)
+ genrename : varchar2(50)
+----------------------------------
+----------인물테이블--------------
+테이블명:person
+필드명
+ 인물코드:personcode
+ 인물명:personname
+ 출생지:personnation
+ 인물소개:personint
+
+필드타입
+ personcode : varchar2(20)
+ personname : varchar2(50)
+ personnation : varchar2(50)
+ personint : varchar2(100)
+----------------------------------
+----------영화테이블--------------
+테이블명:movie
+필드명
+ 영화코드:moviecode
+ 영화명:moviename
+ 개봉일:movieopen
+
+필드타입
+ moviecode : varchar2(20) not null primary key
+ moviename : varchar2(50)
+ movieopen : date
+----------------------------------
+ 
+ 
