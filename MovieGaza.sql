@@ -65,6 +65,10 @@ create table member_grade (
     gradecode int not null primary key,
     gradename varchar2(50)
 );
+select * from member_grade;
+insert into member_grade values (0,'관리자');
+insert into member_grade values (1,'VIP회원');
+insert into member_grade values (2,'일반회원');
 create table member_info (
     inum number not null primary key,
     name varchar2(50),
@@ -77,6 +81,13 @@ create table member_info (
     userdate date default sysdate,
     usergrade int REFERENCES member_grade(gradecode)
 );
+select * from member_info;
+insert into member_info values (
+  (select nvl(max(inum)+1,1) from member_info),
+  '이순신','lee','1111','남','010-1111-1111','부산시 부산진구',
+  'lee@gmail.com',sysdate,2
+);
+
 drop table member_info;
 
 create table review_info (
@@ -84,8 +95,10 @@ create table review_info (
     r_date date default sysdate,
     r_score number,
     r_comment varchar2(100),
-    r_mvcode varchar2(50) references movie_info(moviecode)    
+    r_mvcode varchar2(50) references movie_info(moviecode),
+    writer varchar2(50)
 );
+drop table review_info;
 alter table review_info add writer varchar2(50);
 
 alter table review_info add r_inum number references member_info(inum);
