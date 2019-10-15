@@ -5,7 +5,7 @@
 <div id="menubar">
 	
 		<nav class="navbar navbar-dark bg-dark">
-		<form action="${path }/Search/list.do" name="searchform" method="get">
+		<form action="${path }/Search/list" name="searchform" method="get">
 			<div class="input-group mb-3">
 			  <input type="text" name="keyword" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
 			  <div class="input-group-append">

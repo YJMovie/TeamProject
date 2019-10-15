@@ -67,16 +67,14 @@
 		<c:if test="${status.count%4 == 1 }" ><tr><%i++; %></c:if>
 			<td>
 				<div style="width: 150px;height: 150px;border: 1px solid black;margin-top: 20px;">
-		        	${list.postfname }
+		        	<p>영화포스터${status.count }</p>
 		        </div>
 		        <div class="list" style="top:<%=290+i*170%>px;">
 		        <%=i %>
 				${list.title } <br />
-				<a href="${path }/Board/info.do?num=${list.num}&curPage=1">이미지</a> <br />
+				<a href="${path }/Movie/info?moviecode=${list.moviecode}&curPage=1">이미지</a> <br />
 				${list.open } <br />
-				${list.director } <br />
-				${list.mark } <br />
-				${list.totreview } <br />
+				${list.score } <br />
 				</div>
 			</td>
 		<c:if test="${status.count%4 == 0 }"></tr></c:if>	

@@ -3,7 +3,29 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="movie">
-	<select id="movieList">
-		select * from 
+	<select id="movieList" resultType="movie.dto.MovieDTO">
+		select * from movie_info
 	</select>
+	<select id="movieInfo" resultType="movie.dto.MovieDTO" parameterType="String">
+		select * from movie_info where moviecode = #{moviecode}
+	</select>
+	<select id="movieListScore" resultType="movie.dto.MovieDTO">
+		select rownum rn, A.* from (
+		    select * from movie_info order by score desc
+		) A
+	</select>
+	<select id="movieSearch" resultType="movie.dto.MovieDTO" parameterType="String">
+		select * from movie_info where 
+		    title like #{keyword} or
+		    lines like #{keyword}
+	</select>
+	<select id="reviewList" resultType="movie.dto.ReviewDTO" parameterType="String">
+		select * from review_info where r_mvcode = #{moviecode}
+	</select>
+	<insert id="reviewInsert">
+		insert into review_info values (
+		    (select nvl(max(r_num)+1,1)from review_info),
+		    sysdate, #{r_score}, #{r_comment},#{r_mvcode},#{writer}
+		)
+	</insert>
 </mapper>

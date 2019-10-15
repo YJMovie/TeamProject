@@ -20,8 +20,7 @@
   
   <!-- sql관련 설정 -->
   <mappers>
-  	<mapper resource="board/mapper/search.xml" />
-    <mapper resource="review/mapper/review.xml" />
-    <mapper resource="board/mapper/board.xml"/><!-- 게시물 -->
+  	<mapper resource="movie/mapper/movie.xml" />
+  	
   </mappers>
 </configuration>
