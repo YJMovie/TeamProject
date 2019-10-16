@@ -21,6 +21,7 @@
   <!-- sql관련 설정 -->
   <mappers>
   	<mapper resource="movie/mapper/movie.xml" />
-  	
+  	<mapper resource="member/mapper/member.xml" />
+  	<mapper resource="member/mapper/log.xml" />
   </mappers>
 </configuration>

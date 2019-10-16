@@ -21,7 +21,7 @@
 		    <a class="btn btn-outline-light" href="#">이벤트</a>
 		  </li>
 		  <li class="nav-item">
-		    <a class="btn btn-outline-light" href="#">랭킹</a>
+		    <a class="btn btn-outline-light" href="${path }/Movie/rank">랭킹</a>
 		  </li>
 		  <li class="nav-item">
 		    <a class="btn btn-outline-light" href="#" tabindex="-1" aria-disabled="true">즐겨찾기</a>
