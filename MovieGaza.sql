@@ -30,13 +30,17 @@ create table movie_info (
   open date,
   lines varchar2(100)
 );
-alter table movie_info add postfname varchar2(50); --포스트파일이름 필드추가
-alter table movie_info drop COLUMN postfname;
+desc movie_info;
+--포스트파일이름 필드추가
+alter table movie_info add postfname varchar2(50);
+
 update movie_info set postfname = '포스트1';
 commit;
 select * from movie_info;
 select max(moviecode) from movie_info;
-delete from movie_info where moviecode >= 'a0011' and moviecode <='a0015'; --무결성때문에 조건제거
+--무결성때문에 조건제거---
+delete from movie_info where moviecode >= 'a002' and moviecode <='a013';
+-----------------------
 select * from movie_info where moviecode = 'a002';
 select rownum rn, A.* from (
     select * from movie_info order by score desc
@@ -50,7 +54,7 @@ insert into movie_info values (
 --declare
 --i int := 9;
 --begin
---while i<15 loop
+--while i<13 loop
 --i := i + 1;
 --insert into movie_info values (
 --  'a0'||i,'영화'||i,0.1*i,to_date('2019-01-'||i,'yyyy-mm-dd'),'대사'||i,'포스터'||i

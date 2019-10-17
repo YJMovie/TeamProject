@@ -268,6 +268,8 @@
 				<td>
 					<div class="form-group">
 					    <label for="exampleInputEmail1">성별</label>
+					    <input type="radio" name="gender" value="남" checked>남
+						<input type="radio" name="gender" value="여">여
 					  </div>
 				</td>
 			</tr>
@@ -275,10 +277,22 @@
 				<td>
 					<div class="form-group">
 					    <label for="exampleInputEmail1">주소</label>
-					    <input type="text" id="sample4_postcode" name="sample4_postcode" placeholder="우편번호">
-						<input type="button" class="btn btn-primary" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-						<input type="text" class="form-control" id="sample4_roadAddress" name="sample4_roadAddress" placeholder="도로명주소">
-						<input type="text" class="form-control" id="sample4_jibunAddress" name="sample4_jibunAddress" placeholder="지번주소">
+					    <div class="form-row">
+						    <div class="col-3">
+					    		<input type="text" class="form-control" id="sample4_postcode" name="sample4_postcode" placeholder="우편번호">
+					    	</div>
+					    	<div class="col">
+								<input type="button" class="btn btn-primary" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
+							</div>
+						</div>
+						<div class="form-row">
+						    <div class="col">
+								<input type="text" class="form-control" id="sample4_roadAddress" name="sample4_roadAddress" placeholder="도로명주소">
+							</div>
+							<div class="col">
+								<input type="text" class="form-control" id="sample4_jibunAddress" name="sample4_jibunAddress" placeholder="지번주소">
+							</div>
+						</div>
 						<span id="guide" style="color:#999;display:none"></span>
 						<input type="text" class="form-control" id="sample4_detailAddress" name="sample4_detailAddress" placeholder="상세주소">
 					  </div>
@@ -325,7 +339,7 @@
 			<tr>
 				<td>
 					<button class="btn btn-primary" id="btnSave" onclick="javascript:checkWrite()">가입하기</button>
-					<button type="reset">다시작성</button>
+					<button class="btn btn-primary" type="reset">다시작성</button>
 				</td>
 			</tr>
 		</table>

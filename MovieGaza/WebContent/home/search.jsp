@@ -18,22 +18,24 @@
 		
 		<section>
 			<div id="contents" style="margin:0 auto;height: 1000px; width: 60%;background-color: #EAEAEA;padding-top: 40px;">
-				<table border="1" style="margin: 0 auto;">
-					<tr>
-						<td>제목</td>
-						<!-- <td>장르</td> -->
-						<td>포스터</td>
-						<td>개봉일</td>
-						<!-- <td>감독</td> -->
-						<td>평점</td>
-					</tr>
-					<c:forEach var="list" items="${list }">					
+				<h2>'${keyword }'에 대한 검색결과</h2>
+				<table class="table">
+				  <thead class="thead-dark">
+				    <tr>
+				      <th scope="col">포스터</th>
+				      <th scope="col">제목</th>
+				      <th scope="col">개봉일</th>
+				      <th scope="col">평점</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <c:forEach var="list" items="${list }">					
 						<tr>
+							<td>
+								<img src="../images/${list.postfname }" width="100px" />
+							</td>
 							<td><a href="${path }/Movie/info?moviecode=${list.moviecode}&curPage=1">${list.title }</a></td>
-							<%-- <td>${list.genre }</td> --%>
-							<td>포스터</td>
 							<td>${list.open }</td>
-							<%-- <td>${list.director }</td> --%>
 							<td>${list.score }</td>
 						</tr>
 					</c:forEach>
@@ -50,6 +52,7 @@
 							</c:if>
 						</td>
 					</tr>
+				  </tbody>
 				</table>
 			</div>
 		</section>

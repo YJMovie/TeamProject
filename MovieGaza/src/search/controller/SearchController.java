@@ -23,6 +23,7 @@ public class SearchController extends HttpServlet {
 		String url = request.getRequestURL().toString();
 		if (url.contains("list")) {
 			String keyword = request.getParameter("keyword");
+			request.setAttribute("keyword", keyword);
 			
 			List<MovieDTO> list = dao.movieSearch(keyword);
 			request.setAttribute("list", list);
