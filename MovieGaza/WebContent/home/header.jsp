@@ -2,6 +2,32 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<style>
+@import url('https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap');
+.card{
+background-color: #FFFFF6;
+}
+.card-header{
+padding: 10px;
+height: 150px;
+
+}
+#left{
+float: left;
+}
+#left a {
+line-height: 150px;
+}
+#right {
+padding-top: 90px;
+}
+body{
+    font-family: 'Do Hyeon', sans-serif;
+    }
+
+
+</style>
+
 <c:if test="${sGrade == 0 }">
 	<div class="card">
 	  <div class="card-header">

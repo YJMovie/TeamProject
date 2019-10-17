@@ -9,6 +9,10 @@
 	<select id="movieInfo" resultType="movie.dto.MovieDTO" parameterType="String">
 		select * from movie_info where moviecode = #{moviecode}
 	</select>
+	<select id="movieTitle" resultType="movie.dto.MovieDTO" parameterType="String">
+      select * from movie_info where title = #{title}
+   </select>
+	
 	<select id="movieListScore" resultType="movie.dto.MovieDTO">
 		select rownum rn, A.* from (
 		    select * from movie_info order by score desc

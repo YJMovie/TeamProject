@@ -10,7 +10,6 @@
 <link rel="stylesheet" href="${path }/css/bootstrap.min.css">
 <script src="${path }/js/bootstrap.min.js"></script>
 <style>
-@import url('https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap');
     .list {
     	position: absolute;
         padding-top: 20px;
@@ -63,9 +62,7 @@
         color: #fff;
         text-align: center;
     }
-    body{
-    font-family: 'Do Hyeon', sans-serif;
-    }
+    
 </style>
 </head>
 <body>

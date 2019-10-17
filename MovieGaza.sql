@@ -1,3 +1,4 @@
+-- 장르테이블
 create table genre (
   genrecode varchar2(20) not null primary key,
   genrename varchar2(50)
@@ -8,6 +9,7 @@ insert into genre values (
   '0005','SF'
 );
 select genrecode from genre where genrename = '공포';
+-- 인물테이블
 create table person (
   personcode varchar2(20) not null primary key,
   personname varchar2(50),
@@ -19,36 +21,44 @@ insert into person values (
   'B001','홍길동','호주','캔버라사람'
 );
 select personname from person where personcode = 'A002';
+-- 영화정보테이블
 create table movie_info (
   moviecode varchar2(50) not null primary key,
   title varchar2(50),
+  -- postfnmae varchar2(50)
   score number,
   open date,
   lines varchar2(100)
 );
-drop table movie_info;
+alter table movie_info add postfname varchar2(50); --포스트파일이름 필드추가
+alter table movie_info drop COLUMN postfname;
+update movie_info set postfname = '포스트1';
+commit;
 select * from movie_info;
+select max(moviecode) from movie_info;
+delete from movie_info where moviecode >= 'a0011' and moviecode <='a0015'; --무결성때문에 조건제거
 select * from movie_info where moviecode = 'a002';
 select rownum rn, A.* from (
     select * from movie_info order by score desc
 )A ;
-
 select * from movie_info where 
     title like '%화2%' or
     lines like '%화3%';
-
-drop table movie_info;
+insert into movie_info values (
+    'a016','영화16',1.6,to_date('2019-09-01','yyyy-mm-dd'),'대사16','포스터16'
+);
 --declare
---i int := 0;
+--i int := 9;
 --begin
---while i<5 loop
+--while i<15 loop
 --i := i + 1;
 --insert into movie_info values (
---  'a00'||i,'영화'||i,0.1*i,to_date('2019-01-0'||i,'yyyy-mm-dd'),'대사'||i
+--  'a0'||i,'영화'||i,0.1*i,to_date('2019-01-'||i,'yyyy-mm-dd'),'대사'||i,'포스터'||i
 --);
 --end loop;
 --end;
 
+-- 영화코드 테이블
 create table movie_code (
   mvcode varchar2(50) references movie_info(moviecode),
   grcode varchar2(20) references genre(genrecode),
@@ -61,6 +71,7 @@ insert into movie_code values (
 );
 select DISTINCT grcode from movie_code where mvcode = 'a001';
 select DISTINCT pscode from movie_code where mvcode = 'a001';
+-- 회원등급 테이블
 create table member_grade (
     gradecode int not null primary key,
     gradename varchar2(50)
@@ -69,6 +80,7 @@ select * from member_grade;
 insert into member_grade values (0,'관리자');
 insert into member_grade values (1,'VIP회원');
 insert into member_grade values (2,'일반회원');
+-- 회원정보 테이블
 create table member_info (
     inum number not null primary key,
     name varchar2(50),
@@ -82,14 +94,17 @@ create table member_info (
     usergrade int REFERENCES member_grade(gradecode)
 );
 select * from member_info;
+select usergrade from member_info where name = '관리자';
 insert into member_info values (
   (select nvl(max(inum)+1,1) from member_info),
-  '이순신','lee','1111','남','010-1111-1111','부산시 부산진구',
-  'lee@gmail.com',sysdate,2
+  '관리자','admin','0000','남','000-0000-0000','부산시 북구',
+  'admin@gmail.com',sysdate,0
 );
 
 drop table member_info;
-
+delete from member_info;
+commit;
+-- 리뷰정보 테이블
 create table review_info (
     r_num number not null primary key,
     r_date date default sysdate,
@@ -111,8 +126,9 @@ insert into review_info values (
 select * from review_info where r_mvcode = 'a005';
 drop table review_info;
 
-
-commit;
+----------------------------------------------로그인
+select * from member_info where userid = 'lee';
+--------------------------------------------------
 
 --create table xx (
 --  n1 varchar2(50) not null primary key,

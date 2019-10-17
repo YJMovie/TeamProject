@@ -35,7 +35,7 @@
 				document.login.submit();
 		});
 		$('#back').click(function(){
-			location.href = "${path}/Log/view.do";
+			document.login.action = "${path}/member/login.jsp";
 		});
 	});
 </script>
@@ -50,37 +50,42 @@
 	<div id="contents" style="margin:0 auto;height: 1000px; width: 60%;background-color: #EAEAEA;padding-top: 40px;">
 
  	<form action=""name="login"method="post">
- 		<table border="1">
+ 		<table style="margin: 0 auto;">
  			<tr>
- 				<td>아이디 :</td>
- 				<td><input type="text" id="userid" name="userid" /></td>
- 			</tr>
- 			<tr>
- 				<td>비밀번호:</td>
- 				<td><input type="password" id="userpwd" name="userpwd" /></td>
- 			</tr>
- 			<tr>
- 				<td><input type="button" value="확인" id="idcheck"/></td>
  				<td>
- 					<input type="reset" value="재작성" />
- 					<input type="button" value="뒤로" id="back" />
+ 					<div class="form-group">
+					    <label for="exampleInputEmail1">아이디</label>
+					    <input type="text" class="form-control" id="userid" name="userid" aria-describedby="emailHelp" placeholder="USER ID">
+					  </div>
  				</td>
- 				
  			</tr>
  			<tr>
- 				<td colspan="2">
+ 				<td>
+ 					<div class="form-group">
+					    <label for="exampleInputPassword1">비밀번호</label>
+					    <input type="password" class="form-control" id="userpwd" name="userpwd" placeholder="USER PASSWORD">
+					  </div>
+ 				</td>
+ 			</tr>
+ 			<tr>
+ 				<td>
+ 					<button id="idcheck" class="btn btn-primary">로그인</button>
+ 					<button id="idfind" class="btn btn-primary">아이디찾기</button>
+ 					<button id="pwdfind" class="btn btn-primary">비밀번호찾기</button>
+ 					<button id="back">뒤로</button>
+ 				</td>
+ 			</tr>
+ 			<tr>
+ 				<td>
  					<c:if test="${error eq 1 }">
  						<span style="color: red;">존재하지않습니다.</span>
  					</c:if>
  				</td>
  			</tr>
  		</table>
- 	</form>
- 	<form action="${path}/controller/jmember.do" method="post">
- 		<button type="submit">회원관리</button>
- 	</form>
  	</div>
  	</section>
  	</div>
+ 	
 </body>
 </html>

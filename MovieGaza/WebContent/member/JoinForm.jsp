@@ -167,9 +167,8 @@
 		<br> <br> <b><font size="6">회원가입</font></b> <br> <br>
 		<br>
 
-		<form method="post" name="writeform">
-		
-			<table border="1">
+		<!-- <form method="post" name="writeform">
+			<table border="1" style="margin: 0 auto;">
 				<tr>
 
 					<td id="title">아이디</td>
@@ -203,7 +202,7 @@
 						<input type="text" id="sample4_jibunAddress" name="sample4_jibunAddress" placeholder="지번주소">
 						<span id="guide" style="color:#999;display:none"></span>
 						<input type="text" id="sample4_detailAddress" name="sample4_detailAddress" placeholder="상세주소">
-						<!-- <input type="text" id="sample4_extraAddress" placeholder="참고항목"></td> -->
+						<input type="text" id="sample4_extraAddress" placeholder="참고항목"></td>
 				</tr>
 				<tr>
 					<td>핸드폰번호</td>
@@ -229,7 +228,107 @@
 			<br> <input type="button" value="가입하기" id="btnSave" onclick="javascript:checkWrite()" />
 				 <input type="reset" value="다시작성">
 
-		</form>
+		</form> -->
+		<form method="post" name="writeform">
+			<table style="margin: 0 auto;">
+			<tr>
+				<td>
+					<div class="form-group">
+					    <label for="exampleInputEmail1">아이디</label>
+					    <input type="text" class="form-control" id="userid" name="userid" maxlength="15" aria-describedby="emailHelp" placeholder="Enter email">
+					  </div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div class="form-group">
+					    <label for="exampleInputPassword1">비밀번호</label>
+					    <input type="password" class="form-control" id="userpwd" name="userpwd" maxlength="15" placeholder="Password">
+					  </div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div class="form-group">
+					    <label for="exampleInputPassword1">비밀번호확인</label>
+					    <input type="password" class="form-control" id="passcheck" name="passcheck" maxlength="15" placeholder="Password">
+					  </div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div class="form-group">
+					    <label for="exampleInputEmail1">이름</label>
+					    <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp"  maxlength="40" placeholder="Enter email">
+					    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+					  </div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div class="form-group">
+					    <label for="exampleInputEmail1">성별</label>
+					  </div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div class="form-group">
+					    <label for="exampleInputEmail1">주소</label>
+					    <input type="text" id="sample4_postcode" name="sample4_postcode" placeholder="우편번호">
+						<input type="button" class="btn btn-primary" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
+						<input type="text" class="form-control" id="sample4_roadAddress" name="sample4_roadAddress" placeholder="도로명주소">
+						<input type="text" class="form-control" id="sample4_jibunAddress" name="sample4_jibunAddress" placeholder="지번주소">
+						<span id="guide" style="color:#999;display:none"></span>
+						<input type="text" class="form-control" id="sample4_detailAddress" name="sample4_detailAddress" placeholder="상세주소">
+					  </div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div class="form-group">
+					    <label for="exampleInputEmail1">핸드폰</label>
+					    <div class="form-row">
+						    <div class="col">
+						      <input type="text" class="form-control" placeholder="City" id="phone1" name="phone1">
+						    </div>-
+						    <div class="col">
+						      <input type="text" class="form-control" placeholder="State" id="phone2" name="phone2">
+						    </div>-
+						    <div class="col">
+						      <input type="text" class="form-control" placeholder="State" id="phone3" name="phone3">
+						    </div>
+						</div>
+					  </div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div class="form-group">
+					    <label for="exampleInputEmail1">이메일</label>
+					    <div class="form-row">
+						    <div class="col-5">
+						      <input type="text" class="form-control" placeholder="City" name="email1" maxlength="30" id="email1">
+						    </div>@
+						    <div class="col">
+						      <select id="inputState" class="form-control" name="email2">
+						        <option selected="selected">naver.com</option>
+								<option>daum.net</option>
+								<option>nate.com</option>
+								<option>gmail.com</option>
+						      </select>
+						    </div>
+						 </div>
+					  </div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<button class="btn btn-primary" id="btnSave" onclick="javascript:checkWrite()">가입하기</button>
+					<button type="reset">다시작성</button>
+				</td>
+			</tr>
+		</table>
 		</div>
 		</section>
 		</div>

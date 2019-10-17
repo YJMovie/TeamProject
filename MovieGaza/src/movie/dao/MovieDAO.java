@@ -47,6 +47,11 @@ public class MovieDAO {
 		session.commit();
 		session.close();
 	}
-	
+	 public MovieDTO movieTitle(String title) {
+	      SqlSession session = MybatisManager.getInstance().openSession();
+	      MovieDTO dto = session.selectOne("movie.movieTitle",title);
+	      session.close();
+	      return dto;
+	   }
 }
 
