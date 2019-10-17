@@ -2,8 +2,22 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-
-<c:if test="${sName == null }">
+<c:if test="${sGrade == 0 }">
+	<div class="card">
+	  <div class="card-header">
+	  	<div style="text-align: center;">
+		    <h2><a href="${path }/Admin/addmovie" style="text-decoration: none;color: black;">영화가즈아(관리자)</a></h2>  	
+	  	</div>  	
+	  	<div style="text-align: right;">
+			<h4><span>${sName }</span>님 환영합니다.${sGrade }</h4>
+		    <a href="${path }/Log/logout.do"><button type="button" class="btn btn-outline-primary">로그아웃</button></a>
+		  	<a href="${path }/Member/join.do"><button type="button" class="btn btn-outline-primary">회원수정</button></a>
+		  	<a href="${path }/Admin/addmovie"><button type="button" class="btn btn-outline-primary">관리자</button></a>
+	  	</div>
+	  </div>
+	</div>
+</c:if>
+<c:if test="${sGrade == null }">
 	<div class="card">
 	  <div class="card-header">
 	  	<div style="text-align: center;">
@@ -16,14 +30,14 @@
 	  </div>
 	</div>
 </c:if>
-<c:if test="${sName != null }">
+<c:if test="${sGrade == 2 }">
 	<div class="card">
 	  <div class="card-header">
 	  	<div style="text-align: center;">
 		    <h2><a href="${path }/Home" style="text-decoration: none;color: black;">영화가즈아(회원)</a></h2>  	
 	  	</div>  	
 	  	<div style="text-align: right;">
-			<h4><span>${sName }</span>님 환영합니다.</h4>
+			<h4><span>${sName }</span>님 환영합니다.${sGrade }</h4>
 		    <a href="${path }/Log/logout.do"><button type="button" class="btn btn-outline-primary">로그아웃</button></a>
 		  	<a href="${path }/Member/join.do"><button type="button" class="btn btn-outline-primary">회원수정</button></a>
 	  	</div>

@@ -18,6 +18,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import common.Constants;
 import movie.dao.MovieDAO;
 import movie.dao.ReviewDAO;
 import movie.dto.MovieDTO;

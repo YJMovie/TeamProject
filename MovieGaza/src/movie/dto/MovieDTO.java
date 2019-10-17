@@ -8,6 +8,14 @@ public class MovieDTO {
 	private double score;
 	private Date open;
 	private String lines;
+	private String postfname;
+	
+	public String getPostfname() {
+		return postfname;
+	}
+	public void setPostfname(String postfname) {
+		this.postfname = postfname;
+	}
 	public String getMoviecode() {
 		return moviecode;
 	}
@@ -41,7 +49,7 @@ public class MovieDTO {
 	@Override
 	public String toString() {
 		return "MovieDTO [moviecode=" + moviecode + ", title=" + title + ", score=" + score + ", open=" + open
-				+ ", lines=" + lines + "]";
+				+ ", lines=" + lines + ", postfname=" + postfname + "]";
 	}
 	
 }

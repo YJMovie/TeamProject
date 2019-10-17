@@ -28,4 +28,12 @@
 		    sysdate, #{r_score}, #{r_comment},#{r_mvcode},#{writer}
 		)
 	</insert>
+	<insert id="movieInsert">
+		insert into movie_info values (
+		    #{moviecode},#{title},#{score},to_date(#{open},'yyyy-mm-dd'),#{lines},#{postfname}
+		)
+	</insert>
+	<select id="moviecodeMax" parameterType="String" resultType="String">
+		select max(moviecode) from movie_info
+	</select>
 </mapper>

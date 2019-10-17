@@ -22,7 +22,7 @@ public class Logcontroller extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		HttpSession session = request.getSession();
+		HttpSession session = request.getSession(); //세션객체 생성
 		String url = request.getRequestURL().toString();
 		System.out.println(url);
 		if(url.contains("view.do")) {
@@ -45,13 +45,14 @@ public class Logcontroller extends HttpServlet {
 			
 			if(result != null && result != "") {
 			System.out.println("ㅇㅇ"+result);
+			int grade = dao.memberGrade(result);
 			
-			session.setAttribute("sid", userid);
-			session.setAttribute("sName", result);
-			String sid = (String)session.getAttribute("sid");
+			session.setAttribute("sGrade", grade); //회원등급 세션생성
+			session.setAttribute("sName", result); //회원이름 세션생성
+			int sGrade = (int)session.getAttribute("sGrade");
 			String sName = (String)session.getAttribute("sName");
-			request.setAttribute("sid", sid);
-			request.setAttribute("sName", result);
+			request.setAttribute("sGrade", sGrade); //등급세션 뿌리기
+			request.setAttribute("sName", result); //이름세션 뿌리기
 			String page ="/Home";
 			RequestDispatcher rd = request.getRequestDispatcher(page);
 			rd.forward(request, response);

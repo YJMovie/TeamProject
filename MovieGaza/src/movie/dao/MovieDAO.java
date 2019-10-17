@@ -34,6 +34,19 @@ public class MovieDAO {
 		session.close();
 		return list;
 	}
+	public String moviecodeMax() {
+		SqlSession session = MybatisManager.getInstance().openSession();
+		String mvcodeMax = session.selectOne("movie.moviecodeMax");
+		session.close();
+		return mvcodeMax;
+	}
+	public void movieInsert(MovieDTO dto) {
+		SqlSession session = MybatisManager.getInstance().openSession();
+		System.out.println(dto);
+		session.insert("movie.movieInsert",dto);
+		session.commit();
+		session.close();
+	}
 	
 }
 

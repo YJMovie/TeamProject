@@ -38,7 +38,7 @@
 	<table border="1">
 		<tr>
 			<td>작성자</td>
-			<td><input type="text" name="writer" value="홍길동" readonly="readonly"></td>
+			<td><input type="text" name="writer" value="${sName }" readonly="readonly"></td>
 			<td>평점</td>
 			<td>
 				<select name="r_score" >

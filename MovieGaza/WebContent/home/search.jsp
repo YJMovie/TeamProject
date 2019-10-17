@@ -29,7 +29,7 @@
 					</tr>
 					<c:forEach var="list" items="${list }">					
 						<tr>
-							<td>${list.title }</td>
+							<td><a href="${path }/Movie/info?moviecode=${list.moviecode}&curPage=1">${list.title }</a></td>
 							<%-- <td>${list.genre }</td> --%>
 							<td>포스터</td>
 							<td>${list.open }</td>

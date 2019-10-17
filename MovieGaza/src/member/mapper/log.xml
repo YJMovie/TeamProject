@@ -6,4 +6,7 @@
 	<select id="login" resultType="String">
 		select name from member_info where userid=#{userid} and userpwd=#{userpwd}
 	</select>
+	<select id="memberGrade" parameterType="String" resultType="int">
+		select usergrade from member_info where name = #{result}
+	</select>
 </mapper>

@@ -11,7 +11,6 @@ public class ReviewDAO {
 	public List<ReviewDTO> reviewList(String moviecode) {
 		SqlSession session = MybatisManager.getInstance().openSession();
 		List<ReviewDTO> list = session.selectList("movie.reviewList",moviecode);
-		System.out.println(list);
 		session.close();
 		return list;
 	}

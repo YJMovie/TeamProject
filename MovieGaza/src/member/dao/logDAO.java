@@ -19,5 +19,11 @@ public class logDAO {
 		
 		return result;
 	}
+	public int memberGrade(String result) {
+		SqlSession session = MybatisManager.getInstance().openSession();
+		int grade = session.selectOne("log.memberGrade",result);
+		session.close();
+		return grade;
+	}
 
 }

@@ -17,6 +17,12 @@
 			document.infoform.submit();
 		});
 		$('#btnReview').click(function(){
+			/* alert($('#btnReview').val()); */
+			var sName = $('#btnReview').val();
+			if (sName == "") {
+				alert("로그인 하세요.");
+				return;
+			}
 			document.infoform.action = "${path}/Movie/write?moviecode=${dto.moviecode}";
 			document.infoform.submit();
 		});
@@ -51,26 +57,12 @@ ${curPage } --%>
 			<td>제목</td>
 			<td>${dto.title }</td>
 		</tr>
-		<%-- <tr>
-			<td>장르</td>
-			<td>${dto.genre }</td>
-		</tr>
 		<tr>
 			<td>포스터</td>
-			<td>${dto.postfname }</td>
+			<td>
+				<img src="../images/${dto.postfname }" />
+			</td>
 		</tr>
-		<tr>
-			<td>포토</td>
-			<td>${dto.photofname }</td>
-		</tr>
-		<tr>
-			<td>감독</td>
-			<td>${dto.director }</td>
-		</tr>
-		<tr>
-			<td>배우</td>
-			<td>${dto.actor }</td>
-		</tr> --%>
 		<tr>
 			<td>명대사</td>
 			<td>${dto.lines }</td>
@@ -86,7 +78,7 @@ ${curPage } --%>
 	</table>
 	<br />
 	<button id="btnList">목록</button>
-	<button id="btnReview">리뷰하기</button>
+	<button id="btnReview" value="${sName }">리뷰하기</button>
 </form>
 <hr />
 <div id="reviewList"></div>
