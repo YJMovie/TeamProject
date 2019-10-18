@@ -51,18 +51,44 @@
 		)
 	</insert>
 	<insert id="moviecodeInsert">
-		insert into movie_code values (
-		  #{mvcode},#{grcode},#{pscode}
-		)
+		<choose>
+			<when test="grcode == null">
+				insert into movie_code (mvcode,pscode) values (
+				  #{mvcode},#{pscode}
+				)
+			</when>
+			<when test="pscode == null">
+				insert into movie_code (mvcode,grcode) values (
+				  #{mvcode},#{grcode}
+				)
+			</when>
+			<when test="grcode != null and pscode != null">
+				insert into movie_code values (
+				  #{mvcode},#{grcode},#{pscode}
+				)
+			</when>
+		</choose>
 	</insert>
 	<select id="moviecodeMax" parameterType="String" resultType="String">
 		select max(moviecode) from movie_info
 	</select>
 	<select id="moviecodeGrcode" parameterType="String" resultType="movie.dto.MovieCodeDTO">
-		select distinct grcode from movie_code where mvcode = #{mvcode}
+		select distinct grcode from movie_code 
+			where mvcode = #{mvcode} and
+				grcode is not null
+			order by grcode
+	</select>
+	<select id="moviecodePscode" parameterType="String" resultType="movie.dto.MovieCodeDTO">
+		select DISTINCT pscode from movie_code 
+			where mvcode = #{mvcode} and 
+				pscode is not null
+			order by pscode
 	</select>
 	<select id="movieGenre" resultType="String">
 		select genrename from genre where genrecode = #{grcode}
+	</select>
+	<select id="moviePerson" resultType="String">
+		select personname from person where personcode = #{pscode}
 	</select>
 	<select id="movieCount" resultType="int">
 		select count(*) from movie_info

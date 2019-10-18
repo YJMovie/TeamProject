@@ -17,7 +17,7 @@
 	<div style="height: 1000px;background-color: white;">
 		
 	<section>
-	<div id="contents" style="margin:0 auto;height: 1000px; width: 60%;background-color: #EAEAEA;padding-top: 40px;">
+	<div id="contents" style="margin:0 auto;height: 1000px; width: 900px;background-color: #EAEAEA;padding-top: 40px;">
 		<h2> ${name }님 환영합니다 </h2>
 		<a href="${path }/Home"><button>홈으로</button></a>
 	</div>

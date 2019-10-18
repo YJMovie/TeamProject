@@ -89,14 +89,32 @@ public class MovieController extends HttpServlet {
 			request.setAttribute("dto", dto);
 			
 			//grcode를 가져오자
-			List<MovieCodeDTO> list = dao.moviecodeGrcode(moviecode);
+			List<MovieCodeDTO> grlist = dao.moviecodeGrcode(moviecode); // 해당영화 장르코드 저장
 			String[] genrename = new String[5]; // 가져온 장르 보관할 배열
-			for (int i = 0; i < list.size(); i++) {
-				String grcode = list.get(i).getGrcode(); //해당영화 grcode, 장르개수만큼
+			for (int i = 0; i < grlist.size(); i++) {
+				String grcode = grlist.get(i).getGrcode(); //해당영화 grcode, 장르개수만큼
 				System.out.println(grcode);
 				genrename[i] = dao.movieGenre(grcode);
 				request.setAttribute("grname"+(i+1), genrename[i]+"/");
 			}
+			//pscode를 가져오자
+			List<MovieCodeDTO> pslist = dao.moviecodePscode(moviecode);
+			String[] personname = new String[5]; // 인물코드에 의해 가져온 인물이름 저장
+			List<String> pscodeA = new ArrayList<String>(); // 인물코드가 A로 시작하는 인물 저장
+			List<String> pscodeB = new ArrayList<String>(); // 인물코드가 B로 시작하는 인물 저장
+			for (int i = 0; i < pslist.size(); i++) {
+				String pscode = pslist.get(i).getPscode(); //해당영화 pscode, 인물개수만큼
+				System.out.println(pscode);
+				personname[i] = dao.moviePerson(pscode); //인물코드에 맞는 인물이름 추출
+				if (pslist.get(i).getPscode().charAt(0) == 'A') { //인물코드 첫문자 A이면 배우
+					pscodeA.add(personname[i]);
+				}
+				if (pslist.get(i).getPscode().charAt(0) == 'B') { //인물코드 첫문자 B이면 감독
+					pscodeB.add(personname[i]);
+				}
+			}
+			request.setAttribute("pscodeA", pscodeA);
+			request.setAttribute("pscodeB", pscodeB);
 			
 			String page = "/movie/info.jsp";
 			RequestDispatcher rd = request.getRequestDispatcher(page);

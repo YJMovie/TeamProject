@@ -13,7 +13,7 @@
     .list {
     	position: absolute;
         padding-top: 20px;
-        top: 290px;
+        top: 330px;
         width: 150px;
         height: 150px;
         background: rgba(0,0,0,0.6);
@@ -39,7 +39,7 @@
     .list1 {
     	position: absolute;
         padding-top: 20px;
-        top: 510px;
+        top: 550px;
         width: 150px;
         height: 150px;
         background: rgba(0,0,0,0.6);
@@ -73,7 +73,7 @@
 	<div style="height: 1000px;background-color: white;">
 		
 		<section>
-			<div id="contents" style="margin:0 auto;height: 1000px; width: 60%;background-color: #EAEAEA;padding-top: 40px;">
+			<div id="contents" style="margin:0 auto;height: 1000px; width: 900px;background-color: #EAEAEA;padding-top: 40px;">
 
 					<h2>영화목록</h2>
 					<table border="1" style="margin: 0 auto;">

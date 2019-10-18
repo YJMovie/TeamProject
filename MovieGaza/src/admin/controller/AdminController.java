@@ -100,13 +100,8 @@ public class AdminController extends HttpServlet {
 			for (i = 0; i < 5; i++) { //i최대값은 장르,인물 테이블 총 레코드가 최대값인것
 				String grcode = multi.getParameter("grcode"+(i+1));
 				String pscodeA = multi.getParameter("pscodeA"+(i+1));
-				if (grcode == null) {
-					grcode = "-";
-				}
-				if (pscodeA == null) {
-					pscodeA = "-";
-				}
-				if (grcode == null && pscodeA == null) { //grcode랑 pscode 둘다 null이면 레코드 추가x
+				
+				if (grcode == null && pscodeA == null) {
 					continue;
 				}
 				cdto.setMvcode(moviecode);
@@ -121,12 +116,6 @@ public class AdminController extends HttpServlet {
 				if (grcode == null && pscodeB == null) {
 					continue;
 				}
-				if (grcode == null) {
-					grcode = "-";
-				}
-				if (pscodeB == null) {
-					pscodeB = "-";
-				}
 				cdto.setMvcode(moviecode);
 				cdto.setGrcode(grcode);
 				cdto.setPscode(pscodeB);
@@ -134,20 +123,6 @@ public class AdminController extends HttpServlet {
 				dao.moviecodeInsert(cdto);
 			}
 			
-//			String[] grcode = new String[5];
-//			MovieCodeDTO cdto = new MovieCodeDTO();
-//			for (int i = 0; i < grcode.length; i++) {
-//				grcode[i] = multi.getParameter("grcode"+(i+1));
-//				System.out.println("grcode["+i+"]:"+grcode[i]);
-//				
-//				if (grcode[i] != null) {
-//					System.out.println("zzzzzzzzzz");
-//					cdto.setMvcode(moviecode);
-//					cdto.setGrcode(grcode[i]);
-//					dao.moviecodeInsert(cdto);
-//				}
-//				System.out.println(cdto);
-//			}
 
 			String page = "/admin/main.jsp";
 			RequestDispatcher rd = request.getRequestDispatcher(page);

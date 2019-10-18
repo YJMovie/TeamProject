@@ -54,7 +54,7 @@
 <div style="height: 1000px;background-color: white;">
 <section>
 <!-- <div id="contents"> -->
-<div id="contents" style="margin:0 auto;height: 1000px; width: 60%;background-color: #EAEAEA;padding-top: 40px;">
+<div id="contents" style="margin:0 auto;height: 1000px; width: 900px;background-color: #EAEAEA;padding-top: 40px;">
 <div style="margin: 0 auto;width: 270px;">
 	<ul class="list-group list-group-horizontal-sm">
 	  <li class="list-group-item"><a href="${path }/Board/list.do?category=1">평점순</a></li>

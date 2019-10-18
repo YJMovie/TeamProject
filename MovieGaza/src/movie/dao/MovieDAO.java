@@ -95,5 +95,17 @@ public class MovieDAO {
 		session.close();
 		return genrename;
 	}
+	public List<MovieCodeDTO> moviecodePscode(String mvcode) {
+		SqlSession session = MybatisManager.getInstance().openSession();
+		List<MovieCodeDTO> list = session.selectList("movie.moviecodePscode",mvcode);
+		session.close();
+		return list;
+	}
+	public String moviePerson(String pscode) {
+		SqlSession session = MybatisManager.getInstance().openSession();
+		String personname = session.selectOne("movie.moviePerson",pscode);
+		session.close();
+		return personname;
+	}
 }
 

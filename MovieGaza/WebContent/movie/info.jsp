@@ -50,37 +50,30 @@ ${curPage } --%>
 <!-- <div style="height: 800px; width: 100%; border: 1px dotted black; margin: 0;"> -->
 <div style="height: 1000px;background-color: white;">
 <section>
-<div id="contents" style="margin:0 auto;height: 1000px; width: 60%;background-color: #EAEAEA;padding-top: 40px;">
+<div id="contents" style="margin:0 auto;height: 1000px; width: 900px;background-color: #EAEAEA;padding-top: 40px;">
 <form action="" method="post" name="infoform">
-	<table border="1">
+	<table>
 		<tr>
-			<td>제목</td>
-			<td>${dto.title }</td>
-		</tr>
-		<tr>
-			<td>포스터</td>
+			<td><img src="../images/${dto.postfname }" /></td>
 			<td>
-				<img src="../images/${dto.postfname }" />
+				<div style=" padding-top: 350px;padding-left: 100px">
+					제목 ${dto.title } <br />
+					장르 ${grname1 } ${grname2 } ${grname3 } ${grname4 } ${grname5 } <br />
+					영화감독
+					<c:forEach var="pscodeB" items="${pscodeB }">
+						${pscodeB }
+					</c:forEach><br />
+					출연배우
+					<c:forEach var="pscodeA" items="${pscodeA }">
+						${pscodeA }
+					</c:forEach><br />
+					명대사 ${dto.lines } <br />
+					평점 ${dto.score } <br />
+					개봉일 ${dto.open } <br />
+				</div>
 			</td>
 		</tr>
-		<tr>
-			<td>장르</td>
-			<td>
-				${grname1 } ${grname2 } ${grname3 } ${grname4 } ${grname5 }
-			</td>
-		</tr>
-		<tr>
-			<td>명대사</td>
-			<td>${dto.lines }</td>
-		</tr>
-		<tr>
-			<td>평점</td>
-			<td>${dto.score }</td>
-		</tr>
-		<tr>
-			<td>개봉일</td>
-			<td>${dto.open }</td>
-		</tr>
+			
 	</table>
 	<br />
 	<button id="btnList">목록</button>
