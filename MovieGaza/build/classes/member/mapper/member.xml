@@ -18,4 +18,36 @@
 	<select id="confirmID" parameterType="String" resultType="String">
 		select userid from member_info where userid = #{userid}
 	</select>
+	<select id="memlist" resultType="member.dto.MemberDTO">
+		select aa.* from
+		 	(
+	    		(select rownum as rn, mem.*  from
+	     			( select  * from member_info order by name desc  )
+	     		 mem) 
+     		aa)
+		where 
+			rn between #{start} and #{end}
+			
+	</select>
+	<delete id="delete">
+		delete from member_info where userid=#{userid}
+	</delete>
+	<update  id="memUpdate">
+		update member_info
+		set
+			userpwd = #{userpwd},
+			name = #{name},
+			phone = #{phone},
+			address = #{address},
+			gender = #{gender},
+			email = #{email}
+		where
+			userid = #{userid}
+	</update>
+	<select id="memGet" resultType="member.dto.MemberDTO">
+		select * from member_info where name = #{name}
+	</select>
+	<select id="recordCount" resultType="int">
+		select count(*) as recordCount from member_info
+	</select>
 </mapper>

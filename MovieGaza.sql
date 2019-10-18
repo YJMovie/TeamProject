@@ -82,15 +82,15 @@ create table movie_code (
 );
 drop table movie_code;
 desc movie_code;
-
+delete from movie_code;
 select * from movie_code;
 select * from movie_info order by moviecode desc;
 -- 외래키는 중복,null 가능
 insert into movie_code (mvcode,grcode) values (
   'a001','0003'
 );
-select distinct grcode from movie_code where mvcode = 'a017';
-select DISTINCT pscode from movie_code where mvcode = 'a001';
+select DISTINCT grcode from movie_code where mvcode = 'a016' and grcode is not null;
+select DISTINCT pscode from movie_code where mvcode = 'a016' and pscode is not null;
 -- 회원등급 테이블
 create table member_grade (
     gradecode int not null primary key,
@@ -110,7 +110,7 @@ create table member_info (
     address varchar2(100),
     email varchar2(50),
     userdate date default sysdate,
-    usergrade int REFERENCES member_grade(gradecode)
+    usergrade int REFERENCES member_grade(gradecode) on delete cascade
 );
 commit;
 drop table member_info;
@@ -138,6 +138,7 @@ create table review_info (
 drop table review_info;
 desc review_info;
 select * from review_info;
+alter table review_info drop column r_mvcode;
 insert into review_info values (
     (select nvl(max(r_num)+1,1)from review_info),
     sysdate, 0.0, '리뷰작성5','a005','홍길순'

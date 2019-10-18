@@ -72,7 +72,7 @@ public class Logcontroller extends HttpServlet {
 			String page ="/Home";
 			RequestDispatcher rd = request.getRequestDispatcher(page);
 			rd.forward(request, response);
-		}
+		} 
 		
 	} 
 	
