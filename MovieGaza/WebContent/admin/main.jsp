@@ -19,6 +19,11 @@
 	<section>
 	<div id="contents" style="margin:0 auto;height: 1000px; width: 60%;background-color: #EAEAEA;padding-top: 40px;">
 		<h2>관리자 메인페이지</h2>
+			<ul>
+				<li><a href="addmovie">영화목록 추가하기</a></li>
+				<li></li>
+				<li></li>
+			</ul>
 	</div>
 	</section>
 	</div>

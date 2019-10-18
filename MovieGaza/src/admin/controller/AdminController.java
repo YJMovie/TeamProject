@@ -3,7 +3,9 @@ package admin.controller;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,6 +19,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import common.Constants;
 import movie.dao.MovieDAO;
+import movie.dto.MovieCodeDTO;
 import movie.dto.MovieDTO;
 
 
@@ -27,7 +30,11 @@ public class AdminController extends HttpServlet {
   
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = request.getRequestURL().toString();
-		if (url.contains("addmovie")) {
+		if (url.contains("main")) {
+			String page = "/admin/main.jsp";
+			RequestDispatcher rd = request.getRequestDispatcher(page);
+			rd.forward(request, response);
+		} else if (url.contains("addmovie")) {
 			String mvcodeMax = dao.moviecodeMax();
 			request.setAttribute("mvcodeMax", mvcodeMax);
 			String page = "/admin/addmovie.jsp";
@@ -35,22 +42,6 @@ public class AdminController extends HttpServlet {
 			rd.forward(request, response);
 		} else if (url.contains("insert")) {
 			MovieDTO dto = new MovieDTO();
-			
-//			String moviecode = request.getParameter("moviecode");
-//			String title = request.getParameter("title");
-//			String postfname = request.getParameter("postfname");
-//			double score = Double.parseDouble(request.getParameter("score"));
-//			Date open = Date.valueOf(request.getParameter("open"));
-//			System.out.println(open);
-//			String lines = request.getParameter("lines");
-//			System.out.println(moviecode);
-//			
-//			
-//			dto.setMoviecode(moviecode);
-//			dto.setTitle(title);
-//			dto.setScore(score);
-//			dto.setOpen(open);
-//			dto.setLines(lines);
 			
 			File uploadDir = new File(Constants.UPLOAD_PATH);
 			if (!uploadDir.exists()) {
@@ -88,23 +79,76 @@ public class AdminController extends HttpServlet {
 			
 			String moviecode = multi.getParameter("moviecode");
 			String title = multi.getParameter("title");
-			double score = Double.parseDouble(multi.getParameter("score"));
 			Date open = Date.valueOf(multi.getParameter("open"));
 			System.out.println(open);
 			String lines = multi.getParameter("lines");
 			System.out.println(moviecode);
 			
-			
 			dto.setMoviecode(moviecode);
 			dto.setTitle(title);
 			dto.setPostfname(postfname);
-			dto.setScore(score);
 			dto.setOpen(open);
 			dto.setLines(lines);
 			
 			dao.movieInsert(dto);
 			System.out.println("movieInsert 완료");
 			
+			////////////multi로 씁시다..////////
+			MovieCodeDTO cdto = new MovieCodeDTO();
+			List<MovieCodeDTO> codelist = new ArrayList<MovieCodeDTO>();
+			int i=0;
+			for (i = 0; i < 5; i++) { //i최대값은 장르,인물 테이블 총 레코드가 최대값인것
+				String grcode = multi.getParameter("grcode"+(i+1));
+				String pscodeA = multi.getParameter("pscodeA"+(i+1));
+				if (grcode == null) {
+					grcode = "-";
+				}
+				if (pscodeA == null) {
+					pscodeA = "-";
+				}
+				if (grcode == null && pscodeA == null) { //grcode랑 pscode 둘다 null이면 레코드 추가x
+					continue;
+				}
+				cdto.setMvcode(moviecode);
+				cdto.setGrcode(grcode);
+				cdto.setPscode(pscodeA);
+				System.out.println(cdto);
+				dao.moviecodeInsert(cdto);
+			}
+			for (i = 0; i < 5; i++) { //i최대값은 장르,인물 테이블 총 레코드가 최대값인것
+				String grcode = multi.getParameter("grcode"+(i+1));
+				String pscodeB = multi.getParameter("pscodeB"+(i+1));
+				if (grcode == null && pscodeB == null) {
+					continue;
+				}
+				if (grcode == null) {
+					grcode = "-";
+				}
+				if (pscodeB == null) {
+					pscodeB = "-";
+				}
+				cdto.setMvcode(moviecode);
+				cdto.setGrcode(grcode);
+				cdto.setPscode(pscodeB);
+				System.out.println(cdto);
+				dao.moviecodeInsert(cdto);
+			}
+			
+//			String[] grcode = new String[5];
+//			MovieCodeDTO cdto = new MovieCodeDTO();
+//			for (int i = 0; i < grcode.length; i++) {
+//				grcode[i] = multi.getParameter("grcode"+(i+1));
+//				System.out.println("grcode["+i+"]:"+grcode[i]);
+//				
+//				if (grcode[i] != null) {
+//					System.out.println("zzzzzzzzzz");
+//					cdto.setMvcode(moviecode);
+//					cdto.setGrcode(grcode[i]);
+//					dao.moviecodeInsert(cdto);
+//				}
+//				System.out.println(cdto);
+//			}
+
 			String page = "/admin/main.jsp";
 			RequestDispatcher rd = request.getRequestDispatcher(page);
 			rd.forward(request, response);

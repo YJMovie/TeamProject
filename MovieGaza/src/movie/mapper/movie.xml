@@ -4,7 +4,18 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="movie">
 	<select id="movieList" resultType="movie.dto.MovieDTO">
-		select * from movie_info
+		select * from (
+		    select rownum rn, A.* from (
+		        select * from movie_info order by moviecode
+		    )A
+		) where rn between #{start} and #{end}
+	</select>
+	<select id="movieRandom" resultType="movie.dto.MovieDTO">
+		select * from (
+		    select rownum rn, A.* from (
+		        select * from movie_info order by dbms_random.random
+		    ) A
+		) where rn between #{start} and #{end}
 	</select>
 	<select id="movieInfo" resultType="movie.dto.MovieDTO" parameterType="String">
 		select * from movie_info where moviecode = #{moviecode}
@@ -14,9 +25,11 @@
    </select>
 	
 	<select id="movieListScore" resultType="movie.dto.MovieDTO">
-		select rownum rn, A.* from (
-		    select * from movie_info order by score desc
-		) A
+		select * from (
+			select rownum rn, A.* from (
+			    select * from movie_info order by score desc
+			) A
+		) where rn between #{start} and #{end}
 	</select>
 	<select id="movieSearch" resultType="movie.dto.MovieDTO" parameterType="String">
 		select * from movie_info where 
@@ -34,10 +47,24 @@
 	</insert>
 	<insert id="movieInsert">
 		insert into movie_info values (
-		    #{moviecode},#{title},#{score},to_date(#{open},'yyyy-mm-dd'),#{lines},#{postfname}
+		    #{moviecode},#{title},0,to_date(#{open},'yyyy-mm-dd'),#{lines},#{postfname}
+		)
+	</insert>
+	<insert id="moviecodeInsert">
+		insert into movie_code values (
+		  #{mvcode},#{grcode},#{pscode}
 		)
 	</insert>
 	<select id="moviecodeMax" parameterType="String" resultType="String">
 		select max(moviecode) from movie_info
+	</select>
+	<select id="moviecodeGrcode" parameterType="String" resultType="movie.dto.MovieCodeDTO">
+		select distinct grcode from movie_code where mvcode = #{mvcode}
+	</select>
+	<select id="movieGenre" resultType="String">
+		select genrename from genre where genrecode = #{grcode}
+	</select>
+	<select id="movieCount" resultType="int">
+		select count(*) from movie_info
 	</select>
 </mapper>

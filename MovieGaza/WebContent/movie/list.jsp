@@ -64,10 +64,10 @@
 </div>
 <table border="1" style="margin: 0 auto;"><%int i=-1; %>
 	<c:forEach var="list" items="${list }" varStatus="status">
-		<c:if test="${status.count%4 == 1 }" ><tr><%i++; %></c:if>
+		<c:if test="${status.count%3 == 1 }" ><tr><%i++; %></c:if>
 			<td>
 				<div style="width: 150px;height: 150px;border: 1px solid black;margin-top: 20px;">
-		        	<p>영화포스터${status.count }</p>
+		        	<p>영화포스터</p>
 		        </div>
 		        <div class="list" style="top:<%=290+i*170%>px;">
 		        <%=i %>
@@ -77,18 +77,18 @@
 				${list.score } <br />
 				</div>
 			</td>
-		<c:if test="${status.count%4 == 0 }"></tr></c:if>	
+		<c:if test="${status.count%3 == 0 }"></tr></c:if>	
 	</c:forEach>
 	<tr>
 		<td colspan="4">
 			<c:if test="${curBlock > 1 }">
-				<a href="${path }/Board/list.do?category=${category}&curPage=${prev_page}">이전</a>
+				<a href="${path }/Movie/list?category=${category}&curPage=${prev_page}">이전</a>
 			</c:if>
 			<c:forEach var="i" begin="${block_start }" end="${block_end }">
-				<a href="${path }/Board/list.do?category=${category}&curPage=${i}">${i }</a>
+				<a href="${path }/Movie/list?category=${category}&curPage=${i}">${i }</a>
 			</c:forEach>
 			<c:if test="${curBlock < totBlock }">
-				<a href="${path }/Board/list.do?category=${category}&curPage=${next_page}">다음</a>
+				<a href="${path }/Movie/list?category=${category}&curPage=${next_page}">다음</a>
 			</c:if>
 		</td>
 	</tr>

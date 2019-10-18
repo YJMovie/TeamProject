@@ -163,8 +163,7 @@
 		
 		<section>
 		<div id="contents" style="margin:0 auto;height: 1000px; width: 60%;background-color: #EAEAEA;padding-top: 40px;">
-		
-		<br> <br> <b><font size="6">회원가입</font></b> <br> <br>
+			<h2>회원가입</h2>
 		<br>
 
 		<!-- <form method="post" name="writeform">
@@ -347,5 +346,6 @@
 		</section>
 		</div>
 	</div>
+	<%@ include file="../home/footer.jsp" %>
 </body>
 </html>

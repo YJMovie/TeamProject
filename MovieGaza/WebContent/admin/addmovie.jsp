@@ -68,12 +68,32 @@
 					<td><input type="text" id="title" name="title" /></td>
 				</tr>
 				<tr>
+					<td>영화장르</td>
+					<td>
+						<input type="radio" id="grcode1" name="grcode1" value="0001" />액션
+						<input type="radio" id="grcode2" name="grcode2" value="0002" />코믹
+						<input type="radio" id="grcode3" name="grcode3" value="0003" />공포
+						<input type="radio" id="grcode4" name="grcode4" value="0004" />로맨스
+						<input type="radio" id="grcode5" name="grcode5" value="0005" />SF
+					</td>
+				</tr>
+				<tr>
 					<td>포스터파일첨부</td>
 					<td><input type="file" id="postfname" name="postfname" /></td>
 				</tr>
 				<tr>
-					<td>점수</td>
-					<td><input type="text" id="score" name="score" /></td>
+					<td>출연배우</td>
+					<td>
+						<input type="radio" id="pscodeA1" name="pscodeA1" value="A001" />강동원
+						<input type="radio" id="pscodeA2" name="pscodeA2" value="A002" />하정우
+						<input type="radio" id="pscodeA3" name="pscodeA3" value="A003" />윌스미스
+					</td>
+				</tr>
+				<tr>
+					<td>영화감독</td>
+					<td>
+						<input type="radio" id="pscodeB1" name="pscodeB1" value="B001" />홍길동
+					</td>
 				</tr>
 				<tr>
 					<td>개봉일</td>

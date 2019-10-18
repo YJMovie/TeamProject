@@ -64,6 +64,12 @@ ${curPage } --%>
 			</td>
 		</tr>
 		<tr>
+			<td>장르</td>
+			<td>
+				${grname1 } ${grname2 } ${grname3 } ${grname4 } ${grname5 }
+			</td>
+		</tr>
+		<tr>
 			<td>명대사</td>
 			<td>${dto.lines }</td>
 		</tr>

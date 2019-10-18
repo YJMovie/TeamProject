@@ -10,8 +10,8 @@
 	
 	<insert id="insert">
 		insert into member_info values (
-		  (select nvl(max(inum)+1,1) from member_info),
-		  #{name},#{userid},#{userpwd},#{gender},#{phone},#{address},
+		  #{userid},#{userpwd},
+		  #{name},#{gender},#{phone},#{address},
 		  #{email},sysdate,2
 		)
 	</insert>

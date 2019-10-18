@@ -38,7 +38,7 @@ body{
 			<h4><span>${sName }</span>님 환영합니다.${sGrade }</h4>
 		    <a href="${path }/Log/logout.do"><button type="button" class="btn btn-outline-primary">로그아웃</button></a>
 		  	<a href="${path }/Member/join.do"><button type="button" class="btn btn-outline-primary">회원수정</button></a>
-		  	<a href="${path }/Admin/addmovie"><button type="button" class="btn btn-outline-primary">관리자</button></a>
+		  	<a href="${path }/Admin/main"><button type="button" class="btn btn-outline-primary">관리자</button></a>
 	  	</div>
 	  </div>
 	</div>

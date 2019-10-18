@@ -3,7 +3,6 @@ package member.dto;
 import java.sql.Date;
 
 public class MemberDTO {
-	private int inum;
 	private String name;
 	private String userid;
 	private String userpwd;
@@ -13,12 +12,7 @@ public class MemberDTO {
 	private String email;
 	private Date userdate;
 	private int usergrade;
-	public int getInum() {
-		return inum;
-	}
-	public void setInum(int inum) {
-		this.inum = inum;
-	}
+	
 	public String getName() {
 		return name;
 	}
@@ -75,8 +69,8 @@ public class MemberDTO {
 	}
 	@Override
 	public String toString() {
-		return "MemberDTO [inum=" + inum + ", name=" + name + ", userid=" + userid + ", userpwd=" + userpwd + ", gender="
-				+ gender + ", phone=" + phone + ", address=" + address + ", email=" + email + ", userdate=" + userdate
+		return "MemberDTO [name=" + name + ", userid=" + userid + ", userpwd=" + userpwd + ", gender=" + gender
+				+ ", phone=" + phone + ", address=" + address + ", email=" + email + ", userdate=" + userdate
 				+ ", usergrade=" + usergrade + "]";
 	}
 }

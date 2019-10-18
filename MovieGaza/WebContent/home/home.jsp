@@ -78,7 +78,7 @@
 					<h2>영화목록</h2>
 					<table border="1" style="margin: 0 auto;">
 						<tr>
-							<c:forEach var="list" items="${list }">
+							<c:forEach var="list" items="${listRandom }">
 								<td>
 									<div style="width: 150px;height: 150px;border: 1px solid black;margin-top: 20px;">
 							        	포스터
@@ -98,7 +98,7 @@
 				<table border="1" style="margin: 0 auto;">
 					<tr>
 						<c:if test="${curPage > 1 }">						
-							<td><a href="${path }/Board/home.do?curPage=${curPage-1}">◀</a></td>
+							<td><a href="${path }/Home?curPage=${curPage-1}">◀</a></td>
 						</c:if>
 						<c:forEach var="list" items="${listScore }">
 							<td>
@@ -115,7 +115,7 @@
 							</td>						
 						</c:forEach>
 						<c:if test="${curPage < totPage }">
-							<td><a href="${path }/Board/home.do?curPage=${curPage+1}">▶</a></td>
+							<td><a href="${path }/Home?curPage=${curPage+1}">▶</a></td>
 						</c:if>
 					</tr>
 				</table>

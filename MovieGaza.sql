@@ -3,12 +3,11 @@ create table genre (
   genrecode varchar2(20) not null primary key,
   genrename varchar2(50)
 );
-select * from genre;
+select genrename from genre where genrecode = '0002';
 desc genre;
 insert into genre values (
   '0005','SF'
 );
-select genrecode from genre where genrename = '공포';
 -- 인물테이블
 create table person (
   personcode varchar2(20) not null primary key,
@@ -30,21 +29,33 @@ create table movie_info (
   open date,
   lines varchar2(100)
 );
-desc movie_info;
+drop table movie_info;
 --포스트파일이름 필드추가
-alter table movie_info add postfname varchar2(50);
-
+alter table movie_info add postfname varchar2(50); 
 update movie_info set postfname = '포스트1';
 commit;
-select * from movie_info;
+select count(*) from movie_info;
+select * from movie_info order by moviecode desc;
 select max(moviecode) from movie_info;
---무결성때문에 조건제거---
-delete from movie_info where moviecode >= 'a002' and moviecode <='a013';
------------------------
+--무결성때문에 조건제거--------------------
+delete from movie_info where moviecode >= 'a017';
+--영화리스트 랜덤순--------------------------
+select * from (
+    select rownum rn, A.* from (
+        select * from movie_info order by dbms_random.random
+    ) A
+)where rn between 1 and 5;
 select * from movie_info where moviecode = 'a002';
 select rownum rn, A.* from (
     select * from movie_info order by score desc
 )A ;
+----영화 코드 순서 리스트----------------------
+select * from (
+    select rownum rn, A.* from (
+        select * from movie_info order by moviecode
+    )A
+) where rn between 10 and 11;
+----영화 검색 결과 리스트--------------------------
 select * from movie_info where 
     title like '%화2%' or
     lines like '%화3%';
@@ -54,7 +65,7 @@ insert into movie_info values (
 --declare
 --i int := 9;
 --begin
---while i<13 loop
+--while i<15 loop
 --i := i + 1;
 --insert into movie_info values (
 --  'a0'||i,'영화'||i,0.1*i,to_date('2019-01-'||i,'yyyy-mm-dd'),'대사'||i,'포스터'||i
@@ -63,17 +74,22 @@ insert into movie_info values (
 --end;
 
 -- 영화코드 테이블
+-- on delete cascade : 참조키(참조테이블 기본키)를 삭제하면 외래키도 연달아 삭제함
 create table movie_code (
-  mvcode varchar2(50) references movie_info(moviecode),
-  grcode varchar2(20) references genre(genrecode),
-  pscode varchar2(20) references person(personcode)
+  mvcode varchar2(50) references movie_info(moviecode) on delete cascade,
+  grcode varchar2(20) references genre(genrecode) on delete cascade,
+  pscode varchar2(20) references person(personcode) on delete cascade
 );
 drop table movie_code;
+desc movie_code;
+
 select * from movie_code;
-insert into movie_code values (
-  'a001','0003','A002'
+select * from movie_info order by moviecode desc;
+-- 외래키는 중복,null 가능
+insert into movie_code (mvcode,grcode) values (
+  'a001','0003'
 );
-select DISTINCT grcode from movie_code where mvcode = 'a001';
+select distinct grcode from movie_code where mvcode = 'a017';
 select DISTINCT pscode from movie_code where mvcode = 'a001';
 -- 회원등급 테이블
 create table member_grade (
@@ -86,10 +102,9 @@ insert into member_grade values (1,'VIP회원');
 insert into member_grade values (2,'일반회원');
 -- 회원정보 테이블
 create table member_info (
-    inum number not null primary key,
-    name varchar2(50),
-    userid varchar2(50),
+    userid varchar2(50) not null primary key,
     userpwd varchar2(50),
+    name varchar2(50),
     gender varchar2(10),
     phone varchar2(20),
     address varchar2(100),
@@ -97,11 +112,14 @@ create table member_info (
     userdate date default sysdate,
     usergrade int REFERENCES member_grade(gradecode)
 );
+commit;
+drop table member_info;
+alter table member_info drop column usergrade;
 select * from member_info;
 select usergrade from member_info where name = '관리자';
 insert into member_info values (
-  (select nvl(max(inum)+1,1) from member_info),
-  '관리자','admin','0000','남','000-0000-0000','부산시 북구',
+  'admin','0000',
+  '관리자','남','000-0000-0000','부산시 북구',
   'admin@gmail.com',sysdate,0
 );
 
@@ -114,14 +132,11 @@ create table review_info (
     r_date date default sysdate,
     r_score number,
     r_comment varchar2(100),
-    r_mvcode varchar2(50) references movie_info(moviecode),
+    r_mvcode varchar2(50) references movie_info(moviecode) on delete cascade,
     writer varchar2(50)
 );
 drop table review_info;
-alter table review_info add writer varchar2(50);
-
-alter table review_info add r_inum number references member_info(inum);
-update review_info set writer = '홍길동';
+desc review_info;
 select * from review_info;
 insert into review_info values (
     (select nvl(max(r_num)+1,1)from review_info),
