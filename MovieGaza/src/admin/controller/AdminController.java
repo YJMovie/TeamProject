@@ -18,6 +18,8 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import common.Constants;
+import member.dao.MemberDAO;
+import member.dto.MemberDTO;
 import movie.dao.MovieDAO;
 import movie.dto.MovieCodeDTO;
 import movie.dto.MovieDTO;
@@ -128,6 +130,67 @@ public class AdminController extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher(page);
 			rd.forward(request, response);
 			
+		} else if (url.contains("member_list")) {
+			System.out.println("list.do 처리중");
+			MemberDAO dao = new MemberDAO();
+			
+			int curPage = 1;
+			if (request.getParameter("curPage") != null) {
+				curPage = Integer.parseInt(request.getParameter("curPage"));
+			}
+			
+			int count = dao.recordCount();					
+			int page_scale = 10;							
+			int totPage = (int)Math.ceil(count*1.0/page_scale);	
+			System.out.println("총페이지수:"+totPage);
+			
+			int start = (curPage-1)*page_scale+1;			
+			int end = start+page_scale-1;					
+			System.out.println("현재페이지번호:"+curPage);
+			System.out.println("현재페이지 시작번호:"+start);
+			System.out.println("현재페이지 마지막번호:"+end);
+			
+			
+			
+			int block_scale = 10;									
+			int tot_block = (int)Math.ceil(totPage*1.0/block_scale);			
+			
+			int cur_block = (int)Math.ceil(curPage-1)/block_scale+1;	
+			int block_start = (cur_block-1)*block_scale+1;			
+			int block_end = block_start+block_scale-1;				
+			
+			if (block_end>totPage) block_end=totPage;
+			int prev_page = 
+					cur_block == 1 ? 1 : (cur_block-1)*block_scale;	// 이전 페이지(블록)
+			int next_page = 
+					cur_block > tot_block ? (cur_block*block_scale) : cur_block*block_scale+1;	// 다음 페이지(블록)
+			
+			if (next_page>=totPage) next_page = totPage;
+			
+			System.out.println("cur_block:"+cur_block);
+			System.out.println("block_start:"+block_start);
+			System.out.println("block_end:"+block_end);
+			System.out.println("prev_page:"+prev_page);
+			System.out.println("next_page:"+next_page);
+			
+			// list view페이지에 블럭의 시작번호,마지막번호 값을 전달하기 위해 저장(보관)
+			request.setAttribute("cur_block", cur_block);
+			request.setAttribute("totBlock", tot_block);
+			request.setAttribute("blockStart", block_start);
+			request.setAttribute("blockEnd", block_end);
+			request.setAttribute("prev_page", prev_page);
+			request.setAttribute("next_page", next_page);
+			
+			List<MemberDTO> list = dao.list(start,end);  //이부분이 문제인듯
+			System.out.println("jmember.do Ok");
+			request.setAttribute("list", list);
+			System.out.println("jmember.do Ok");
+			
+			request.setAttribute("totPage", totPage);
+			
+			String page = "/admin/memlist.jsp";
+			RequestDispatcher rd = request.getRequestDispatcher(page);
+			rd.forward(request, response);
 		}
 	}
 

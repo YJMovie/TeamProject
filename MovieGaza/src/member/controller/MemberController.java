@@ -1,7 +1,9 @@
 package member.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.RequestDispatcher;
@@ -10,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 
 import member.dao.MemberDAO;
 import member.dto.MemberDTO;
@@ -40,69 +43,6 @@ public class MemberController extends HttpServlet {
 			String page = "/member/JoinForm.jsp";
 			RequestDispatcher rd = request.getRequestDispatcher(page);
 			rd.forward(request, response);
-		}
-		
-		if (url.contains("list.do")) {
-			System.out.println("list.do 처리중");
-			
-			int curPage = 1;
-			if (request.getParameter("curPage") != null) {
-				curPage = Integer.parseInt(request.getParameter("curPage"));
-			}
-			
-			int count = dao.recordCount();					
-			int page_scale = 10;							
-			int totPage = (int)Math.ceil(count*1.0/page_scale);	
-			System.out.println("총페이지수:"+totPage);
-			
-			int start = (curPage-1)*page_scale+1;			
-			int end = start+page_scale-1;					
-			System.out.println("현재페이지번호:"+curPage);
-			System.out.println("현재페이지 시작번호:"+start);
-			System.out.println("현재페이지 마지막번호:"+end);
-			
-			
-			
-			int block_scale = 10;									
-			int tot_block = (int)Math.ceil(totPage*1.0/block_scale);			
-			
-			int cur_block = (int)Math.ceil(curPage-1)/block_scale+1;	
-			int block_start = (cur_block-1)*block_scale+1;			
-			int block_end = block_start+block_scale-1;				
-			
-			if (block_end>totPage) block_end=totPage;
-			int prev_page = 
-					cur_block == 1 ? 1 : (cur_block-1)*block_scale;	// 이전 페이지(블록)
-			int next_page = 
-					cur_block > tot_block ? (cur_block*block_scale) : cur_block*block_scale+1;	// 다음 페이지(블록)
-			
-			if (next_page>=totPage) next_page = totPage;
-			
-			System.out.println("cur_block:"+cur_block);
-			System.out.println("block_start:"+block_start);
-			System.out.println("block_end:"+block_end);
-			System.out.println("prev_page:"+prev_page);
-			System.out.println("next_page:"+next_page);
-			
-			// list view페이지에 블럭의 시작번호,마지막번호 값을 전달하기 위해 저장(보관)
-			request.setAttribute("cur_block", cur_block);
-			request.setAttribute("totBlock", tot_block);
-			request.setAttribute("blockStart", block_start);
-			request.setAttribute("blockEnd", block_end);
-			request.setAttribute("prev_page", prev_page);
-			request.setAttribute("next_page", next_page);
-			
-			List<MemberDTO> list = dao.list(start,end);  //이부분이 문제인듯
-			System.out.println("jmember.do Ok");
-			request.setAttribute("list", list);
-			System.out.println("jmember.do Ok");
-			
-			request.setAttribute("totPage", totPage);
-			
-			String page="/page/memview.jsp";
-			RequestDispatcher rd = request.getRequestDispatcher(page);
-			rd.forward(request, response);
-
 		} else if (url.contains("insert.do")) { // return 값은 true false
 			System.out.println("insert.do 처리중");
 
@@ -148,13 +88,51 @@ public class MemberController extends HttpServlet {
 
 		} else if(url.contains("update.do")) { //수정버튼 페이지
 			
-			String name = request.getParameter("sName");
-			System.out.println("zzzz:"+name);
+			String sname = request.getParameter("sName");
+			System.out.println("zzzz:"+sname);
 			MemberDTO dto = new MemberDTO();
-			dto.setName(name);
+			dto.setName(sname);
 			
 			MemberDTO dto1 = dao.memGet(dto);
-			request.setAttribute("dto1", dto1);
+			
+			//주소랑 핸드폰, 이메일 나눠서 저장. 추후 이부분은 dao로 넣을것
+			String userid = dto1.getUserid();
+			String name = dto1.getName();
+			String gender = dto1.getGender();
+			String address = dto1.getAddress();
+			String[] array1 = new String[4];
+			array1 = address.split(" ");
+			String sample4_postcode = array1[0];
+			String sample4_roadAddress = array1[1];
+			String sample4_jibunAddress = array1[2];
+			String sample4_detailAddress = array1[3];
+			String phone = dto1.getPhone();
+			String[] array2 = new String [3];
+			array2 = phone.split("-");
+			String phone1 = array2[0];
+			String phone2 = array2[1];
+			String phone3 = array2[2];
+			String email = dto1.getEmail();
+			String[] array3 = new String[2];
+			array3 = email.split("@");
+			String email1 = array3[0];
+			String eamil2 = array3[1];
+			
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("userid", userid);
+			map.put("name", name);
+			map.put("gender", gender);
+			map.put("sample4_postcode", sample4_postcode);
+			map.put("sample4_roadAddress", sample4_roadAddress);
+			map.put("sample4_jibunAddress", sample4_jibunAddress);
+			map.put("sample4_detailAddress", sample4_detailAddress);
+			map.put("phone1", phone1);
+			map.put("phone2", phone2);
+			map.put("phone3", phone3);
+			map.put("email1", email1);
+			map.put("eamil2", eamil2);
+			
+			request.setAttribute("dto1", map);
 			
 			String page = "/member/memUpdate.jsp";
 			System.out.println("뷰 고");

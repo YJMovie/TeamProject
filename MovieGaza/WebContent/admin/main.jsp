@@ -21,7 +21,7 @@
 		<h2>관리자 메인페이지</h2>
 			<ul>
 				<li><a href="addmovie">영화목록 추가하기</a></li>
-				<li></li>
+				<li><a href="member_list">회원목록</a></li>
 				<li></li>
 			</ul>
 	</div>

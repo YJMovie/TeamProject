@@ -9,6 +9,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="../script/jquery-3.4.1.min.js"></script>
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<script src="../js/bootstrap.min.js"></script>
 <script>
 	$(function(){
 		console.log('function ok');
@@ -35,42 +37,167 @@
 </style>
 </head>
 <body>
-<div class="mem-update-form">
-   <form action="${path}/controller/memUpdate.do" name="memupdate" method="post">
-      <table>
-         <tr>
-            <td>아이디 :</td>
-            <td><input type="text" readonly="readonly" id="userid" name="userid" value="${dto1.userid}" /></td>
-         </tr>
-         <tr>
-            <td>비밀번호 :</td>
-            <td><input type="password" id="userpwd" name="userpwd" value="${dto1.userpwd}" /></td>
-         </tr>
-         <tr>
-            <td>이름 :</td>
-            <td><input type="text" id="name" name="name" value="${dto1.name}" /></td>
-         </tr>
-         <tr>
-            <td>성별 :</td>
-            <td><input type="text" id="gender" name="gender" value="${dto1.gender}" /></td>
-         </tr>
-         <tr>
-            <td>핸드폰 :</td>
-            <td><input type="text" id="address" name="address" value="${dto1.phone}" /></td>
-         </tr>
-         <tr>
-            <td>주소 :</td>
-            <td><input type="text" id="phone" name="phone" value="${dto1.address}" /></td>
-         </tr>
-         <tr>
-            <td>이메일 :</td>
-            <td><input type="text" id="email" name="email" value="${dto1.email}" /></td>
-         </tr>
-      </table>
-         <input type="submit" value="수정" id="btnList" />
-         <input type="reset" value="재작성" />
-         <input type="button" value="돌아가기" id="btnBack" />            
-   </form>
-  </div>
+	<%@ include file="../home/header.jsp"%>
+	<%@ include file="../home/menu.jsp"%>
+	
+	<div style="height: 1000px;background-color: white;">
+		
+	<section>
+	<div id="contents" style="margin:0 auto;height: 1000px; width: 900px;background-color: #EAEAEA;padding-top: 40px;">
+		<h2>회원수정</h2>
+	   <form action="${path}/controller/memUpdate.do" name="memupdate" method="post">
+	     <%--  <table>
+	         <tr>
+	            <td>아이디 :</td>
+	            <td><input type="text" readonly="readonly" id="userid" name="userid" value="${dto1.userid}" /></td>
+	         </tr>
+	         <tr>
+	            <td>비밀번호 :</td>
+	            <td><input type="password" id="userpwd" name="userpwd" value="${dto1.userpwd}" /></td>
+	         </tr>
+	         <tr>
+	            <td>이름 :</td>
+	            <td><input type="text" id="name" name="name" value="${dto1.name}" /></td>
+	         </tr>
+	         <tr>
+	            <td>성별 :</td>
+	            <td><input type="text" id="gender" name="gender" value="${dto1.gender}" /></td>
+	         </tr>
+	         <tr>
+	            <td>핸드폰 :</td>
+	            <td><input type="text" id="address" name="address" value="${dto1.phone}" /></td>
+	         </tr>
+	         <tr>
+	            <td>주소 :</td>
+	            <td><input type="text" id="phone" name="phone" value="${dto1.address}" /></td>
+	         </tr>
+	         <tr>
+	            <td>이메일 :</td>
+	            <td><input type="text" id="email" name="email" value="${dto1.email}" /></td>
+	         </tr>
+	      </table>
+	         <input type="submit" value="수정" id="btnList" />
+	         <input type="reset" value="재작성" />
+	         <input type="button" value="돌아가기" id="btnBack" />            
+	   </form> --%>
+	   <form action="${path}/controller/memUpdate.do" name="memupdate" method="post">
+			<table style="margin: 0 auto;">
+			<tr>
+				<td>
+					<div class="form-group">
+					    <label for="exampleInputEmail1">아이디</label>
+					    <input type="text" class="form-control" id="userid" name="userid" 
+					    value="${dto1.userid}" maxlength="15" readonly="readonly" aria-describedby="emailHelp">
+					  </div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div class="form-group">
+					    <label for="exampleInputPassword1">비밀번호</label>
+					    <input type="password" class="form-control" id="userpwd" name="userpwd" maxlength="15">
+					  </div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div class="form-group">
+					    <label for="exampleInputPassword1">비밀번호확인</label>
+					    <input type="password" class="form-control" id="passcheck" name="passcheck" maxlength="15">
+					  </div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div class="form-group">
+					    <label for="exampleInputEmail1">이름</label>
+					    <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp" 
+					    value="${dto1.name}" maxlength="40">
+					  </div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div class="form-group">
+					    <label for="exampleInputEmail1">성별</label>
+					    <input type="radio" name="gender" value="남" checked>남
+						<input type="radio" name="gender" value="여">여
+					  </div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div class="form-group">
+					    <label for="exampleInputEmail1">주소</label>
+					    <div class="form-row">
+						    <div class="col-3">
+					    		<input type="text" class="form-control" id="sample4_postcode" name="sample4_postcode" value="${dto1.sample4_postcode }">
+					    	</div>
+					    	<div class="col">
+								<input type="button" class="btn btn-primary" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
+							</div>
+						</div>
+						<div class="form-row">
+						    <div class="col">
+								<input type="text" class="form-control" id="sample4_roadAddress" name="sample4_roadAddress" value="${dto1.sample4_roadAddress }">
+							</div>
+							<div class="col">
+								<input type="text" class="form-control" id="sample4_jibunAddress" name="sample4_jibunAddress" value="${dto1.sample4_jibunAddress }">
+							</div>
+						</div>
+						<span id="guide" style="color:#999;display:none"></span>
+						<input type="text" class="form-control" id="sample4_detailAddress" name="sample4_detailAddress" value="${dto1.sample4_detailAddress }">
+					  </div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div class="form-group">
+					    <label for="exampleInputEmail1">핸드폰</label>
+					    <div class="form-row">
+						    <div class="col">
+						      <input type="text" class="form-control" id="phone1" name="phone1" value="${dto1.phone1 }">
+						    </div>-
+						    <div class="col">
+						      <input type="text" class="form-control" id="phone2" name="phone2" value="${dto1.phone2 }">
+						    </div>-
+						    <div class="col">
+						      <input type="text" class="form-control" id="phone3" name="phone3" value="${dto1.phone3 }">
+						    </div>
+						</div>
+					  </div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div class="form-group">
+					    <label for="exampleInputEmail1">이메일</label>
+					    <div class="form-row">
+						    <div class="col-5">
+						      <input type="text" class="form-control" name="email1" maxlength="30" id="email1" value="${dto1.email1 }">
+						    </div>@
+						    <div class="col">
+						      <select id="inputState" class="form-control" name="email2" value="${dto1.email2 }">
+						        <option selected="selected">naver.com</option>
+								<option>daum.net</option>
+								<option>nate.com</option>
+								<option>gmail.com</option>
+						      </select>
+						    </div>
+						 </div>
+					  </div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="submit" class="btn btn-primary" value="수정" id="btnList" />
+			        <input type="reset" class="btn btn-primary" value="재작성" />
+			        <input type="button" class="btn btn-primary" value="돌아가기" id="btnBack" />
+				</td>
+			</tr>
+		</table>
+	  </div>
+	  </section>
+	  </div>
 </body>
 </html>
