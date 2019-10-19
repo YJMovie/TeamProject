@@ -3,6 +3,7 @@ package member.dto;
 import java.sql.Date;
 
 public class MemberDTO {
+	
 	private String name;
 	private String userid;
 	private String userpwd;
@@ -73,4 +74,5 @@ public class MemberDTO {
 				+ ", phone=" + phone + ", address=" + address + ", email=" + email + ", userdate=" + userdate
 				+ ", usergrade=" + usergrade + "]";
 	}
+	
 }

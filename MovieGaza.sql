@@ -38,7 +38,7 @@ select count(*) from movie_info;
 select * from movie_info order by moviecode desc;
 select max(moviecode) from movie_info;
 --무결성때문에 조건제거--------------------
-delete from movie_info where moviecode >= 'a017';
+delete from movie_info where moviecode >= 'a001';
 --영화리스트 랜덤순--------------------------
 select * from (
     select rownum rn, A.* from (
@@ -56,19 +56,25 @@ select * from (
     )A
 ) where rn between 10 and 11;
 ----영화 검색 결과 리스트--------------------------
-select * from movie_info where 
-    title like '%화2%' or
-    lines like '%화3%';
+select * from (
+  select rownum rn, A.* from (
+    select * from movie_info where 
+      title like '%%' or
+      lines like '%%'
+  )A
+)where rn between 6 and 10;
+
+
 insert into movie_info values (
     'a016','영화16',1.6,to_date('2019-09-01','yyyy-mm-dd'),'대사16','포스터16'
 );
 --declare
---i int := 9;
+--i int := 1;
 --begin
---while i<15 loop
+--while i<9 loop
 --i := i + 1;
 --insert into movie_info values (
---  'a0'||i,'영화'||i,0.1*i,to_date('2019-01-'||i,'yyyy-mm-dd'),'대사'||i,'포스터'||i
+--  'a00'||i,'영화'||i,0.1*i,to_date('2019-01-'||i,'yyyy-mm-dd'),'대사'||i,'포스터'||i
 --);
 --end loop;
 --end;
@@ -119,10 +125,10 @@ select * from member_info;
 select usergrade from member_info where name = '관리자';
 insert into member_info values (
   'admin','0000',
-  '관리자','남','000-0000-0000','부산시 북구',
+  '관리자','남','부산시 북구','000-0000-0000',
   'admin@gmail.com',sysdate,0
 );
-
+update member_info set phone = '000-0000-0000';
 drop table member_info;
 delete from member_info;
 commit;
@@ -149,6 +155,21 @@ drop table review_info;
 ----------------------------------------------로그인
 select * from member_info where userid = 'lee';
 --------------------------------------------------
+
+-- 회원코드 테이블
+create table member_code(
+mem_grcode varchar2(50) references genre(genrecode) on delete cascade,
+mem_pscode varchar2(50) references person(personcode) on delete cascade,
+mem_mvcode varchar2(50) references movie_info(moviecode) on delete cascade,
+mem_userid varchar2(50)  references member_info(userid) on delete cascade
+);
+commit;
+insert into member_code values('0001','A002','a006','lee');
+insert into member_code values('0001','A002','a009','lee');
+insert into member_code values('0004','A002','a004','kim');
+select title from movie_info where moviecode in(
+select mem_mvcode from member_code where mem_userid='lee');
+delete from member_code;
 
 --create table xx (
 --  n1 varchar2(50) not null primary key,

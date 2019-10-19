@@ -9,5 +9,4 @@
 	<select id="memberGrade" parameterType="String" resultType="int">
 		select usergrade from member_info where name = #{result}
 	</select>
-	
 </mapper>

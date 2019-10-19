@@ -20,6 +20,7 @@
 	<select id="movieInfo" resultType="movie.dto.MovieDTO" parameterType="String">
 		select * from movie_info where moviecode = #{moviecode}
 	</select>
+	
 	<select id="movieTitle" resultType="movie.dto.MovieDTO" parameterType="String">
       select * from movie_info where title = #{title}
    </select>
@@ -31,10 +32,29 @@
 			) A
 		) where rn between #{start} and #{end}
 	</select>
-	<select id="movieSearch" resultType="movie.dto.MovieDTO" parameterType="String">
-		select * from movie_info where 
-		    title like #{keyword} or
-		    lines like #{keyword}
+	
+	<select id="movieListGenre" resultType="movie.dto.MovieDTO" parameterType="String">
+		select * from movie_info where moviecode in(
+		select mvcode from movie_code where grcode = #{grcode} )
+
+	</select>
+
+		<select id="movieListUserGenre" resultType="movie.dto.MovieDTO" parameterType="String">
+		select * from movie_info where moviecode in(
+		select mem_mvcode from member_code where mem_userid=#{userid})
+
+
+	</select>
+	
+	
+	<select id="movieSearch" resultType="movie.dto.MovieDTO">
+		select * from (
+		  select rownum rn, A.* from (
+		    select * from movie_info where 
+		      title like #{keyword} or
+		      lines like #{keyword}
+		  )A
+		)where rn between #{start} and #{end}
 	</select>
 	<select id="reviewList" resultType="movie.dto.ReviewDTO" parameterType="String">
 		select * from review_info where r_mvcode = #{moviecode}
@@ -93,4 +113,7 @@
 	<select id="movieCount" resultType="int">
 		select count(*) from movie_info
 	</select>
+	<delete id="movieDelete" parameterType="String">
+		delete from movie_info where moviecode = #{moviecode}
+	</delete>
 </mapper>

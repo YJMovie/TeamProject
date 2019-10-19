@@ -7,7 +7,7 @@
 <%-- <link rel="stylesheet" href="${path }/css/bootstrap.min.css">
 <script src="${path }/js/bootstrap.min.js"></script> --%>
 
-<link rel="stylesheet" href="../css1/style.css">
+<link rel="stylesheet" href="${path }/css1/style.css">
 </head>
 <body>
 </body>
@@ -34,13 +34,13 @@
 				<h4>영화가즈아 소셜미디어</h4>
 				<ul id="SNS1">
 					<li><a href="http://facebook.com"> <img
-							src="../images/facebook.png" height="40" alt="Facebook"></a></li>
+							src="${path }/images/facebook.png" height="40" alt="Facebook"></a></li>
 					<li><a href="http://instagram.com"> <img
-							src="../images/instagram.PNG" height="40" alt="Instagram"></a></li>
+							src="${path }/images/instagram.PNG" height="40" alt="Instagram"></a></li>
 					<li><a href="http://twitter.com"> <img
-							src="../images/twitter.png" height="40" alt="Twitter"></a></li>
+							src="${path }/images/twitter.png" height="40" alt="Twitter"></a></li>
 					<li><a href="http://youtube.com"> <img
-							src="../images/youtube.PNG" height="40" alt="Youtube"></a></li>
+							src="${path }/images/youtube.PNG" height="40" alt="Youtube"></a></li>
 				</ul>
 			</div>
 	

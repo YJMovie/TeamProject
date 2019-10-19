@@ -12,7 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import javax.servlet.http.HttpSession;
 
 import member.dao.MemberDAO;
 import member.dto.MemberDTO;
@@ -28,6 +28,7 @@ public class MemberController extends HttpServlet {
 		System.out.println("doGet 요청...");
 		request.setCharacterEncoding("utf-8");
 		String url = request.getRequestURL().toString();
+		HttpSession session = request.getSession();
 
 		System.out.println(url);
 
@@ -43,6 +44,11 @@ public class MemberController extends HttpServlet {
 			String page = "/member/JoinForm.jsp";
 			RequestDispatcher rd = request.getRequestDispatcher(page);
 			rd.forward(request, response);
+		}
+		
+		if (url.contains("list.do")) {
+			System.out.println("list.do 처리중");
+
 		} else if (url.contains("insert.do")) { // return 값은 true false
 			System.out.println("insert.do 처리중");
 
@@ -86,7 +92,7 @@ public class MemberController extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher(page); 
 			rd.forward(request, response);
 
-		} else if(url.contains("update.do")) { //수정버튼 페이지
+		}  else if(url.contains("update.do")) { //수정버튼 페이지
 			
 			String sname = request.getParameter("sName");
 			System.out.println("zzzz:"+sname);
@@ -106,6 +112,7 @@ public class MemberController extends HttpServlet {
 			String sample4_roadAddress = array1[1];
 			String sample4_jibunAddress = array1[2];
 			String sample4_detailAddress = array1[3];
+			System.out.println(sample4_detailAddress);
 			String phone = dto1.getPhone();
 			String[] array2 = new String [3];
 			array2 = phone.split("-");
@@ -145,9 +152,18 @@ public class MemberController extends HttpServlet {
 			String userpwd = request.getParameter("userpwd");
 			String name = request.getParameter("name");
 			String gender = request.getParameter("gender");
-			String address = request.getParameter("address");
-			String phone = request.getParameter("phone");
-			String email = request.getParameter("email");
+			String sample4_postcode = request.getParameter("sample4_postcode");
+			String sample4_roadAddress = request.getParameter("sample4_roadAddress");
+			String sample4_jibunAddress = request.getParameter("sample4_jibunAddress");
+			String sample4_detailAddress = request.getParameter("sample4_detailAddress");
+			String address = sample4_postcode + " " + sample4_roadAddress + " " + sample4_jibunAddress + " " 
+			+ sample4_detailAddress;
+			String phone1 = request.getParameter("phone1");
+			String phone2 = request.getParameter("phone2");
+			String phone3 = request.getParameter("phone3");
+			String phone = phone1+"-"+phone2+"-"+phone3;
+			String email = request.getParameter("email1")+"@"+
+			request.getParameter("email2");
 			
 			MemberDTO dto = new MemberDTO();
 			System.out.println(dto.toString());
@@ -164,7 +180,17 @@ public class MemberController extends HttpServlet {
 			dao.memUpdate(dto);
 			System.out.println("ok..."+userid);
 			
-			String page ="${path}/controller/jmember.do";
+			// 로그인 세션값과 관련된 정보수정시 세션해제
+			
+			session.setAttribute("sName", name); //수정 후 이름으로 세션설정
+			String sName = (String)session.getAttribute("sName");
+			request.setAttribute("sName", sName);
+			int usergrade = dao.memberGrade(name); // 수정 후 이름에 대한 회원등급
+			session.setAttribute("sGrade", usergrade);
+			int sGrade = (int)session.getAttribute("sGrade");
+			request.setAttribute("sGarde", sGrade);
+			
+			String page ="/Home";
 			RequestDispatcher rd = request.getRequestDispatcher(page);
 			rd.forward(request, response);
 			

@@ -32,6 +32,9 @@
 <body>
 <%@ include file="../home/header.jsp" %>
 <%@ include file="../home/menu.jsp" %>
+<div style="height: 1000px;background-color: white;">
+<section>
+<div id="contents" style="margin:0 auto;height: 1000px; width: 900px;background-color: #EAEAEA;padding-top: 40px;">
 <nav>
 현재 상영영화
 <ul class="sorting">
@@ -86,5 +89,8 @@
 
 </c:forEach>
 </table>
+</div>
+</section>
+</div>
 </body>
 </html>

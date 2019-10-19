@@ -36,7 +36,8 @@ public class AdminController extends HttpServlet {
 			String page = "/admin/main.jsp";
 			RequestDispatcher rd = request.getRequestDispatcher(page);
 			rd.forward(request, response);
-		} else if (url.contains("addmovie")) {
+		}
+		if (url.contains("addmovie")) {
 			String mvcodeMax = dao.moviecodeMax();
 			request.setAttribute("mvcodeMax", mvcodeMax);
 			String page = "/admin/addmovie.jsp";
@@ -44,6 +45,22 @@ public class AdminController extends HttpServlet {
 			rd.forward(request, response);
 		} else if (url.contains("insert")) {
 			MovieDTO dto = new MovieDTO();
+			
+//			String moviecode = request.getParameter("moviecode");
+//			String title = request.getParameter("title");
+//			String postfname = request.getParameter("postfname");
+//			double score = Double.parseDouble(request.getParameter("score"));
+//			Date open = Date.valueOf(request.getParameter("open"));
+//			System.out.println(open);
+//			String lines = request.getParameter("lines");
+//			System.out.println(moviecode);
+//			
+//			
+//			dto.setMoviecode(moviecode);
+//			dto.setTitle(title);
+//			dto.setScore(score);
+//			dto.setOpen(open);
+//			dto.setLines(lines);
 			
 			File uploadDir = new File(Constants.UPLOAD_PATH);
 			if (!uploadDir.exists()) {
@@ -86,6 +103,7 @@ public class AdminController extends HttpServlet {
 			String lines = multi.getParameter("lines");
 			System.out.println(moviecode);
 			
+			
 			dto.setMoviecode(moviecode);
 			dto.setTitle(title);
 			dto.setPostfname(postfname);
@@ -95,7 +113,6 @@ public class AdminController extends HttpServlet {
 			dao.movieInsert(dto);
 			System.out.println("movieInsert 완료");
 			
-			////////////multi로 씁시다..////////
 			MovieCodeDTO cdto = new MovieCodeDTO();
 			List<MovieCodeDTO> codelist = new ArrayList<MovieCodeDTO>();
 			int i=0;
@@ -125,7 +142,6 @@ public class AdminController extends HttpServlet {
 				dao.moviecodeInsert(cdto);
 			}
 			
-
 			String page = "/admin/main.jsp";
 			RequestDispatcher rd = request.getRequestDispatcher(page);
 			rd.forward(request, response);
@@ -138,48 +154,38 @@ public class AdminController extends HttpServlet {
 			if (request.getParameter("curPage") != null) {
 				curPage = Integer.parseInt(request.getParameter("curPage"));
 			}
+			int count = dao.recordCount();
+			System.out.println(count);
+			int page_scale = 9;
+			int totPage = (int)Math.ceil(count*1.0/page_scale);
+			int start = (curPage-1)*page_scale+1;
+			int end = start+page_scale-1;
 			
-			int count = dao.recordCount();					
-			int page_scale = 10;							
-			int totPage = (int)Math.ceil(count*1.0/page_scale);	
-			System.out.println("총페이지수:"+totPage);
+			request.setAttribute("curPage", curPage);
+			request.setAttribute("totPage", totPage);
+			System.out.println("총페이지:"+totPage);
 			
-			int start = (curPage-1)*page_scale+1;			
-			int end = start+page_scale-1;					
-			System.out.println("현재페이지번호:"+curPage);
-			System.out.println("현재페이지 시작번호:"+start);
-			System.out.println("현재페이지 마지막번호:"+end);
+			int block_scale = 3;
+			int totBlock = (int)Math.ceil(totPage*1.0/block_scale);
+			int curBlock = (curPage-1)/block_scale+1;
+			int block_start = (curBlock-1)*block_scale+1;
+			int block_end = block_start+block_scale-1;
 			
-			
-			
-			int block_scale = 10;									
-			int tot_block = (int)Math.ceil(totPage*1.0/block_scale);			
-			
-			int cur_block = (int)Math.ceil(curPage-1)/block_scale+1;	
-			int block_start = (cur_block-1)*block_scale+1;			
-			int block_end = block_start+block_scale-1;				
-			
-			if (block_end>totPage) block_end=totPage;
 			int prev_page = 
-					cur_block == 1 ? 1 : (cur_block-1)*block_scale;	// 이전 페이지(블록)
+					curBlock == 1 ? 1 : (curBlock-1)*block_scale;
 			int next_page = 
-					cur_block > tot_block ? (cur_block*block_scale) : cur_block*block_scale+1;	// 다음 페이지(블록)
-			
+					curBlock > totBlock ? (curBlock*block_scale) : curBlock*block_scale+1;
+			if (block_end>totPage) block_end = totPage;
 			if (next_page>=totPage) next_page = totPage;
 			
-			System.out.println("cur_block:"+cur_block);
-			System.out.println("block_start:"+block_start);
-			System.out.println("block_end:"+block_end);
-			System.out.println("prev_page:"+prev_page);
-			System.out.println("next_page:"+next_page);
-			
-			// list view페이지에 블럭의 시작번호,마지막번호 값을 전달하기 위해 저장(보관)
-			request.setAttribute("cur_block", cur_block);
-			request.setAttribute("totBlock", tot_block);
-			request.setAttribute("blockStart", block_start);
-			request.setAttribute("blockEnd", block_end);
+			request.setAttribute("totBlock", totBlock);
+			request.setAttribute("curBlock", curBlock);
+			request.setAttribute("block_start", block_start);
+			request.setAttribute("block_end", block_end);
 			request.setAttribute("prev_page", prev_page);
 			request.setAttribute("next_page", next_page);
+			System.out.println("총 블록:"+totBlock);
+			System.out.println("현재 블록:"+curBlock);
 			
 			List<MemberDTO> list = dao.list(start,end);  //이부분이 문제인듯
 			System.out.println("jmember.do Ok");
@@ -189,6 +195,56 @@ public class AdminController extends HttpServlet {
 			request.setAttribute("totPage", totPage);
 			
 			String page = "/admin/memlist.jsp";
+			RequestDispatcher rd = request.getRequestDispatcher(page);
+			rd.forward(request, response);
+		} else if (url.contains("movie_list")) {
+			int curPage = 1;
+			if (request.getParameter("curPage") != null) {
+				curPage = Integer.parseInt(request.getParameter("curPage"));
+			}
+			int count = dao.movieCount();
+			System.out.println(count);
+			int page_scale = 5;
+			int totPage = (int)Math.ceil(count*1.0/page_scale);
+			int start = (curPage-1)*page_scale+1;
+			int end = start+page_scale-1;
+			
+			request.setAttribute("curPage", curPage);
+			request.setAttribute("totPage", totPage);
+			System.out.println("총페이지:"+totPage);
+			
+			int block_scale = 3;
+			int totBlock = (int)Math.ceil(totPage*1.0/block_scale);
+			int curBlock = (curPage-1)/block_scale+1;
+			int block_start = (curBlock-1)*block_scale+1;
+			int block_end = block_start+block_scale-1;
+			
+			int prev_page = 
+					curBlock == 1 ? 1 : (curBlock-1)*block_scale;
+			int next_page = 
+					curBlock > totBlock ? (curBlock*block_scale) : curBlock*block_scale+1;
+			if (block_end>totPage) block_end = totPage;
+			if (next_page>=totPage) next_page = totPage;
+			
+			request.setAttribute("totBlock", totBlock);
+			request.setAttribute("curBlock", curBlock);
+			request.setAttribute("block_start", block_start);
+			request.setAttribute("block_end", block_end);
+			request.setAttribute("prev_page", prev_page);
+			request.setAttribute("next_page", next_page);
+			System.out.println("총 블록:"+totBlock);
+			System.out.println("현재 블록:"+curBlock);
+			
+			List<MovieDTO> list = dao.movieList(start, end);
+			request.setAttribute("list", list);
+			
+			String page = "/admin/movielist.jsp";
+			RequestDispatcher rd = request.getRequestDispatcher(page);
+			rd.forward(request, response);
+		} else if (url.contains("movie_delete")) {
+			String moviecode = request.getParameter("moviecode");
+			dao.movieDelete(moviecode);
+			String page = "movie_list";
 			RequestDispatcher rd = request.getRequestDispatcher(page);
 			rd.forward(request, response);
 		}

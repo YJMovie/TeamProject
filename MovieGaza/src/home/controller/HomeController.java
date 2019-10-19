@@ -1,6 +1,7 @@
 package home.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -20,7 +21,8 @@ public class HomeController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = request.getRequestURL().toString();
-		
+		String userid = (String) request.getAttribute("userid");
+		System.out.println("아이디는 : " + userid);
 		int curPage = 1;
 		if (request.getParameter("curPage") != null) {
 			curPage = Integer.parseInt(request.getParameter("curPage"));
@@ -35,13 +37,34 @@ public class HomeController extends HttpServlet {
 		List<MovieDTO> listRandom = dao.movieRandom(start, end);
 		request.setAttribute("listRandom", listRandom);
 		
-		List<MovieDTO> listScore = dao.movieListScore(start, end);
+		List<MovieDTO> listScore = dao.movieListScore(start,end);
 		request.setAttribute("listScore", listScore);
 		
+		int randomGenre = (int) (Math.random() * 7) + 1;
+		String selectGenre = "000";
+		
+		String selectGenre2 = Integer.toString(randomGenre);
+		selectGenre = selectGenre.concat(selectGenre2);		 
+		
+		String[] GenreList = {"액션","멜로/로맨스","공포","판타지","SF","스릴러","드라마"};
+		
+		String showGenre = GenreList[randomGenre-1];
+		List<MovieDTO> listGenre = dao.movieListGenre(selectGenre);
+		System.out.println(listGenre);
+		if(userid!=null) {
+			
+			List<MovieDTO> userGenreList = dao.movieListUserGenre(userid);
+			
+			request.setAttribute("userid", userid);
+			request.setAttribute("userGenreList", userGenreList);	
+		}
+		request.setAttribute("showGenre", showGenre);
+		request.setAttribute("listGenre", listGenre);
 		request.setAttribute("curPage", curPage);
 		request.setAttribute("totPage", totPage);
 		request.setAttribute("pageStart", start);
 		request.setAttribute("pageEnd", end);
+		
 		
 		String page = "/home/home.jsp";
 		RequestDispatcher rd = request.getRequestDispatcher(page);

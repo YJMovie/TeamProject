@@ -17,7 +17,7 @@
 	<%@ include file="../home/menu.jsp" %>
 	<div style="height: 1000px;background-color: white;">
 	<section>
-	<div id="contents" style="margin:0 auto;height: 1000px; width: 90%;background-color: #EAEAEA;padding-top: 40px;">
+	<div id="contents" style="margin:0 auto;height: 1000px; width: 900px;background-color: #EAEAEA;padding-top: 40px;">
 		<h2>관리자 메인페이지(회원목록)</h2>
 		<table border="1" style="margin: 0 auto;">
 			<tr>

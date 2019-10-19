@@ -39,15 +39,35 @@ public class MovieDAO {
 		return list;
 	}
 	
-	public MovieDTO movieInfo(String moviecode) {
+	public List<MovieDTO> movieListGenre(String grcode) {
 		SqlSession session = MybatisManager.getInstance().openSession();
-		MovieDTO dto = session.selectOne("movie.movieInfo",moviecode);
+		List<MovieDTO> list = session.selectList("movie.movieListGenre", grcode);
+		session.close();
+		return list;
+	}
+	
+	public List<MovieDTO> movieListUserGenre(String userid) {
+		SqlSession session = MybatisManager.getInstance().openSession();
+		List<MovieDTO> list = session.selectList("movie.movieListUserGenre", userid);
+		session.close();
+		return list;
+	}
+	
+	
+	public MovieDTO movieInfo(String grcode) {
+		SqlSession session = MybatisManager.getInstance().openSession();
+		MovieDTO dto = session.selectOne("movie.movieInfo",grcode);
 		session.close();
 		return dto;
 	}
-	public List<MovieDTO> movieSearch(String keyword) {
+	
+	public List<MovieDTO> movieSearch(String keyword, int start, int end) {
 		SqlSession session = MybatisManager.getInstance().openSession();
-		List<MovieDTO> list = session.selectList("movie.movieSearch","%"+keyword+"%");
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("keyword", "%"+keyword+"%");
+		map.put("start", start);
+		map.put("end", end);
+		List<MovieDTO> list = session.selectList("movie.movieSearch",map);
 		System.out.println(list);
 		session.close();
 		return list;
@@ -107,5 +127,12 @@ public class MovieDAO {
 		session.close();
 		return personname;
 	}
+	public void movieDelete(String moviecode) {
+		SqlSession session = MybatisManager.getInstance().openSession();
+		session.delete("movie.movieDelete",moviecode);
+		session.commit();
+		session.close();
+	}
+	
 }
 

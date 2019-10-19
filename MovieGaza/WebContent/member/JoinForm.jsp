@@ -163,7 +163,8 @@
 		
 		<section>
 		<div id="contents" style="margin:0 auto;height: 1000px; width: 900px;background-color: #EAEAEA;padding-top: 40px;">
-			<h2>회원가입</h2>
+		
+		<br> <br> <b><font size="6">회원가입</font></b> <br> <br>
 		<br>
 
 		<!-- <form method="post" name="writeform">
@@ -234,7 +235,14 @@
 				<td>
 					<div class="form-group">
 					    <label for="exampleInputEmail1">아이디</label>
-					    <input type="text" class="form-control" id="userid" name="userid" maxlength="15" aria-describedby="emailHelp" placeholder="Enter email">
+						    <div class="form-row">
+							    <div class="col-7">
+						    	<input type="text" class="form-control" id="userid" name="userid" maxlength="15" aria-describedby="emailHelp" placeholder="ID">
+						    	</div>
+						    	<div class="col-2">
+						    	<input type="button" class="btn btn-primary" value="중복확인" onclick="id_chk()">
+						    	</div>
+						    </div>
 					  </div>
 				</td>
 			</tr>
@@ -258,7 +266,7 @@
 				<td>
 					<div class="form-group">
 					    <label for="exampleInputEmail1">이름</label>
-					    <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp"  maxlength="40" placeholder="Enter email">
+					    <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp"  maxlength="40">
 					    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
 					  </div>
 				</td>
@@ -303,13 +311,13 @@
 					    <label for="exampleInputEmail1">핸드폰</label>
 					    <div class="form-row">
 						    <div class="col">
-						      <input type="text" class="form-control" placeholder="City" id="phone1" name="phone1">
+						      <input type="text" class="form-control" id="phone1" name="phone1">
 						    </div>-
 						    <div class="col">
-						      <input type="text" class="form-control" placeholder="State" id="phone2" name="phone2">
+						      <input type="text" class="form-control" id="phone2" name="phone2">
 						    </div>-
 						    <div class="col">
-						      <input type="text" class="form-control" placeholder="State" id="phone3" name="phone3">
+						      <input type="text" class="form-control" id="phone3" name="phone3">
 						    </div>
 						</div>
 					  </div>
@@ -321,7 +329,7 @@
 					    <label for="exampleInputEmail1">이메일</label>
 					    <div class="form-row">
 						    <div class="col-5">
-						      <input type="text" class="form-control" placeholder="City" name="email1" maxlength="30" id="email1">
+						      <input type="text" class="form-control" name="email1" maxlength="30" id="email1">
 						    </div>@
 						    <div class="col">
 						      <select id="inputState" class="form-control" name="email2">

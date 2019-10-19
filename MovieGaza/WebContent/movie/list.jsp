@@ -45,6 +45,10 @@
         color: #fff;
         text-align: center;
     }
+    .list a {
+    	text-decoration: none;
+    	color: #fff;
+    }
 </style>
 </head>
 <body>
@@ -67,12 +71,13 @@
 		<c:if test="${status.count%3 == 1 }" ><tr><%i++; %></c:if>
 			<td>
 				<div style="width: 150px;height: 150px;border: 1px solid black;margin-top: 20px;">
-		        	<p>영화포스터</p>
-		        </div>
-		        <div class="list" style="top:<%=290+i*170%>px;">
+			        <img src="${path }/images/${list.postfname }" alt="${list.postfname }" width="150px" height="150px"/>
+			    </div>
+		        <div class="list" style="top:<%=334+i*170%>px;">
 		        <%=i %>
-				${list.title } <br />
-				<a href="${path }/Movie/info?moviecode=${list.moviecode}&curPage=1">이미지</a> <br />
+		        <h4>
+					<a href="${path }/Movie/info?moviecode=${list.moviecode}&curPage=1">${list.title }</a> <br />
+		        </h4> <br />
 				${list.open } <br />
 				${list.score } <br />
 				</div>
@@ -98,5 +103,6 @@
 </div>
 </section>
 </div>
+<%@ include file="../home/footer.jsp" %>
 </body>
 </html>

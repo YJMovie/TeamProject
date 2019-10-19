@@ -53,6 +53,8 @@ public class Logcontroller extends HttpServlet {
 			String sName = (String)session.getAttribute("sName");
 			request.setAttribute("sGrade", sGrade); //등급세션 뿌리기
 			request.setAttribute("sName", result); //이름세션 뿌리기
+			request.setAttribute("userid", userid); //id세션 뿌리기
+			
 			String page ="/Home";
 			RequestDispatcher rd = request.getRequestDispatcher(page);
 			rd.forward(request, response);
@@ -72,7 +74,7 @@ public class Logcontroller extends HttpServlet {
 			String page ="/Home";
 			RequestDispatcher rd = request.getRequestDispatcher(page);
 			rd.forward(request, response);
-		} 
+		}
 		
 	} 
 	

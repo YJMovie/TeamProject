@@ -22,7 +22,6 @@ import org.jsoup.select.Elements;
 import common.Constants;
 import movie.dao.MovieDAO;
 import movie.dao.ReviewDAO;
-import movie.dto.GenreDTO;
 import movie.dto.MovieCodeDTO;
 import movie.dto.MovieDTO;
 import movie.dto.ReviewDTO;
@@ -38,7 +37,7 @@ public class MovieController extends HttpServlet {
 		
 		String url = request.getRequestURL().toString();
 		if (url.contains("list")) {
-			
+
 			int curPage = 1;
 			if (request.getParameter("curPage") != null) {
 				curPage = Integer.parseInt(request.getParameter("curPage"));
@@ -115,6 +114,7 @@ public class MovieController extends HttpServlet {
 			}
 			request.setAttribute("pscodeA", pscodeA);
 			request.setAttribute("pscodeB", pscodeB);
+			
 			
 			String page = "/movie/info.jsp";
 			RequestDispatcher rd = request.getRequestDispatcher(page);

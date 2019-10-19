@@ -42,13 +42,13 @@
 					<tr>
 						<td colspan="6">
 							<c:if test="${curBlock > 1 }">
-								<a href="${path }/Search/list.do?keyword=${keyword }&curPage=${prev_page}">이전</a>
+								<a href="${path }/Search/list?keyword=${keyword }&curPage=${prev_page}">이전</a>
 							</c:if>
 							<c:forEach var="i" begin="${block_start }" end="${block_end }">
-								<a href="${path }/Search/list.do?keyword=${keyword }&curPage=${i}">${i }</a>
+								<a href="${path }/Search/list?keyword=${keyword }&curPage=${i}">${i }</a>
 							</c:forEach>
 							<c:if test="${curBlock < totBlock }">
-								<a href="${path }/Search/list.do?keyword=${keyword }&curPage=${next_page}">다음</a>
+								<a href="${path }/Search/list?keyword=${keyword }&curPage=${next_page}">다음</a>
 							</c:if>
 						</td>
 					</tr>

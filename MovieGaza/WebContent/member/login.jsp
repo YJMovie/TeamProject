@@ -86,6 +86,6 @@
  	</div>
  	</section>
  	</div>
- 	
+ 	<%@ include file="../home/footer.jsp" %>
 </body>
 </html>

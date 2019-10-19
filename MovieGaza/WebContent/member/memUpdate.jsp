@@ -45,8 +45,8 @@
 	<section>
 	<div id="contents" style="margin:0 auto;height: 1000px; width: 900px;background-color: #EAEAEA;padding-top: 40px;">
 		<h2>회원수정</h2>
-	   <form action="${path}/controller/memUpdate.do" name="memupdate" method="post">
-	     <%--  <table>
+	   <%-- <form action="${path}/Member/memUpdate.do" name="memupdate" method="post">
+	      <table>
 	         <tr>
 	            <td>아이디 :</td>
 	            <td><input type="text" readonly="readonly" id="userid" name="userid" value="${dto1.userid}" /></td>
@@ -80,7 +80,7 @@
 	         <input type="reset" value="재작성" />
 	         <input type="button" value="돌아가기" id="btnBack" />            
 	   </form> --%>
-	   <form action="${path}/controller/memUpdate.do" name="memupdate" method="post">
+	   <form action="${path}/Member/memUpdate.do" name="memupdate" method="post">
 			<table style="margin: 0 auto;">
 			<tr>
 				<td>
@@ -199,5 +199,6 @@
 	  </div>
 	  </section>
 	  </div>
+	  <%@ include file="../home/footer.jsp" %>
 </body>
 </html>

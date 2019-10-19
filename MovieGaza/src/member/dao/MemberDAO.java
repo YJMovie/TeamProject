@@ -80,7 +80,12 @@ public class MemberDAO {
 		
 		return recordCount;
 	}
-	
+	public int memberGrade(String name) {
+		SqlSession session = MybatisManager.getInstance().openSession();
+		int usergrade = session.selectOne("member.memberGrade",name);
+		session.close();
+		return usergrade;
+	}
 }
 
 

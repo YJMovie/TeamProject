@@ -6,6 +6,8 @@
 @import url('https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap');
 .card{
 background-color: #FFFFF6;
+width:900px;
+margin: 0 auto;
 }
 .card-header{
 padding: 10px;
@@ -32,7 +34,7 @@ body{
 	<div class="card">
 	  <div class="card-header">
 	  	<div style="text-align: center;">
-		    <h2><a href="${path }/Admin/addmovie" style="text-decoration: none;color: black;">영화가즈아(관리자)</a></h2>  	
+		    <h2><a href="${path }/Admin/main" style="text-decoration: none;color: black;">영화가즈아(관리자)</a></h2>  	
 	  	</div>  	
 	  	<div style="text-align: right;">
 			<h4><span>${sName }</span>님 환영합니다.${sGrade }</h4>

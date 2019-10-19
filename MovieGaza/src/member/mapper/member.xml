@@ -10,8 +10,7 @@
 	
 	<insert id="insert">
 		insert into member_info values (
-		  #{userid},#{userpwd},
-		  #{name},#{gender},#{phone},#{address},
+		  #{userid},#{userpwd},#{name},#{gender},#{phone},#{address},
 		  #{email},sysdate,2
 		)
 	</insert>
@@ -49,5 +48,8 @@
 	</select>
 	<select id="recordCount" resultType="int">
 		select count(*) as recordCount from member_info
+	</select>
+	<select id="memberGrade" parameterType="String" resultType="int">
+		select usergrade from member_info where name = #{name}
 	</select>
 </mapper>
