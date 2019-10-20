@@ -49,11 +49,13 @@ public class Logcontroller extends HttpServlet {
 			
 			session.setAttribute("sGrade", grade); //회원등급 세션생성
 			session.setAttribute("sName", result); //회원이름 세션생성
+			session.setAttribute("sId", userid);
 			int sGrade = (int)session.getAttribute("sGrade");
 			String sName = (String)session.getAttribute("sName");
+			String sId = (String)session.getAttribute("sId");
 			request.setAttribute("sGrade", sGrade); //등급세션 뿌리기
 			request.setAttribute("sName", result); //이름세션 뿌리기
-			request.setAttribute("userid", userid); //id세션 뿌리기
+			request.setAttribute("sId", sId); //id세션 뿌리기
 			
 			String page ="/Home";
 			RequestDispatcher rd = request.getRequestDispatcher(page);

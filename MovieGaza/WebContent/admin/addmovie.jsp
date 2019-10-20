@@ -46,6 +46,10 @@
 			document.addmovieform.action = "insert";
 			document.addmovieform.submit();
 		});
+		$('#btnBack').click(function(){
+			document.addmovieform.action = "main";
+			document.addmovieform.submit();
+		});
 	});
 </script>
 </head>
@@ -55,10 +59,10 @@
 	<div style="height: 1000px;background-color: white;">
 	<section>
 	<div id="contents" style="margin:0 auto;height: 1000px; width: 900px;background-color: #EAEAEA;padding-top: 40px;">
-		<h2>관리자페이지</h2>
-		<p>마지막 영화코드:${mvcodeMax }</p>
+		<h2 style="padding-left: 50px;">관리자페이지</h2>
+		<p align="center">마지막 영화코드:${mvcodeMax }</p>
 		<form action="" name="addmovieform" method="post" enctype="multipart/form-data"> <!-- enctype="multipart/form-data" -->
-			<table border="1">
+			<table border="1" style="margin: 0 auto; ">
 				<tr>
 					<td>영화코드</td>
 					<td><input type="text" id="moviecode" name="moviecode" /></td>
@@ -107,9 +111,11 @@
 					<td colspan="2">
 						<button id="btnSave">저장하기</button>
 						<input type="reset" value="다시입력"/>
+						<button id="btnBack">뒤로가기</button>
 					</td>
 				</tr>
 			</table>
+			
 		</form>
 	</div>
 	</section>

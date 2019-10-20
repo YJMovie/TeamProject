@@ -94,10 +94,10 @@ public class MemberController extends HttpServlet {
 
 		}  else if(url.contains("update.do")) { //수정버튼 페이지
 			
-			String sname = request.getParameter("sName");
-			System.out.println("zzzz:"+sname);
+			String sId = request.getParameter("sId");
+			System.out.println("zzzz:"+sId);
 			MemberDTO dto = new MemberDTO();
-			dto.setName(sname);
+			dto.setUserid(sId);
 			
 			MemberDTO dto1 = dao.memGet(dto);
 			

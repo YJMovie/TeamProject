@@ -43,8 +43,21 @@
 		where
 			userid = #{userid}
 	</update>
+	<update  id="admin_memUpdate">
+		update member_info
+		set
+			userpwd = #{userpwd},
+			name = #{name},
+			phone = #{phone},
+			address = #{address},
+			gender = #{gender},
+			email = #{email},
+			usergrade = #{usergrade}
+		where
+			userid = #{userid}
+	</update>
 	<select id="memGet" resultType="member.dto.MemberDTO">
-		select * from member_info where name = #{name}
+		select * from member_info where userid = #{userid}
 	</select>
 	<select id="recordCount" resultType="int">
 		select count(*) as recordCount from member_info

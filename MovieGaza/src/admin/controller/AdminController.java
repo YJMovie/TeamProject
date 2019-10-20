@@ -5,7 +5,9 @@ import java.io.IOException;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -32,6 +35,7 @@ public class AdminController extends HttpServlet {
   
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = request.getRequestURL().toString();
+		HttpSession session = request.getSession();
 		if (url.contains("main")) {
 			String page = "/admin/main.jsp";
 			RequestDispatcher rd = request.getRequestDispatcher(page);
@@ -241,12 +245,124 @@ public class AdminController extends HttpServlet {
 			String page = "/admin/movielist.jsp";
 			RequestDispatcher rd = request.getRequestDispatcher(page);
 			rd.forward(request, response);
+		} else if(url.contains("update")) { //수정버튼 페이지
+			MemberDAO dao1 = new MemberDAO();
+			String userid = request.getParameter("userid");
+			System.out.println("zzzz:"+userid);
+			MemberDTO dto = new MemberDTO();
+			dto.setUserid(userid);
+			
+			MemberDTO dto1 = dao1.memGet(dto);
+			
+			//주소랑 핸드폰, 이메일 나눠서 저장. 추후 이부분은 dao로 넣을것
+			userid = dto1.getUserid();
+			String name = dto1.getName();
+			String gender = dto1.getGender();
+			String address = dto1.getAddress();
+			String[] array1 = new String[4];
+			array1 = address.split(" ");
+			String sample4_postcode = array1[0];
+			String sample4_roadAddress = array1[1];
+			String sample4_jibunAddress = array1[2];
+			String sample4_detailAddress = array1[3];
+			System.out.println(sample4_detailAddress);
+			String phone = dto1.getPhone();
+			String[] array2 = new String [3];
+			array2 = phone.split("-");
+			String phone1 = array2[0];
+			String phone2 = array2[1];
+			String phone3 = array2[2];
+			String email = dto1.getEmail();
+			String[] array3 = new String[2];
+			array3 = email.split("@");
+			String email1 = array3[0];
+			String eamil2 = array3[1];
+			
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("userid", userid);
+			map.put("name", name);
+			map.put("gender", gender);
+			map.put("sample4_postcode", sample4_postcode);
+			map.put("sample4_roadAddress", sample4_roadAddress);
+			map.put("sample4_jibunAddress", sample4_jibunAddress);
+			map.put("sample4_detailAddress", sample4_detailAddress);
+			map.put("phone1", phone1);
+			map.put("phone2", phone2);
+			map.put("phone3", phone3);
+			map.put("email1", email1);
+			map.put("eamil2", eamil2);
+			
+			request.setAttribute("dto1", map);
+			
+			String page = "/admin/memUpdate.jsp";
+			System.out.println("뷰 고");
+			RequestDispatcher rd =request.getRequestDispatcher(page);
+			rd.forward(request, response);
+		} else if(url.contains("memUpdate")) {
+			MemberDAO dao1 = new MemberDAO();
+			String userid = request.getParameter("userid");
+			String userpwd = request.getParameter("userpwd");
+			String name = request.getParameter("name");
+			String gender = request.getParameter("gender");
+			String sample4_postcode = request.getParameter("sample4_postcode");
+			String sample4_roadAddress = request.getParameter("sample4_roadAddress");
+			String sample4_jibunAddress = request.getParameter("sample4_jibunAddress");
+			String sample4_detailAddress = request.getParameter("sample4_detailAddress");
+			String address = sample4_postcode + " " + sample4_roadAddress + " " + sample4_jibunAddress + " " 
+			+ sample4_detailAddress;
+			String phone1 = request.getParameter("phone1");
+			String phone2 = request.getParameter("phone2");
+			String phone3 = request.getParameter("phone3");
+			String phone = phone1+"-"+phone2+"-"+phone3;
+			String email = request.getParameter("email1")+"@"+
+			request.getParameter("email2");
+			int usergrade = Integer.parseInt(request.getParameter("usergrade"));
+			
+			MemberDTO dto = new MemberDTO();
+			
+			System.out.println("ok..."+userid);
+			
+			dto.setUserid(userid);
+			dto.setUserpwd(userpwd);
+			dto.setName(name);
+			dto.setGender(gender);
+			dto.setAddress(address);
+			dto.setPhone(phone);
+			dto.setEmail(email);
+			dto.setUsergrade(usergrade);
+			System.out.println(dto.toString());
+			dao1.admin_memUpdate(dto);
+			
+			System.out.println("ok..."+userid);
+			
+//			// 로그인 세션값과 관련된 정보수정시 세션해제
+//			
+//			session.setAttribute("sName", name); //수정 후 이름으로 세션설정
+//			String sName = (String)session.getAttribute("sName");
+//			request.setAttribute("sName", sName);
+//			int usergrade = dao1.memberGrade(name); // 수정 후 이름에 대한 회원등급
+//			session.setAttribute("sGrade", usergrade);
+//			int sGrade = (int)session.getAttribute("sGrade");
+//			request.setAttribute("sGarde", sGrade);
+			
+			String page ="/Admin/main";
+			RequestDispatcher rd = request.getRequestDispatcher(page);
+			rd.forward(request, response);
+			
 		} else if (url.contains("movie_delete")) {
 			String moviecode = request.getParameter("moviecode");
 			dao.movieDelete(moviecode);
 			String page = "movie_list";
 			RequestDispatcher rd = request.getRequestDispatcher(page);
 			rd.forward(request, response);
+		} else if(url.contains("member_delete")) {
+			String userid = request.getParameter("userid");
+			MemberDAO dao1 = new MemberDAO();
+			dao1.memDelete(userid);
+			System.out.println("memDelete.do");
+			
+			String page = request.getContextPath()+"/Admin/member_list";
+			response.sendRedirect(page);
 		}
 	}
 

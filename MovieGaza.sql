@@ -1,14 +1,16 @@
--- 장르테이블
+----------------------- 장르테이블
 create table genre (
   genrecode varchar2(20) not null primary key,
   genrename varchar2(50)
 );
+-- 장르코드에 따른 장르이름 추출
 select genrename from genre where genrecode = '0002';
 desc genre;
+-- 장르추가
 insert into genre values (
   '0005','SF'
 );
--- 인물테이블
+------------------------ 인물테이블
 create table person (
   personcode varchar2(20) not null primary key,
   personname varchar2(50),
@@ -16,11 +18,12 @@ create table person (
   personint varchar2(100)
 );
 select * from person;
+-- 배우또는 감독 추가
 insert into person values (
   'B001','홍길동','호주','캔버라사람'
 );
 select personname from person where personcode = 'A002';
--- 영화정보테이블
+--------------------------- 영화정보테이블
 create table movie_info (
   moviecode varchar2(50) not null primary key,
   title varchar2(50),
@@ -30,10 +33,11 @@ create table movie_info (
   lines varchar2(100)
 );
 drop table movie_info;
---포스트파일이름 필드추가
+-- 포스트파일이름 필드추가
 alter table movie_info add postfname varchar2(50); 
 update movie_info set postfname = '포스트1';
 commit;
+-- 등록된 영화의 총 레코드를 추출
 select count(*) from movie_info;
 select * from movie_info order by moviecode desc;
 select max(moviecode) from movie_info;
@@ -46,6 +50,7 @@ select * from (
     ) A
 )where rn between 1 and 5;
 select * from movie_info where moviecode = 'a002';
+-- 평점순으로 영화 정렬
 select rownum rn, A.* from (
     select * from movie_info order by score desc
 )A ;

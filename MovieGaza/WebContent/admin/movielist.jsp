@@ -30,8 +30,11 @@
 	<div style="height: 1000px;background-color: white;">
 	<section>
 	<div id="contents" style="margin:0 auto;height: 1000px; width: 900px;background-color: #EAEAEA;padding-top: 40px;">
-		<h2>관리자페이지</h2>
-		<table border="1">
+		<h2 style="padding-left: 50px;">관리자페이지</h2>
+		<div align="right">
+			<a href="main"><button>뒤로가기</button></a>
+		</div> <br />
+		<table border="1" style="margin: 0 auto; text-align: center;">
 			<tr>
 				<td>영화코드</td>
 				<td>영화제목</td>

@@ -19,7 +19,10 @@
 	<section>
 	<div id="contents" style="margin:0 auto;height: 1000px; width: 900px;background-color: #EAEAEA;padding-top: 40px;">
 		<h2>관리자 메인페이지(회원목록)</h2>
-		<table border="1" style="margin: 0 auto;">
+		<div align="right">
+			<a href="main"><button>뒤로가기</button></a>
+		</div> <br />
+		<table border="1" style="margin: 0 auto; text-align: center;">
 			<tr>
 				<td>아이디</td>
 				<td>비밀번호</td>
@@ -45,9 +48,9 @@
 				<td>${a.userdate }</td>
 				<td>${a.usergrade }</td>
 				<td>
-					<a href="${path}/controller/memViewGo.do?userid=${a.userid}">
+					<a href="${path}/Admin/update?userid=${a.userid}">
 						<input type="button" value="수정" id="" /></a>
-					<a href="${path}/controller/memDelete.do?userid=${a.userid}">
+					<a href="${path}/Admin/member_delete?userid=${a.userid}">
 						 <input type="button" value="삭제" id="btndelete" /></a>
 				</td>
 			</tr>
@@ -66,7 +69,6 @@
 				</td>
 			</tr>
 		</table>
-	</div>
 	</div>
 	</section>
 	</div>

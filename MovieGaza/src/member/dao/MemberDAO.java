@@ -54,6 +54,14 @@ public class MemberDAO {
 		session.close();
 
 	}
+	public void admin_memUpdate(MemberDTO dto) {
+		SqlSession session = MybatisManager.getInstance().openSession();
+		
+		session.update("member.admin_memUpdate",dto);
+		session.commit();
+		session.close();
+
+	}
 	public void memDelete(String userid) {
 		SqlSession session = MybatisManager.getInstance().openSession();
 		
