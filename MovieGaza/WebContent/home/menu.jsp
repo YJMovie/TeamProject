@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
 
-<div id="menubar" style="width: 900px; margin: 0 auto;">
+<div id="menubar" style="width: 1300px; margin: 0 auto;">
 	
 		<nav class="navbar navbar-dark bg-dark">
 		<form action="${path }/Search/list" name="searchform" method="get">

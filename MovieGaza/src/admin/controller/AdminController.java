@@ -258,6 +258,7 @@ public class AdminController extends HttpServlet {
 			userid = dto1.getUserid();
 			String name = dto1.getName();
 			String gender = dto1.getGender();
+			
 			String address = dto1.getAddress();
 			String[] array1 = new String[4];
 			array1 = address.split(" ");
@@ -266,6 +267,9 @@ public class AdminController extends HttpServlet {
 			String sample4_jibunAddress = array1[2];
 			String sample4_detailAddress = array1[3];
 			System.out.println(sample4_detailAddress);
+			
+			
+			
 			String phone = dto1.getPhone();
 			String[] array2 = new String [3];
 			array2 = phone.split("-");

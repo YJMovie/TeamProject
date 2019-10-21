@@ -6,7 +6,7 @@
 @import url('https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap');
 .card{
 background-color: #FFFFF6;
-width:900px;
+width: 1300px;
 margin: 0 auto;
 }
 .card-header{

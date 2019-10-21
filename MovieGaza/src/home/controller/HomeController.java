@@ -21,7 +21,7 @@ public class HomeController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = request.getRequestURL().toString();
-		String userid = (String) request.getAttribute("userid");
+		String userid = (String) request.getAttribute("sId");
 		System.out.println("아이디는 : " + userid);
 		int curPage = 1;
 		if (request.getParameter("curPage") != null) {
@@ -51,13 +51,43 @@ public class HomeController extends HttpServlet {
 		String showGenre = GenreList[randomGenre-1];
 		List<MovieDTO> listGenre = dao.movieListGenre(selectGenre);
 		System.out.println(listGenre);
+		
 		if(userid!=null) {
-			
-			List<MovieDTO> userGenreList = dao.movieListUserGenre(userid);
-			
-			request.setAttribute("userid", userid);
-			request.setAttribute("userGenreList", userGenreList);	
-		}
+
+	         //로그인 여부를 위해 id 정보를 보냄
+	         request.setAttribute("userid", userid);
+	         
+	         //유저가 선호하는 영화 목록 생성
+	         List<MovieDTO> userGenreList = dao.movieListUserGenre(userid);
+	         
+	         // 없을 경우 null을 전송
+	         if(userGenreList==null)
+	            request.setAttribute("userGenreList", null);
+	         else
+	            request.setAttribute("userGenreList", userGenreList);
+	         
+	         //유저가 선호하는 영화들 중 랜덤으로 하나의 영화를 가져와 해당 영화의 장르를 가져옴
+	         String findWhatGenreSelected = dao.findWhatGenreSelected(userid);
+	         
+	         //선호하는 장르가 있을 때는 리스트를 받아와서 전송 없을 시엔 null 전송
+	         if(findWhatGenreSelected !=null) {
+	            List<MovieDTO> userRecommendGenreList = dao.userRecommendGenreList(findWhatGenreSelected);
+	            
+	            String findWhatGenreSelectedLastWord = findWhatGenreSelected.substring(findWhatGenreSelected.length()-1, findWhatGenreSelected.length());
+	            int IntegerfindWhatGenreSelectedLastWord = Integer.parseInt(findWhatGenreSelectedLastWord);
+	            
+	            //선호하는 장르코드를 리스트에 담긴 장르명으로 변경
+	            findWhatGenreSelected = GenreList[IntegerfindWhatGenreSelectedLastWord-1];      
+	            
+	            request.setAttribute("findWhatGenreSelected", findWhatGenreSelected);
+	            request.setAttribute("userRecommendGenreList", userRecommendGenreList);
+	         }
+	         else {
+	            request.setAttribute("findWhatGenreSelected", findWhatGenreSelected);
+	         }
+	         
+	      }
+	      
 		request.setAttribute("showGenre", showGenre);
 		request.setAttribute("listGenre", listGenre);
 		request.setAttribute("curPage", curPage);

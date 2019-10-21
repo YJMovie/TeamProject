@@ -53,6 +53,22 @@ public class MovieDAO {
 		return list;
 	}
 	
+	   public String findWhatGenreSelected(String userid) {
+		      SqlSession session = MybatisManager.getInstance().openSession();
+		      String list = session.selectOne("movie.findWhatGenreSelected", userid);
+		      session.close();
+		      return list;
+		   }
+		   
+		   public List<MovieDTO> userRecommendGenreList(String findWhatGenreSelected) {
+		      SqlSession session = MybatisManager.getInstance().openSession();
+		      List<MovieDTO> list = session.selectList("movie.userRecommendGenreList", findWhatGenreSelected);
+		      session.close();
+		      return list;
+		   }
+		   
+		   
+	
 	
 	public MovieDTO movieInfo(String grcode) {
 		SqlSession session = MybatisManager.getInstance().openSession();

@@ -1,0 +1,21 @@
+**** ckeditor.com 적용하기
+
+download
+standard package download
+ckeditor압축풀기
+ckeditor폴더 복사
+이클립스 WebContent 붙여넣기
+
+ckeditor 밑에 config.js
+// 이미지 업로드 기능 추가시 config.js에서 아래항목 추가
+config.filebrowserUploadMethod='form';
+
+https://ckeditor.com/docs/ckeditor4/latest/guide/dev_installation.html
+
+Adding CKEditor to Your Page(스크롤내리면 나옴)
+<script src="../ckeditor.js"></script>
+프로젝트 안에서 경로지정 (로컬방식,System에연결)
+
+Using the CDN : CDN으로 연결
+<script src="https://cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script>
+Quick example: 참고하기

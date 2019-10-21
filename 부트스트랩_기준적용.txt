@@ -1,0 +1,40 @@
+
+	아주작은화면 / 작은화면 / 중간화면 / 큰화면 / 아주큰화면
+너비	576px미만 / 576px미만 / 768px이상 / 992px이상 / 1200px이상
+container
+최대너비	auto / 540px / 720px / 760px / 1140px
+예약어	.col- / .col-sm- / .col-md- / .col-lg- / .col-xl-
+
+4.0이상
+속성
+.d-none		화면감춤
+.d-inline		인라인레벨요소표시
+.d-block		블록레벨요소표시
+.d-sm-none	작은크기화면에서 감춤
+.d-sm-block	작은 크기화면에서 블록 레벨로 표시
+.d-md-none	중간 크기 화면에서 감춤
+.d-md-block	중간 크기 화면에서 블록 레벨로 표시
+
+네비게이션 바 스타일 속성
+.navbar
+ 네비게이션 바를 만드는 스타일
+.navbar-expand-md(lg/...)
+ 중간 화면이상에서 네비게이션을 펼쳐서 보여주는 스타일
+ (sm이나lg등 원하는 화면 크기로 지정 할 수 있음)
+.navbar-light
+ 어두운 배경에 맞는 내비게이션 스타일
+.bg-light
+ 네비게이션 배경을 어둡게 지정
+.fixed-top
+ 내비게이션을 항상 화면 위쪽에 고정하는 스타일
+
+네비게이션 항목중에서
+.collapse: 나타났다 사라졌다 할 부분에 적용하는 스타일
+.navbar-collapse: 나타났다 사라졌다 할 내비게이션 바
+.navbar-nav: 내비게이션 바 메뉴 영역
+.navbar-nav 내비게이션 바 메뉴 영역
+.mr-auto: 오른쪽 마진(margin-right) 자동
+
+.nav-item: 메뉴 항목
+.active: 활성화된 메뉴에 추가
+.nav-link:메뉴 링크

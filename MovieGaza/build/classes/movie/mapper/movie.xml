@@ -46,6 +46,24 @@
 
 	</select>
 	
+	      <select id="findWhatGenreSelected" resultType="String" parameterType="movie.dto.MovieDTO">
+   select grcode from movie_code where mvcode=(
+   select mem_mvcode from(
+   select mem_mvcode from member_code where mem_userid=#{userid}
+   order by
+   DBMS_RANDOM.RANDOM) where rownum=1)
+
+      </select>
+   
+   
+   <select id="userRecommendGenreList" resultType="movie.dto.MovieDTO" parameterType="String">
+   select * from movie_info where moviecode in(
+   select mvcode from movie_code where grcode=#{grcode})
+
+   </select>
+   
+	
+	
 	
 	<select id="movieSearch" resultType="movie.dto.MovieDTO">
 		select * from (
