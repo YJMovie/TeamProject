@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
+import movie.dto.MemberCodeDTO;
 import movie.dto.MovieCodeDTO;
 import movie.dto.MovieDTO;
 import sqlMap.MybatisManager;
@@ -38,6 +39,15 @@ public class MovieDAO {
 		session.close();
 		return list;
 	}
+	public List<MovieDTO> movieListOpen(int start, int end) {
+		SqlSession session = MybatisManager.getInstance().openSession();
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("start", start);
+		map.put("end", end);
+		List<MovieDTO> list = session.selectList("movie.movieListOpen",map);
+		session.close();
+		return list;
+	}
 	
 	public List<MovieDTO> movieListGenre(String grcode) {
 		SqlSession session = MybatisManager.getInstance().openSession();
@@ -53,30 +63,52 @@ public class MovieDAO {
 		return list;
 	}
 	
+
 	   public String findWhatGenreSelected(String userid) {
+	      SqlSession session = MybatisManager.getInstance().openSession();
+	      String list = session.selectOne("movie.findWhatGenreSelected", userid);
+	      session.close();
+	      return list;
+	   }
+	   
+	   public List<MovieDTO> userRecommendGenreList(String findWhatGenreSelected) {
+	      SqlSession session = MybatisManager.getInstance().openSession();
+	      List<MovieDTO> list = session.selectList("movie.userRecommendGenreList", findWhatGenreSelected);
+	      session.close();
+	      return list;
+	   }
+	   
+
+
+		   
+		   public List<MovieDTO> movieStarRank() {
 		      SqlSession session = MybatisManager.getInstance().openSession();
-		      String list = session.selectOne("movie.findWhatGenreSelected", userid);
+		      List<MovieDTO> list = session.selectList("movie.movieStarRank");
 		      session.close();
 		      return list;
 		   }
 		   
-		   public List<MovieDTO> userRecommendGenreList(String findWhatGenreSelected) {
-		      SqlSession session = MybatisManager.getInstance().openSession();
-		      List<MovieDTO> list = session.selectList("movie.userRecommendGenreList", findWhatGenreSelected);
-		      session.close();
-		      return list;
-		   }
-		   
-		   
+			   public String findmovieCodefromTitle(String title) {
+			      SqlSession session = MybatisManager.getInstance().openSession();
+			      String result = session.selectOne("movie.findmovieCodefromTitle",title);
+			      session.close();
+			      return result;
+			   }
+
 	
 	
-	public MovieDTO movieInfo(String grcode) {
+	public MovieDTO movieInfo(String grcode) { // movieInfo 가져오기 다시수정
 		SqlSession session = MybatisManager.getInstance().openSession();
 		MovieDTO dto = session.selectOne("movie.movieInfo",grcode);
 		session.close();
 		return dto;
 	}
-	
+	public MovieDTO movieInfo1(String moviecode) {
+		SqlSession session = MybatisManager.getInstance().openSession();
+		MovieDTO dto = session.selectOne("movie.movieInfo1",moviecode);
+		session.close();
+		return dto;
+	}
 	public List<MovieDTO> movieSearch(String keyword, int start, int end) {
 		SqlSession session = MybatisManager.getInstance().openSession();
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -122,6 +154,7 @@ public class MovieDAO {
 	public List<MovieCodeDTO> moviecodeGrcode(String mvcode) {
 		SqlSession session = MybatisManager.getInstance().openSession();
 		List<MovieCodeDTO> list = session.selectList("movie.moviecodeGrcode",mvcode);
+		System.out.println(list);
 		session.close();
 		return list;
 	}
@@ -149,6 +182,19 @@ public class MovieDAO {
 		session.commit();
 		session.close();
 	}
+	public List<MemberCodeDTO> memberMvcode(String userid) { //회원의 즐겨찾는 영화 코드를 가져오자
+		SqlSession session = MybatisManager.getInstance().openSession();
+		List<MemberCodeDTO> list = session.selectList("movie.memberMvcode",userid);
+		session.close();
+		return list;
+	}
+	public void mymovieDelete(MemberCodeDTO dto) {
+		SqlSession session = MybatisManager.getInstance().openSession();
+		session.delete("movie.mymovieDelete",dto);
+		session.commit();
+		session.close();
+	}
+	
 	
 }
 

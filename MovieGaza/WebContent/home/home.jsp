@@ -9,43 +9,40 @@
 <title>영화가즈아</title>
 <link rel="stylesheet" href="${path }/css/bootstrap.min.css">
 <script src="${path }/js/bootstrap.min.js"></script>
+<script src="${path }/js/jquery-2.2.4.min.js"></script>
+<!-- bxslider CDN -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+<!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script>
+        $(function() {
+          $('.bxslider').bxSlider({
+						slideWidth:600,
+            captions:true,
+            auto:false,
+            autoControls:false,
+            stopAutoOnclick:true,
+            minSlides :1,
+            maxSlides :5,
+            slideWidth: 250,
+            slideMargin: 3,
+            speed: 300,
+            moveslides: 1,
+            autoHover: true,
+            touchEnabled: false
+          });
+        });
+    </script>
 <style>
-    .list {
-       position: absolute;
-        padding-top: 20px;
-        top: 330px;
-        width: 150px;
-        height: 150px;
-        background: rgba(0,0,0,0.6);
-        opacity: 0;
-        -moz-transition: all 0.2s ease-in-out;
-        -o-transition: all 0.2s ease-in-out;
-        -webkit-transition: all 0.2s ease-in-out;
-        transition: all 0.4s ease-in-out;
-        z-index: 10;
-    }
-    .list:hover {
-       opacity: 1;
-        -moz-transform: translateY(-200px);
-        -ms-transform: translateY(-200px);
-        -o-transform: translateY(-200px);
-        -webkit-transform: translateY(-200px);
-        transform: translateY(0px);
-    }
-    .list {
-        color: #fff;
-        text-align: center;
-    }
-    .list a {
-       text-decoration: none;
-       color: #fff;
-    }
+    
     .list1 {
        position: absolute;
         padding-top: 20px;
-        top: 546px;
-        width: 150px;
-        height: 150px;
+        top: 878px;
+        width: 200px;
+        height: 200px;
         background: rgba(0,0,0,0.6);
         opacity: 0;
         -moz-transition: all 0.2s ease-in-out;
@@ -131,7 +128,40 @@
        text-decoration: none;
        color: #fff;
     }
-</style>
+    
+      
+.box {
+   float: left;
+   width : 50px;
+   margin: 0 8px;
+   position: relative;
+}
+
+.front {
+   position: relative;
+   top: 0;
+   overflow:hidden;
+   
+   /* max-width : 97.5px; */
+   
+}
+
+.back{
+
+   position: absolute;
+   top: 0;
+   left: 0;
+   
+   
+}
+.front img{
+   width : 50px;
+}
+
+.back img{
+   width : 50px;
+}
+    
 </style>
 </head>
 <body>
@@ -140,56 +170,42 @@
    <%@ include file="menu.jsp"%>
    
    <div style="height: 1000px;background-color: white;">
-      
+      <div id="contents" style="margin:0 auto;height: 1500px; width: 1300px;background-color: #EAEAEA;padding-top: 40px;">
       <section>
-         <div id="contents" style="margin:0 auto;height: 1300px; width: 900px;background-color: #EAEAEA;padding-top: 40px;">
-
+      
                <h2>영화목록</h2>
-               <table border="1" style="margin: 0 auto;">
-                  <tr>
-                     
-                     <c:forEach var="list" items="${listRandom }">
-                        <td>
-                           <div style="width: 150px;height: 150px;border: 1px solid black;margin-top: 20px;">
-                                <img src="${path }/images/${list.postfname }" alt="${list.postfname }" width="150px" height="150px"/>
-                             </div>
-                           <div class="list">
-                              <h4>
-                              <a href="${path }/Movie/info?moviecode=${list.moviecode}&curPage=1">${list.title }</a>
-                              </h4> <br />
-                              ${list.open }<br />
-                           </div>
-                        </td>                  
-                     </c:forEach>
-                     
-                  </tr>
-               </table>         
-
+               
+			         <div id="wrapper">
+				      <div class="bxslider">
+				        <c:forEach var="list" items="${listRandom }">
+							<%-- <div class="item" style="width: 300px;height: 300px;" >
+								<a href="${path }/Movie/info?moviecode=${list.moviecode}&curPage=1">
+		                       <img src="${path }/images/${list.postfname }" alt="${list.postfname }" width="300px" height="300px"/>
+		                       </a>
+		                    </div> --%>
+		                    <!-- 픽셀 테스트 -->
+							<div class="item" style="width: 250px;height: 250px;" >
+								<a href="${path }/Movie/info?moviecode=${list.moviecode}&curPage=1">
+		                       <img src="http://placehold.it/250x250" alt="${list.postfname }" />
+		                       </a>
+		                    </div>	                    
+						</c:forEach>
+				      </div> 
+				          
+				    </div>
             <h2>평점순</h2>
-            <table border="1" style="margin: 0 auto;">
-               <tr>
-                  <c:if test="${curPage > 1 }">                  
-                     <td><a href="${path }/Home?curPage=${curPage-1}">◀</a></td>
-                  </c:if>
-                  <c:forEach var="list" items="${listScore }">
-                     <td>
-                        <div style="width: 150px;height: 150px;border: 1px solid black;margin-top: 20px;">
-                             <img src="${path }/images/${list.postfname }" alt="${list.postfname }" width="150px" height="150px"/>
-                         </div>
-                          <div class="list1">
-                             <h4>
-                           <a href="${path }/Movie/info?moviecode=${list.moviecode}&curPage=1">${list.title }</a> <br />
-                           </h4> <br />
-                           ${list.open }<br />
-                           평점:${list.score }
-                        </div>
-                     </td>                  
-                  </c:forEach>
-                  <c:if test="${curPage < totPage }">
-                     <td><a href="${path }/Home?curPage=${curPage+1}">▶</a></td>
-                  </c:if>
-               </tr>
-            </table>
+            <div id="wrapper">
+		      <div class="bxslider">
+		        <c:forEach var="list" items="${listScore }">
+					<div class="item" style="width: 300px;height: 300px;" >
+						<a href="${path }/Movie/info?moviecode=${list.moviecode}&curPage=1">
+                       <img src="${path }/images/${list.postfname }" alt="${list.score }" width="300px" height="300px"/>
+                       </a>
+                    </div>
+				</c:forEach>     
+		      </div> 
+		          
+		    </div>
             <c:set var="idchk" value="${userid}"
                   scope="session" />
                   <c:set var="recomchk" value="${findWhatGenreSelected}"
@@ -197,7 +213,19 @@
             
             <c:if test="${idchk == null}">
                <h2>추천 장르 : ${showGenre}</h2>
-               <table border="1" style="margin: 0 auto;">
+               <div id="wrapper">
+		      <div class="bxslider">
+			        <c:forEach var="list" items="${listGenre }">
+						<div class="item" style="width: 300px;height: 300px;" >
+							<a href="${path }/Movie/info?moviecode=${list.moviecode}&curPage=1">
+	                       <img src="${path }/images/${list.postfname }" alt="${list.score }" width="300px" height="300px"/>
+	                       </a>
+	                    </div>
+					</c:forEach>     
+			      </div> 
+			          
+			    </div>
+               <%-- <table border="1" style="margin: 0 auto;">
                   <tr>
                      <c:if test="${curPage > 1 }">                  
                         <td><a href="${path }/Home?curPage=${curPage-1}">◀</a></td>
@@ -219,7 +247,7 @@
                         <td><a href="${path }/Home?curPage=${curPage+1}">▶</a></td>
                      </c:if>
                   </tr>
-               </table>   
+               </table> --%>   
             
             </c:if>
             
@@ -312,11 +340,12 @@
                <h2>즐겨찾기한 영화가 없습니다.</h2>
             
             
-            </c:if>        
+            </c:if>
+            </section>        
          </div>
-      </section>
-      
    </div>
+
+    
    <%@ include file="footer.jsp"%>
 
 </div>

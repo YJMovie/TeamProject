@@ -10,9 +10,8 @@ width: 1300px;
 margin: 0 auto;
 }
 .card-header{
-padding: 10px;
-height: 150px;
-
+padding: 150px;
+height: 50px;
 }
 #left{
 float: left;
@@ -36,12 +35,7 @@ body{
 	  	<div style="text-align: center;">
 		    <h2><a href="${path }/Admin/main" style="text-decoration: none;color: black;">영화가즈아(관리자)</a></h2>  	
 	  	</div>  	
-	  	<div style="text-align: right;">
-			<h4><span>${sName }</span>님 환영합니다.${sGrade }</h4>
-		    <a href="${path }/Log/logout.do"><button type="button" class="btn btn-outline-primary">로그아웃</button></a>
-		  	<a href="${path }/Admin/update?userid=${sId}"><button type="button" class="btn btn-outline-primary">회원수정</button></a>
-		  	<a href="${path }/Admin/main"><button type="button" class="btn btn-outline-primary">관리자</button></a>
-	  	</div>
+	  	
 	  </div>
 	</div>
 </c:if>
@@ -51,10 +45,7 @@ body{
 	  	<div style="text-align: center;">
 		    <h2><a href="${path }/Home" style="text-decoration: none;color: black;">영화가즈아(비회원)</a></h2>  	
 	  	</div>  	
-	  	<div style="text-align: right;">
-		    <a href="${path }/member/login.jsp"><button type="button" class="btn btn-outline-primary">로그인</button></a>
-		  	<a href="${path }/Member/join.do"><button type="button" class="btn btn-outline-primary">회원가입</button></a>  	
-	  	</div>
+	  	
 	  </div>
 	</div>
 </c:if>
@@ -64,11 +55,7 @@ body{
 	  	<div style="text-align: center;">
 		    <h2><a href="${path }/Home" style="text-decoration: none;color: black;">영화가즈아(회원)</a></h2>  	
 	  	</div>  	
-	  	<div style="text-align: right;">
-			<h4><span>${sName }</span>님 환영합니다.${sGrade }</h4>
-		    <a href="${path }/Log/logout.do"><button type="button" class="btn btn-outline-primary">로그아웃</button></a>
-		  	<a href="${path }/Member/update.do?sName=${sName}"><button type="button" class="btn btn-outline-primary">회원수정</button></a>
-	  	</div>
+	  	
 	  </div>
 	</div>
 </c:if>

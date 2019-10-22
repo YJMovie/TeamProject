@@ -21,10 +21,11 @@
 <style>
 	.list {
     	position: absolute;
+    	margin: 0 20px;
         padding-top: 20px;
         /* top: 290px; */
-        width: 150px;
-        height: 150px;
+        width: 300px;
+        height: 300px;
         background: rgba(0,0,0,0.6);
         opacity: 0;
         -moz-transition: all 0.2s ease-in-out;
@@ -58,28 +59,32 @@
 <div style="height: 1000px;background-color: white;">
 <section>
 <!-- <div id="contents"> -->
-<div id="contents" style="margin:0 auto;height: 1000px; width: 1300px;background-color: #EAEAEA;padding-top: 40px;">
+<div id="contents" style="margin:0 auto;height: 1500px; width: 1300px;background-color: #EAEAEA;padding-top: 40px;">
 <div style="margin: 0 auto;width: 270px;">
 	<ul class="list-group list-group-horizontal-sm">
-	  <li class="list-group-item"><a href="${path }/Board/list.do?category=1">평점순</a></li>
-	  <li class="list-group-item"><a href="${path }/Board/list.do?category=2">리뷰순</a></li>
-	  <li class="list-group-item"><a href="${path }/Board/list.do?category=3">예매율</a></li>
+	  <li class="list-group-item"><a href="${path }/Movie/list?category=1">평점순</a></li>
+	  <li class="list-group-item"><a href="${path }/Movie/list?category=2">개봉순</a></li>
 	</ul>
-</div>
-<table border="1" style="margin: 0 auto;"><%int i=-1; %>
+</div> <br />
+<table style="margin: 0 auto;"><%int i=-1; %>
 	<c:forEach var="list" items="${list }" varStatus="status">
 		<c:if test="${status.count%3 == 1 }" ><tr><%i++; %></c:if>
 			<td>
-				<div style="width: 150px;height: 150px;border: 1px solid black;margin-top: 20px;">
-			        <img src="${path }/images/${list.postfname }" alt="${list.postfname }" width="150px" height="150px"/>
+				<div style="width: 300px;height: 300px;border: 1px solid black;margin: 20px 20px;">
+			        <img src="${path }/images/${list.postfname }" alt="${list.postfname }" width="300px" height="300px"/>
 			    </div>
-		        <div class="list" style="top:<%=334+i*170%>px;">
+		        <div class="list" style="top:<%=440+i*338%>px;">
 		        <%=i %>
-		        <h4>
+		        <h1>
 					<a href="${path }/Movie/info?moviecode=${list.moviecode}&curPage=1">${list.title }</a> <br />
-		        </h4> <br />
-				${list.open } <br />
-				${list.score } <br />
+		        </h1> <br />
+		        <div style="margin-top: 40px;">
+		        	<h2>
+		        		${list.open } <br />
+						${list.score } <br />
+		        	</h2>
+		        	
+		        </div>
 				</div>
 			</td>
 		<c:if test="${status.count%3 == 0 }"></tr></c:if>	

@@ -7,6 +7,8 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 
 import member.dto.MemberDTO;
+import movie.dto.MemberCodeDTO;
+import movie.dto.MovieCodeDTO;
 import sqlMap.MybatisManager;
 
 
@@ -93,6 +95,12 @@ public class MemberDAO {
 		int usergrade = session.selectOne("member.memberGrade",name);
 		session.close();
 		return usergrade;
+	}
+	public void favoriteMovie(MemberCodeDTO dto) {
+		SqlSession session = MybatisManager.getInstance().openSession();
+		session.insert("member.favoriteMovie",dto);
+		session.commit();
+		session.close();
 	}
 }
 

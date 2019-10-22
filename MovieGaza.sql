@@ -168,13 +168,17 @@ mem_pscode varchar2(50) references person(personcode) on delete cascade,
 mem_mvcode varchar2(50) references movie_info(moviecode) on delete cascade,
 mem_userid varchar2(50)  references member_info(userid) on delete cascade
 );
+desc member_code;
 commit;
 insert into member_code values('0001','A002','a006','lee');
 insert into member_code values('0001','A002','a009','lee');
 insert into member_code values('0004','A002','a004','kim');
+select * from member_code;
 select title from movie_info where moviecode in(
 select mem_mvcode from member_code where mem_userid='lee');
+select distinct mem_mvcode from member_code where mem_userid = 'lee' and mem_mvcode is not null order by mem_mvcode;
 delete from member_code;
+delete from member_code where mem_userid = 'lee' and mem_mvcode = 'a013';
 
 --create table xx (
 --  n1 varchar2(50) not null primary key,

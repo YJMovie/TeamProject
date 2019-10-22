@@ -3,20 +3,23 @@
 
 * { margin: 0; padding:0;}
 ul,ol { list-style: none;}
-a { text-decoration: none; color: black;}
+a { text-decoration: none; color: white;}
 img { border: none;}
 
 nav {
    height: 70px;
+   color: white;
 }
 #ftmenu_area{
    text-decoration: none;
+   color: white;
 }
 #ftmenu li{
    
    display: inline-block;
    margin: 13px;
    text-align: center;
+   color: white;
 }
 
 #copyright {
@@ -24,18 +27,19 @@ nav {
    font-size: 14px;
 }
 footer {
-	background: #FFFFF6;
+	background-color: #272727;
+	color: white;
 	height: 150px;
-	
 	border: 0px solid blue;
 	
 }
 #footer {
-	width: 1000px;
+	width: 550px;
 	text-align: center;
 	margin: 0 auto;
 	margin-bottom: 15px;
-	background: #FFFFF6;
+	background-color: #272727;
+	color: white;
 	border: 0px solid blue;
 }
 
@@ -48,4 +52,5 @@ footer {
 #SNS1 li{
    float: left; margin-right: 5px;
 }
+
 

@@ -65,4 +65,8 @@
 	<select id="memberGrade" parameterType="String" resultType="int">
 		select usergrade from member_info where name = #{name}
 	</select>
+	<insert id="favoriteMovie">
+		insert into member_code (mem_userid, mem_mvcode) values 
+		(#{mem_userid},#{mem_mvcode})
+	</insert>
 </mapper>

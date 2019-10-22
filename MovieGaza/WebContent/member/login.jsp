@@ -47,7 +47,7 @@
 	<div style="height: 1000px;background-color: white;">
 		
 	<section>
-	<div id="contents" style="margin:0 auto;height: 1000px; width: 900px;background-color: #EAEAEA;padding-top: 40px;">
+	<div id="contents" style="margin:0 auto;height: 1000px; width: 1300px;background-color: #EAEAEA;padding-top: 40px;">
 
  	<form action=""name="login"method="post">
  		<table style="margin: 0 auto;">
@@ -85,6 +85,7 @@
  		</table>
  	</div>
  	</section>
+ 	
  	</div>
  	<%@ include file="../home/footer.jsp" %>
 </body>

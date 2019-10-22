@@ -20,4 +20,20 @@ public class ReviewDAO {
 		session.commit();
 		session.close();
 	}
+
+	public double makeStar(String moviecode) {
+	        SqlSession session = MybatisManager.getInstance().openSession();
+	        double star_result = session.selectOne("movie.moviescore", moviecode);
+	         session.commit();
+	         session.close();
+	         return star_result;
+	   }
+	   
+	      public void insertreviewscore(ReviewDTO dto) {
+	         SqlSession session = MybatisManager.getInstance().openSession();
+	         session.insert("movie.insertreviewscore",dto);
+	         session.commit();
+	         session.close();
+	      }
+
 }

@@ -1,6 +1,7 @@
 package member.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +17,10 @@ import javax.servlet.http.HttpSession;
 
 import member.dao.MemberDAO;
 import member.dto.MemberDTO;
+import movie.dao.MovieDAO;
+import movie.dto.MemberCodeDTO;
+import movie.dto.MovieCodeDTO;
+import movie.dto.MovieDTO;
 
 
 @WebServlet("/Member/*")
@@ -217,6 +222,56 @@ public class MemberController extends HttpServlet {
 			String page = request.getContextPath()+"/controller/jmember.do";
 			System.out.println("memDelete.do");
 			response.sendRedirect(page);
+		} else if (url.contains("favoriteMovie")) {
+			String moviecode = request.getParameter("moviecode");
+			String userid = request.getParameter("sId");
+			MemberCodeDTO mcdto = new MemberCodeDTO();
+			mcdto.setMem_userid(userid);
+			mcdto.setMem_mvcode(moviecode);
+			System.out.println(mcdto);
+			dao.favoriteMovie(mcdto);
+			System.out.println(moviecode);
+			
+			String page = "/Movie/info?curPage=1&moviecode="+moviecode;
+			RequestDispatcher rd = request.getRequestDispatcher(page);
+			rd.forward(request, response);
+		} else if (url.contains("mypage")) {
+			String page = "/member/mypage.jsp";
+			RequestDispatcher rd = request.getRequestDispatcher(page);
+			rd.forward(request, response);
+		} else if (url.contains("myMovie")) {
+			String userid = request.getParameter("userid");
+			MovieDAO dao1 = new MovieDAO();
+			List<MemberCodeDTO> list = dao1.memberMvcode(userid);
+			List<MovieDTO> list1 = new ArrayList<MovieDTO>();
+			for (int i = 0; i < list.size(); i++) {
+				System.out.println(list.get(i).getMem_mvcode());
+				MovieDTO dto = dao1.movieInfo1(list.get(i).getMem_mvcode());
+				list1.add(dto);
+				System.out.println(list1.get(i).toString());
+			}
+//			MovieDTO dto = dao1.movieInfo1(list.get(0).getMem_mvcode());
+//			list1.add(dto);
+//			System.out.println(list1.get(0).toString());
+			
+			request.setAttribute("MovieList", list1);	//즐겨찾는 영화 리스트 보낸다.
+			String page = "/member/myMovie.jsp";
+			RequestDispatcher rd = request.getRequestDispatcher(page);
+			rd.forward(request, response);
+		} else if (url.contains("mymovie_delete")) {
+			String mem_mvcode = request.getParameter("mem_mvcode");
+			String mem_userid = request.getParameter("mem_userid");
+			MemberCodeDTO mcdto = new MemberCodeDTO();
+			mcdto.setMem_userid(mem_userid);
+			mcdto.setMem_mvcode(mem_mvcode);
+			System.out.println(mcdto);
+			MovieDAO dao1 = new MovieDAO();
+			dao1.mymovieDelete(mcdto);
+			
+			System.out.println("삭제완료");
+			String page = "myMovie?userid="+mem_userid;
+			RequestDispatcher rd = request.getRequestDispatcher(page);
+			rd.forward(request, response);
 		}
 			 
 	}

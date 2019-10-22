@@ -12,8 +12,9 @@
 <script src="../script/jquery-3.4.1.min.js"></script>
 <script>
 	$(function(){
+		
 		$("#btnList").click(function(){
-			document.infoform.action = "${path}/Board/list.do";
+			document.infoform.action = "${path}/Movie/list";
 			document.infoform.submit();
 		});
 		$('#btnReview').click(function(){
@@ -26,6 +27,11 @@
 			document.infoform.action = "${path}/Movie/write?moviecode=${dto.moviecode}";
 			document.infoform.submit();
 		});
+		$('#btnMemMovie').click(function(){
+			var moviecode = $('#btnMemMovie').val();
+			document.infoform.action = "${path}/Member/favoriteMovie?sId=${sId}&moviecode="+moviecode;
+		});
+		
 		review_list();
 		function review_list() {
 			var param = "moviecode=${dto.moviecode}&curPage=${curPage}";
@@ -39,8 +45,55 @@
 				}
 			});
 		}
+		
+		   $('#info_front').ready(function(){ 
+		         var make_star = ${make_star};
+		         
+		         $(".info_front").css('width',make_star+"px");
+
+		         });
+
 	});
 </script>
+
+<style>
+
+
+.box {
+   float: left;
+   width : 150px;
+   margin: 0 8px;
+   position: relative;
+}
+
+.info_front {
+   position: relative;
+   top: 0;
+   overflow:hidden;
+   
+   /* max-width : 97.5px; */
+   
+}
+
+.info_back{
+
+   position: absolute;
+   top: 0;
+   left: 0;
+   
+   
+}
+.info_front img{
+   width : 150px;
+}
+
+.info_back img{
+   width : 150px;
+}
+
+</style>
+
+
 </head>
 <body>
 <%@ include file="../home/header.jsp" %>
@@ -68,16 +121,23 @@ ${curPage } --%>
 						${pscodeA }
 					</c:forEach><br />
 					명대사 ${dto.lines } <br />
-					평점 ${dto.score } <br />
+					
+					
 					개봉일 ${dto.open } <br />
+					평점 : ${star_result}<br/>
+					<div class="box">
+         <div class="info_back"><img src='../images/back_stars.png' ></div>
+         <!-- 색깔별 --><div class="info_front" id="info_front"><img src='../images/front_stars.png'></div>
+         </div>
 				</div>
 			</td>
 		</tr>
 			
 	</table>
-	<br />
+	<hr />
 	<button id="btnList">목록</button>
 	<button id="btnReview" value="${sName }">리뷰하기</button>
+	<button id="btnMemMovie" value="${dto.moviecode }">즐겨찾기 추가</button>
 </form>
 <hr />
 <div id="reviewList"></div>
