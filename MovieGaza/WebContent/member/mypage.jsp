@@ -37,8 +37,8 @@
 </style>
 </head>
 <body>
-	<%@ include file="../home/header.jsp"%>
 	<%@ include file="../home/menu.jsp"%>
+	<%@ include file="../home/header.jsp"%>
 	
 	<div style="height: 1000px;background-color: white;">
 		

@@ -53,8 +53,9 @@
 </style>
 </head>
 <body>
-<%@ include file="../home/header.jsp" %>
 <%@ include file="../home/menu.jsp" %>
+<%@ include file="../home/header.jsp" %>
+
 <!-- <div style="height: 800px; width: 100%; border: 1px dotted black; margin: 0;"> -->
 <div style="height: 1000px;background-color: white;">
 <section>

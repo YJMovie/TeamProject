@@ -41,8 +41,8 @@
 </script>
 </head>
 <body>
-	<%@ include file="../home/header.jsp"%>
 	<%@ include file="../home/menu.jsp"%>
+	<%@ include file="../home/header.jsp"%>
 	
 	<div style="height: 1000px;background-color: white;">
 		
@@ -72,7 +72,6 @@
  					<button id="idcheck" class="btn btn-primary">로그인</button>
  					<button id="idfind" class="btn btn-primary">아이디찾기</button>
  					<button id="pwdfind" class="btn btn-primary">비밀번호찾기</button>
- 					<button id="back">뒤로</button>
  				</td>
  			</tr>
  			<tr>

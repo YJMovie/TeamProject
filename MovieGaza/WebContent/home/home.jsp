@@ -166,8 +166,9 @@
 </head>
 <body>
 <div>
+	<%@ include file="menu.jsp"%>
    <%@ include file="header.jsp"%>
-   <%@ include file="menu.jsp"%>
+   
    
    <div style="height: 1000px;background-color: white;">
       <div id="contents" style="margin:0 auto;height: 1500px; width: 1300px;background-color: #EAEAEA;padding-top: 40px;">

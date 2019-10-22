@@ -156,13 +156,13 @@
 
 <body>
 	<div id="wrap">
-		<%@ include file="../home/header.jsp"%>
 		<%@ include file="../home/menu.jsp"%>
+		<%@ include file="../home/header.jsp"%>
 		
 		<div style="height: 1000px;background-color: white;">
 		
 		<section>
-		<div id="contents" style="margin:0 auto;height: 1000px; width: 900px;background-color: #EAEAEA;padding-top: 40px;">
+		<div id="contents" style="margin:0 auto;height: 1000px; width: 1300px;background-color: #EAEAEA;padding-top: 40px;">
 		
 		<br> <br> <b><font size="6">회원가입</font></b> <br> <br>
 		<br>
