@@ -10,7 +10,12 @@
 <script src="${path }/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="${path }/css/bootstrap.min.css">
 <link rel="stylesheet" href="${path }/css1/style.css">
-
+<!-- bxslider CDN -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+<!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <style>
 #company {
 	font-size: 40px;
@@ -28,9 +33,9 @@
 </style>
 </head>
 <body>
-	<%@ include file="header.jsp"%>
 	<%@ include file="menu.jsp"%>
-	<div id="background">
+	<%@ include file="header.jsp"%>
+	<div id="background" style="width:1300px;margin: 0 auto;">
 		<div id="company">
 			★회사 소개★<br>
 		</div>

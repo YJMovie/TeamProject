@@ -7,9 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>영화가즈아</title>
-<link rel="stylesheet" href="../css/bootstrap.min.css">
-<script src="../js/bootstrap.min.js"></script>
-<script src="../script/jquery-3.4.1.min.js"></script>
+<!-- ajax로 처리한 페이지. 또 link할 필요 없음. -->
 <script>
 	$(function(){
 		$('#btnNext').click(function(){
@@ -60,40 +58,45 @@
 .back img{
    width : 70px;
 }
-
+.table {
+	font-size: 30px;
+}
 </style>
 
 
 </head>
 <body>
-<table border="1">
+<table class="table" style="width: 700px;margin-left: 100px;">
 	<c:forEach var="list" items="${list }">
-		<tr>
-			<td>${list.writer }(${list.r_date })</td>
-
+  <thead class="thead-light" style="width: 450px;">
+    <tr>
+      <th>${list.writer }(${list.r_date })</th>
+			<th> <div class="box">
+	            <c:set var="starscore" value="${list.r_score/5*70}"></c:set>
+		         <div class="back"><img src='../images/back_stars.png' width="100px" height="20px" ></div>
+		         <!-- 색깔별 --><div class="front" id="front" style="width:${starscore}px"><img src='../images/front_stars.png' width="100px" height="20px"></div>
+		         </div>
+			</th>
+    </tr>
+  </thead>
+  <tbody style="width: 250px;">
+    <tr>
 			<td colspan="2">
 				 ${list.r_comment }
 			</td>
-
-			<td> <div class="box">
-            <c:set var="starscore" value="${list.r_score/5*70}"></c:set>
-         <div class="back"><img src='../images/back_stars.png' ></div>
-         <!-- 색깔별 --><div class="front" id="front" style="width:${starscore}px"><img src='../images/front_stars.png'></div>
-         </div>
-</td>
 		</tr>
-	
-	</c:forEach>
-	<tr>
+  </tbody>
+  </c:forEach>
+  <tr>
 		<td colspan="2">
 			<c:if test="${curBlock > 1 }">
-				<a href="${path }/Board/info.do?num=${movie_num}&curPage=${prev_page}">이전</a>
+				<a href="${path }/Movie/info?moviecode=${moviecode}&curPage=${prev_page}">이전</a>
 			</c:if>
 			<c:forEach var="i" begin="${block_start }" end="${block_end }">
-				<a href="${path }/Board/info.do?num=${movie_num}&curPage=${i}">${i }</a>
+				<a href="${path }/Movie/info?moviecode=${moviecode}&curPage=${i}">${i }</a>
 			</c:forEach>
 			<c:if test="${curBlock < totBlock }">
-				<a href="${path }/Board/info.do?num=${movie_num}&curPage=${next_page}">다음</a>
+				<a href="${path }/Movie/info?moviecode=${moviecode}&curPage=${next_page}">다음</a>
 			</c:if>
 		</td>
 	</tr>

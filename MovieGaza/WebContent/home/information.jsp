@@ -10,7 +10,12 @@
 <script src="${path }/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="${path }/css/bootstrap.min.css">
 <link rel="stylesheet" href="${path }/css1/style.css">
-
+<!-- bxslider CDN -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+<!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <style>
 #info {
 	font-size: 40px;
@@ -53,8 +58,8 @@
 </style>
 </head>
 <body>
-	<%@ include file="header.jsp"%>
 	<%@ include file="menu.jsp"%>
+	<%@ include file="header.jsp"%>
 	<div id="background">
 	<div id="info">영화가즈아 정책</div>
 	<div id="info1">개인정보 취급방침</div>

@@ -97,6 +97,11 @@ public class MovieController extends HttpServlet {
 			rd.forward(request, response);
 		} else if (url.contains("info")) {
 			System.out.println("컨트롤러 info"+request.getParameter("moviecode"));
+			System.out.println("현재페이지 info"+request.getParameter("curPage"));
+			int curPage = Integer.parseInt(request.getParameter("curPage"));
+			request.setAttribute("curPage", curPage); //인포페이지와 리뷰리스트로 넘긴다
+			
+			
 			
 		    String getmvTitle = null;
 			  try {
@@ -107,6 +112,7 @@ public class MovieController extends HttpServlet {
 
 			
 			String moviecode = request.getParameter("moviecode");
+			request.setAttribute("moviecode", moviecode); //인포페이지와 리뷰리스트로 넘긴다
 			
 			   MovieDTO dto = null;
 			   if(getmvTitle!=null) {
@@ -179,7 +185,48 @@ public class MovieController extends HttpServlet {
 		else if (url.contains("reply")) { // 리뷰 페이징 해야됩니다.
 			
 			String moviecode = request.getParameter("moviecode");
-			List<ReviewDTO> list = rdao.reviewList(moviecode);
+			request.setAttribute("moviecode", moviecode);
+			System.out.println("영화코드:"+moviecode);
+			System.out.println("현재페이지"+request.getParameter("curPage")); // info에서 curPage ajax페이지로 넘겨줘야됨.
+			int curPage = 1;
+			if (request.getParameter("curPage") != null) {
+				curPage = Integer.parseInt(request.getParameter("curPage"));
+			}
+			int count = rdao.reviewCount(); //리뷰 총 레코드수
+			System.out.println(count);
+			int page_scale = 5;
+			int totPage = (int)Math.ceil(count*1.0/page_scale);
+			int start = (curPage-1)*page_scale+1;
+			int end = start+page_scale-1;
+			
+			request.setAttribute("curPage", curPage);
+			request.setAttribute("totPage", totPage);
+			System.out.println("총페이지:"+totPage);
+			
+			int block_scale = 3;
+			int totBlock = (int)Math.ceil(totPage*1.0/block_scale);
+			int curBlock = (curPage-1)/block_scale+1;
+			int block_start = (curBlock-1)*block_scale+1;
+			int block_end = block_start+block_scale-1;
+			
+			int prev_page = 
+					curBlock == 1 ? 1 : (curBlock-1)*block_scale;
+			int next_page = 
+					curBlock > totBlock ? (curBlock*block_scale) : curBlock*block_scale+1;
+			if (block_end>totPage) block_end = totPage;
+			if (next_page>=totPage) next_page = totPage;
+			
+			request.setAttribute("totBlock", totBlock);
+			request.setAttribute("curBlock", curBlock);
+			request.setAttribute("block_start", block_start);
+			request.setAttribute("block_end", block_end);
+			request.setAttribute("prev_page", prev_page);
+			request.setAttribute("next_page", next_page);
+			System.out.println("총 블록:"+totBlock);
+			System.out.println("현재 블록:"+curBlock);
+			
+			
+			List<ReviewDTO> list = rdao.reviewList(moviecode,start,end);
 			request.setAttribute("list", list);
 			
 			String page = "/movie/review_list.jsp";
@@ -379,6 +426,8 @@ public class MovieController extends HttpServlet {
 	               movieInfo.add(map);
 	               i++;
 	            }
+	            System.out.println(map.size());
+	            System.out.println(movieInfo.size()); // 랭킹순 총 레코드
 
 	            request.setAttribute("movieInfo", movieInfo);
 

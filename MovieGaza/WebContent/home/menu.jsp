@@ -20,9 +20,9 @@
 		    <a href="${path }/member/login.jsp"><button type="button" class="btn btn-outline-primary">로그인</button></a>
 		  	<a href="${path }/Member/join.do"><button type="button" class="btn btn-outline-primary">회원가입</button></a>
 		  	<a class="btn btn-outline-light" href="${path }/Movie/list">영화</a> 
-		  	<a class="btn btn-outline-light" href="#">이벤트</a> 	
+		  	<a class="btn btn-outline-light" href="${path }/home/event.jsp">이벤트</a> 	
 		  	<a class="btn btn-outline-light" href="${path }/Movie/rank">랭킹</a>
-		  	<a class="btn btn-outline-light" href="#">최신뉴스</a>
+		  	<a class="btn btn-outline-light" href="${path }/home/news.jsp">최신뉴스</a>
 	  	</div>
 	  </li>
 	  
@@ -50,9 +50,9 @@
 		  	<a href="${path }/Admin/update?userid=${sId}"><button type="button" class="btn btn-outline-primary">회원수정</button></a>
 		  	<a href="${path }/Admin/main"><button type="button" class="btn btn-outline-primary">관리자</button></a>
 		  	<a class="btn btn-outline-light" href="${path }/Movie/list">영화</a> 
-		  	<a class="btn btn-outline-light" href="#">이벤트</a> 	
+		  	<a class="btn btn-outline-light" href="${path }/home/event.jsp">이벤트</a> 	
 		  	<a class="btn btn-outline-light" href="${path }/Movie/rank">랭킹</a>
-		  	<a class="btn btn-outline-light" href="#" tabindex="-1" aria-disabled="true">즐겨찾기</a>
+		  	<a class="btn btn-outline-light" href="${path }/home/news.jsp">최신뉴스</a>
 	  	</div>
 	  </li>
 	  
@@ -79,9 +79,9 @@
 		    <a href="${path }/Log/logout.do"><button type="button" class="btn btn-outline-primary">로그아웃</button></a>
 		  	<a href="${path }/Member/mypage?sId=${sId}"><button type="button" class="btn btn-outline-primary">마이페이지</button></a>
 		  	<a class="btn btn-outline-light" href="${path }/Movie/list">영화</a> 
-		  	<a class="btn btn-outline-light" href="#">이벤트</a> 	
+		  	<a class="btn btn-outline-light" href="${path }/home/event.jsp">이벤트</a> 	
 		  	<a class="btn btn-outline-light" href="${path }/Movie/rank">랭킹</a>
-		  	<a class="btn btn-outline-light" href="#" tabindex="-1" aria-disabled="true">즐겨찾기</a>
+		  	<a class="btn btn-outline-light" href="${path }/home/news.jsp">최신뉴스</a>
 	  	</div>
 	  </li>
 	  

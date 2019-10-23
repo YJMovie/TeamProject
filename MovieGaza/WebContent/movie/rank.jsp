@@ -36,105 +36,119 @@
 <%@ include file="../home/menu.jsp" %>
 <div style="height: 1000px;background-color: white;">
 <section>
-<div id="contents" style="margin:0 auto;height: 1000px; width: 1300px;background-color: #EAEAEA;padding-top: 40px;">
+<div id="contents" style="margin:0 auto;height: 1000px; width: 1300px;background-color: #FFFFF6;padding-top: 40px;">
 <nav>
-현재 상영영화
-<ul class="sorting">
-<li><a href="${pageContext.request.contextPath}/Movie/rank">예매순</a></li>
-<li><a href="${pageContext.request.contextPath}/Movie/date">개봉순</a></li>
-<li><a href="${pageContext.request.contextPath}/Movie/stars">평점순</a></li>
-</ul>
+<h2 align="center">현재 상영영화</h2>
+<div style="text-align: center;">
+	<div style="display: inline-block;">
+	
+		<ul class="list-group list-group-horizontal-sm">
+		<!-- <ul class="sorting"> -->
+		<li class="list-group-item"><a href="${pageContext.request.contextPath}/Movie/rank">예매순</a></li>
+		<li class="list-group-item"><a href="${pageContext.request.contextPath}/Movie/date">개봉순</a></li>
+		<li class="list-group-item"><a href="${pageContext.request.contextPath}/Movie/stars">평점순</a></li>
+		</ul>
+	</div>
+</div>
 </nav>
-<table border = "1">
-<tr>
-<td>영화순위</td>
-<td>영화제목</td>
-<td>영화 이미지</td>
-<td>장르</td>
-<c:set var="chkStar" value="${chkStar}"/>
-<c:if test="${chkStar == 'N'}"><td>영화시간</td></c:if>
-<c:if test="${chkStar == 'Y'}"></c:if>
-<td>개봉일</td>
-<td>감독</td>
-<td>출연</td>
-<c:set var="movieBookingchk" value="${movieBookingChk}" scope="session"/>
-<c:if test="${movieBookingchk!=NULL }">
-   <td>예매율</td>   
-</c:if> 
-<c:set var="chkStar" value="${chkStar}"/>
-<c:if test="${chkStar == 'N'}"><td>사이트 이동</td></c:if>
-<c:if test="${chkStar == 'Y'}"><td>평점</td></c:if>
-</tr>
+<hr />
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col" width="150px;">영화순위</th>
+		<th scope="col">영화제목</th>
+		<th scope="col">영화 이미지</th>
+		<th scope="col">장르</th>
+		<c:set var="chkStar" value="${chkStar}"/>
+		<c:if test="${chkStar == 'N'}"><th scope="col">영화시간</th></c:if>
+		<c:if test="${chkStar == 'Y'}"></c:if>
+		<th scope="col">개봉일</th>
+		<th scope="col">감독</th>
+		<th scope="col">출연</th>
+		<c:set var="movieBookingchk" value="${movieBookingChk}" scope="session"/>
+		<c:if test="${movieBookingchk!=NULL }">
+		   <th scope="col">예매율</th>   
+		</c:if> 
+		<c:set var="chkStar" value="${chkStar}"/>
+		<c:if test="${chkStar == 'N'}"><th scope="col">사이트 이동</th></c:if>
+		<c:if test="${chkStar == 'Y'}"><th scope="col">평점</th></c:if>
+    </tr>
+  </thead>
+  <tbody>
+    <c:if test="${chkStar == 'N'}">
 
-
-<c:if test="${chkStar == 'N'}">
-
-<c:forEach var="movieInfo" items="${movieInfo}" varStatus="status">
-<tr>
-<td><div>${status.count}</div>  </td>
-
-<c:set var="moviename" value="movierank${status.count}"/>
-
-<!-- id값이 한글로 지정이 안되기 때문에 각영화별로 movierank1, movierank2 형식으로 변경한 후 값을 넘겨줌 -->
-<!-- 클릭시 해당함수 실행 및 id값을 보내줌. -->
-<!-- 클래스값을 이용하여 영화제목을 받아올 것이기 때문에 클래스 값에 영화 제목 삽입 -->
-<td><a href="javascript:void(0);" id="${moviename}" class="${movieInfo.movieTitle}" onclick="findMovie(this.id)"> ${movieInfo.movieTitle}</a></td>
-
-
-<td><img src="${movieInfo.movieImg }"/></td>
-<td>${movieInfo.movieGenre}</td>
-<td>${movieInfo.movieTime}</td>
-<td>${movieInfo.movieDate}</td>
-<td>${movieInfo.movieDirector}</td>
-<td>${movieInfo.movieActor}</td>
-<c:if test="${movieBookingchk!=NULL }">
-<td>
-<c:set var="booking" value="${movieInfo.movieBooking}" scope="session"/>
-    <c:if test="${booking == 'noBook'}">
-        -
-    </c:if>
-    <c:if test="${booking != 'noBook'}">
-      ${movieInfo.movieBooking}%
-    </c:if>
- </td>
- </c:if>
-<td><c:set var="aaa" value="${movieInfo.movieReserveURL}" scope="session"/>
-    <c:if test="${aaa == 'noSite'}">
-        <p>예매 사이트가 없습니다.</p>
-    </c:if>
-    <c:if test="${aaa != 'noSite'}">
-       <a href="${movieInfo.movieReserveURL}">예매하기</a>    
-    </c:if>
- </td>
-</tr>
-
-</c:forEach>
-</c:if>
-<c:if test="${chkStar == 'Y'}">
-<c:forEach var="listStars" items="${listStars}" varStatus="status">
-<tr>
-<td><div>${status.count}</div>  </td>
-<c:set var="moviename" value="movierank${status.count}"/>
-
-<!-- id값이 한글로 지정이 안되기 때문에 각영화별로 movierank1, movierank2 형식으로 변경한 후 값을 넘겨줌 -->
-<!-- 클릭시 해당함수 실행 및 id값을 보내줌. -->
-<!-- 클래스값을 이용하여 영화제목을 받아올 것이기 때문에 클래스 값에 영화 제목 삽입 -->
-<td><a href="javascript:void(0);" id="${moviename}" class="${listStars.title}" onclick="findMovie(this.id)"> ${listStars.title}</a></td>
-
-
-<td><img src="#"/></td>
-<td>장르</td>
-<td>${listStars.open}</td>
-<td>감독쓰</td>
-<td>배우쓰</td>
-
-<td>
- </td>
-</tr>
-
-</c:forEach>
-
-</c:if>
+	<c:forEach var="movieInfo" items="${movieInfo}" varStatus="status">
+	<tr>
+	<td><div>${status.count}</div>  </td>
+	
+	<c:set var="moviename" value="movierank${status.count}"/>
+	
+	<!-- id값이 한글로 지정이 안되기 때문에 각영화별로 movierank1, movierank2 형식으로 변경한 후 값을 넘겨줌 -->
+	<!-- 클릭시 해당함수 실행 및 id값을 보내줌. -->
+	<!-- 클래스값을 이용하여 영화제목을 받아올 것이기 때문에 클래스 값에 영화 제목 삽입 -->
+	<td>
+		<a href="javascript:void(0);" id="${moviename}" style="display:block;height:100px;line-height: 100px; border:0px solid red;" class="${movieInfo.movieTitle}" onclick="findMovie(this.id)"> ${movieInfo.movieTitle}</a>
+	</td>
+	
+	
+	<td><img src="${movieInfo.movieImg }" style="height: 100px;"/></td>
+	<td>
+		<div style="display:block;height:100px;line-height: 100px; border:0px solid red;"  >${movieInfo.movieGenre}</div>
+		
+	</td>
+	<td>${movieInfo.movieTime}</td>
+	<td>${movieInfo.movieDate}</td>
+	<td>${movieInfo.movieDirector}</td>
+	<td>${movieInfo.movieActor}</td>
+	<c:if test="${movieBookingchk!=NULL }">
+	<td>
+	<c:set var="booking" value="${movieInfo.movieBooking}" scope="session"/>
+	    <c:if test="${booking == 'noBook'}">
+	        -
+	    </c:if>
+	    <c:if test="${booking != 'noBook'}">
+	      ${movieInfo.movieBooking}%
+	    </c:if>
+	 </td>
+	 </c:if>
+	<td><c:set var="aaa" value="${movieInfo.movieReserveURL}" scope="session"/>
+	    <c:if test="${aaa == 'noSite'}">
+	        <p>예매 사이트가 없습니다.</p>
+	    </c:if>
+	    <c:if test="${aaa != 'noSite'}">
+	       <a href="${movieInfo.movieReserveURL}">예매하기</a>    
+	    </c:if>
+	 </td>
+	</tr>
+	
+	</c:forEach>
+	</c:if>
+	<c:if test="${chkStar == 'Y'}">
+	<c:forEach var="listStars" items="${listStars}" varStatus="status">
+	<tr>
+	<td><div>${status.count}</div>  </td>
+	<c:set var="moviename" value="movierank${status.count}"/>
+	
+	<!-- id값이 한글로 지정이 안되기 때문에 각영화별로 movierank1, movierank2 형식으로 변경한 후 값을 넘겨줌 -->
+	<!-- 클릭시 해당함수 실행 및 id값을 보내줌. -->
+	<!-- 클래스값을 이용하여 영화제목을 받아올 것이기 때문에 클래스 값에 영화 제목 삽입 -->
+	<td><a href="javascript:void(0);" id="${moviename}" class="${listStars.title}" onclick="findMovie(this.id)"> ${listStars.title}</a></td>
+	
+	
+	<td><img src="#"/></td>
+	<td>장르</td>
+	<td>${listStars.open}</td>
+	<td>감독쓰</td>
+	<td>배우쓰</td>
+	
+	<td>
+	 </td>
+	</tr>
+	
+	</c:forEach>
+	
+	</c:if>
+  </tbody>
 </table>
 </div>
 </section>

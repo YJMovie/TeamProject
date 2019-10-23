@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath }"></c:set>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +10,12 @@
 <link rel="stylesheet" href="${path }/css1/style.css">
 <link rel="stylesheet" href="${path }/css/bootstrap.min.css">
 <script src="${path }/js/bootstrap.min.js"></script>
+<!-- bxslider CDN -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+<!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <style>
 .image li {
 	display: inline-block;
@@ -33,8 +40,7 @@
 <body>
 	<%@ include file="menu.jsp"%>
 	<%@ include file="header.jsp"%>
-	
-	<div id="background">
+	<div id="background" style="width:1300px;margin: 0 auto;">
 		<div class="event">
 			<strong>시사회/무대인사</strong><br>
 			<ul class="image">

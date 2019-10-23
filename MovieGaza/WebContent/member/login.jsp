@@ -47,41 +47,55 @@
 	<div style="height: 1000px;background-color: white;">
 		
 	<section>
-	<div id="contents" style="margin:0 auto;height: 1000px; width: 1300px;background-color: #EAEAEA;padding-top: 40px;">
-
+	<div id="contents" style="margin:0 auto;height: 1500px; width: 1300px;background-color: #FFFFF6;padding-top: 40px;">
+	<div style="display: inline-block;margin-left: 400px;">
+	
+		<h2>로그인</h2>
+	</div>
+	<div style="width: 500px;margin-left: 400px;">
+		<hr style="border: 2px solid #FFDC7E;">
+	
+	</div>
  	<form action=""name="login"method="post">
- 		<table style="margin: 0 auto;">
- 			<tr>
- 				<td>
- 					<div class="form-group">
-					    <label for="exampleInputEmail1">아이디</label>
-					    <input type="text" class="form-control" id="userid" name="userid" aria-describedby="emailHelp" placeholder="USER ID">
-					  </div>
- 				</td>
- 			</tr>
- 			<tr>
- 				<td>
- 					<div class="form-group">
-					    <label for="exampleInputPassword1">비밀번호</label>
-					    <input type="password" class="form-control" id="userpwd" name="userpwd" placeholder="USER PASSWORD">
-					  </div>
- 				</td>
- 			</tr>
- 			<tr>
- 				<td>
- 					<button id="idcheck" class="btn btn-primary">로그인</button>
- 					<button id="idfind" class="btn btn-primary">아이디찾기</button>
- 					<button id="pwdfind" class="btn btn-primary">비밀번호찾기</button>
- 				</td>
- 			</tr>
- 			<tr>
- 				<td>
- 					<c:if test="${error eq 1 }">
- 						<span style="color: red;">존재하지않습니다.</span>
- 					</c:if>
- 				</td>
- 			</tr>
- 		</table>
+ 		<div align="center">
+ 		
+	 		<div style="border: 1px solid #FFDC7E;display: inline-block;width: 500px;height: 400px;">
+	 		
+		 		<table style="margin-top:80px;">
+		 			<tr>
+		 				<td>
+		 					<div class="form-group">
+							    <label for="exampleInputEmail1">아이디</label>
+							    <input type="text" class="form-control" id="userid" name="userid" aria-describedby="emailHelp" placeholder="USER ID">
+							  </div>
+		 				</td>
+		 			</tr>
+		 			<tr>
+		 				<td>
+		 					<div class="form-group">
+							    <label for="exampleInputPassword1">비밀번호</label>
+							    <input type="password" class="form-control" id="userpwd" name="userpwd" placeholder="USER PASSWORD">
+							  </div>
+		 				</td>
+		 			</tr>
+		 			<tr>
+		 				<td>
+		 					<button id="idcheck" class="btn btn-primary">로그인</button>
+		 					<button id="idfind" class="btn btn-primary">아이디찾기</button>
+		 					<button id="pwdfind" class="btn btn-primary">비밀번호찾기</button>
+		 				</td>
+		 			</tr>
+		 			<tr>
+		 				<td>
+		 					<c:if test="${error eq 1 }">
+		 						<span style="color: red;">존재하지않습니다.</span>
+		 					</c:if>
+		 				</td>
+		 			</tr>
+		 		</table>
+	 		</div>
+ 		</div>
+ 		</form>
  	</div>
  	</section>
  	

@@ -33,10 +33,13 @@ public class HomeController extends HttpServlet {
 		
 		int start = (curPage-1)*page_scale+1;
 		int end = start+page_scale-1;
-		
+		// 개봉순으로정렬
+		List<MovieDTO> listOpen = dao.movieListOpen(start, end);
+		request.setAttribute("listOpen", listOpen);
+		// 랜덤순으로 정렬
 		List<MovieDTO> listRandom = dao.movieRandom(start, end);
 		request.setAttribute("listRandom", listRandom);
-		
+		// 평점순으로 정렬
 		List<MovieDTO> listScore = dao.movieListScore(start,end);
 		request.setAttribute("listScore", listScore);
 		

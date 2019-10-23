@@ -103,8 +103,16 @@
 		  )A
 		)where rn between #{start} and #{end}
 	</select>
-	<select id="reviewList" resultType="movie.dto.ReviewDTO" parameterType="String">
-		select * from review_info where r_mvcode = #{moviecode}
+	<select id="reviewList" resultType="movie.dto.ReviewDTO">
+		select * from (
+		    select rownum rn, A.* from (
+		        select * from review_info where r_mvcode = #{moviecode}
+		        order by r_num
+		    )A
+		)where rn between #{start} and #{end}
+	</select>
+	<select id="reviewCount" resultType="int">
+		select count(*) from review_info
 	</select>
 	<insert id="reviewInsert">
 		insert into review_info values (

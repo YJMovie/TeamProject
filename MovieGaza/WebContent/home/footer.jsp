@@ -12,41 +12,15 @@
 }
 </style>
 
-<%-- <nav class="navbar nvabar-expand-md fixed-bottom navbar-dark bg-dark" style="width: 1300px; margin: 0 auto;">
-	        
-	          <form action="${path }/Search/list" name="searchform" method="get">
-		<div class="input-group mb-3">
-		  <input type="text" name="keyword" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
-		  <div class="input-group-append">
-		    <input class="btn btn-outline-secondary" type="submit" id="button-addon2" value="검색">
-		  </div>
-		</div>
-	</form>
-	<ul class="nav nav-pills nav-fill">
-	  <li>
-	  	<div style="text-align: right;">
-		    <a href="${path }/member/login.jsp"><button type="button" class="btn btn-outline-primary">로그인</button></a>
-		  	<a href="${path }/Member/join.do"><button type="button" class="btn btn-outline-primary">회원가입</button></a>
-		  	<a class="btn btn-outline-light" href="${path }/Movie/list">영화</a> 
-		  	<a class="btn btn-outline-light" href="#">이벤트</a> 	
-		  	<a class="btn btn-outline-light" href="${path }/Movie/rank">랭킹</a>
-		  	<a class="btn btn-outline-light" href="#">최신뉴스</a>
-	  	</div>
-	  </li>
-	  
-	</ul>
-	          
-	</nav> --%>
-
-<%-- <footer>
+<footer style="margin: 500px auto 0; width: 1300px;">
 	<div id="footer">
 		<nav>
 			<div id="ftmenu_area">
 				<ul id="ftmenu">
-					<li><a href="#">회사소개</a></li>
-					<li><a href="#">광고 및 제휴 안내</a></li>
-					<li><a href="#">고객센터</a></li>
-					<li><a href="#">개인정보취급방침</a></li>
+					<li><a href="${path }/home/company_introduce.jsp">회사소개</a></li>
+					<li><a href="${path }/home/ad.jsp">광고 및 제휴 안내</a></li>
+					<li><a href="${path }/home/help.jsp">고객센터</a></li>
+					<li><a href="${path }/home/twodragon.jsp">개인정보취급방침</a></li>
 					<li><a href="#">이용약관</a></li>
 				</ul>
 			</div>
@@ -73,4 +47,4 @@
 	
 		</div>
 	</div>
-</footer> --%>
+</footer>

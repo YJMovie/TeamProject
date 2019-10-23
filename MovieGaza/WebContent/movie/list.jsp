@@ -10,6 +10,12 @@
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <script src="../js/bootstrap.min.js"></script>
 <script src="../script/jquery-3.4.1.min.js"></script>
+<!-- bxslider CDN -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+<!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <script>
 	$(function(){
 		$("#btnHome").click(function(){
@@ -19,6 +25,7 @@
 	});
 </script>
 <style>
+@import url('https://fonts.googleapis.com/css?family=Hi+Melody&display=swap');
 	.list {
     	position: absolute;
     	margin: 0 20px;
@@ -50,6 +57,10 @@
     	text-decoration: none;
     	color: #fff;
     }
+    #paging a {
+    	font-family: 'Hi Melody', cursive;
+    	font-size: 50px;
+    }
 </style>
 </head>
 <body>
@@ -60,21 +71,21 @@
 <div style="height: 1000px;background-color: white;">
 <section>
 <!-- <div id="contents"> -->
-<div id="contents" style="margin:0 auto;height: 1500px; width: 1300px;background-color: #EAEAEA;padding-top: 40px;">
+<div id="contents" style="margin:0 auto;height: 1500px; width: 1300px;background-color: #FFFFF6;padding-top: 40px;">
 <div style="margin: 0 auto;width: 270px;">
 	<ul class="list-group list-group-horizontal-sm">
 	  <li class="list-group-item"><a href="${path }/Movie/list?category=1">평점순</a></li>
 	  <li class="list-group-item"><a href="${path }/Movie/list?category=2">개봉순</a></li>
 	</ul>
 </div> <br />
-<table style="margin: 0 auto;"><%int i=-1; %>
+<table style="margin: 0 auto;text-align: center;"><%int i=-1; %>
 	<c:forEach var="list" items="${list }" varStatus="status">
 		<c:if test="${status.count%3 == 1 }" ><tr><%i++; %></c:if>
 			<td>
 				<div style="width: 300px;height: 300px;border: 1px solid black;margin: 20px 20px;">
 			        <img src="${path }/images/${list.postfname }" alt="${list.postfname }" width="300px" height="300px"/>
 			    </div>
-		        <div class="list" style="top:<%=440+i*338%>px;">
+		        <div class="list" style="top:<%=338+i*338%>px;">
 		        <%=i %>
 		        <h1>
 					<a href="${path }/Movie/info?moviecode=${list.moviecode}&curPage=1">${list.title }</a> <br />
@@ -90,7 +101,7 @@
 			</td>
 		<c:if test="${status.count%3 == 0 }"></tr></c:if>	
 	</c:forEach>
-	<tr>
+	<tr id="paging">
 		<td colspan="4">
 			<c:if test="${curBlock > 1 }">
 				<a href="${path }/Movie/list?category=${category}&curPage=${prev_page}">이전</a>

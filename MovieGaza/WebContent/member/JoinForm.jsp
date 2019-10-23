@@ -162,75 +162,20 @@
 		<div style="height: 1000px;background-color: white;">
 		
 		<section>
-		<div id="contents" style="margin:0 auto;height: 1000px; width: 1300px;background-color: #EAEAEA;padding-top: 40px;">
+		<div id="contents" style="margin:0 auto;height: 1500px; width: 1300px;background-color: #FFFFF6;padding-top: 40px;">
 		
-		<br> <br> <b><font size="6">회원가입</font></b> <br> <br>
-		<br>
-
-		<!-- <form method="post" name="writeform">
-			<table border="1" style="margin: 0 auto;">
-				<tr>
-
-					<td id="title">아이디</td>
-					<td><input type="text" name="userid" id="userid" maxlength="15">
-						<input type="button" value="중복확인" onclick="id_chk()"></td>
-				</tr>
-				<tr>
-					<td id="title">비밀번호</td>
-					<td><input type="password" name="userpwd" id="userpwd"
-						maxlength="15"></td>
-				</tr>
-				<tr>
-					<td id="title">비밀번호 확인</td>
-					<td><input type="password" name="passcheck" id="passcheck"
-						maxlength="15"></td>
-				</tr>
-				<tr>
-					<td id="title">이름</td>
-					<td><input type="text" name="name" id="name" maxlength="40"></td>
-				</tr>
-				<tr>
-					<td id="title">성별</td>
-					<td><input type="radio" name="gender" value="남" checked>남
-						<input type="radio" name="gender" value="여">여</td>
-				</tr>
-				<tr>
-					<td id="title">주소</td>
-					<td><input type="text" id="sample4_postcode" name="sample4_postcode" placeholder="우편번호">
-						<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-						<input type="text" id="sample4_roadAddress" name="sample4_roadAddress" placeholder="도로명주소">
-						<input type="text" id="sample4_jibunAddress" name="sample4_jibunAddress" placeholder="지번주소">
-						<span id="guide" style="color:#999;display:none"></span>
-						<input type="text" id="sample4_detailAddress" name="sample4_detailAddress" placeholder="상세주소">
-						<input type="text" id="sample4_extraAddress" placeholder="참고항목"></td>
-				</tr>
-				<tr>
-					<td>핸드폰번호</td>
-					<td>
-						<input type="text" id="phone1" name="phone1"/>-
-						<input type="text" id="phone2" name="phone2"/>-
-						<input type="text" id="phone3" name="phone3"/>
-					</td>
-				</tr>
-				<tr>
-					<td id="title">이메일</td>
-					<td><input type="text" name="email1" maxlength="30" id="email1">@
-						<select name="email2">
-							<option>naver.com</option>
-							<option>daum.net</option>
-							<option>nate.com</option>
-							<option>gmail.com</option>
-					</select>
-					<td>
-				</tr>
-
-			</table>
-			<br> <input type="button" value="가입하기" id="btnSave" onclick="javascript:checkWrite()" />
-				 <input type="reset" value="다시작성">
-
-		</form> -->
+		<div style="display: inline-block;margin-left: 325px;">
+		
+			<h2>회원가입</h2>
+		</div>
+		<div style="width: 650px;margin-left: 325px;">
+			<hr style="border: 2px solid #FFDC7E;">
+		
+		</div>
 		<form method="post" name="writeform">
-			<table style="margin: 0 auto;">
+			<div align="center">
+			<div style="border: 1px solid #FFDC7E;display: inline-block;width: 650px;height: 900px;">
+			<table style="margin: 0 auto;margin-top:40px;">
 			<tr>
 				<td>
 					<div class="form-group">
@@ -350,6 +295,9 @@
 				</td>
 			</tr>
 		</table>
+		</div>
+		</div>
+		</form>
 		</div>
 		</section>
 		</div>

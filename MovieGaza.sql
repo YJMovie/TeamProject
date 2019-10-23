@@ -154,7 +154,15 @@ insert into review_info values (
     (select nvl(max(r_num)+1,1)from review_info),
     sysdate, 0.0, '¸®ºäÀÛ¼º5','a005','È«±æ¼ø'
 );
-select * from review_info where r_mvcode = 'a005';
+select * from (
+    select rownum rn, A.* from (
+        select * from review_info where r_mvcode = 'a017'
+        order by r_num
+    )A
+)where rn between 1 and 5;
+select count(*) from review_info;
+
+
 drop table review_info;
 
 ----------------------------------------------·Î±×ÀÎ
@@ -179,6 +187,12 @@ select mem_mvcode from member_code where mem_userid='lee');
 select distinct mem_mvcode from member_code where mem_userid = 'lee' and mem_mvcode is not null order by mem_mvcode;
 delete from member_code;
 delete from member_code where mem_userid = 'lee' and mem_mvcode = 'a013';
+delete from member_code where mem_userid is null;
+
+select * from movie_info order by moviecode;
+delete from movie_info where moviecode between 'a001' and 'a016';
+delete from movie_info;
+commit;
 
 --create table xx (
 --  n1 varchar2(50) not null primary key,

@@ -4,14 +4,21 @@
 
 <style>
 @import url('https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap');
+@import url('https://fonts.googleapis.com/css?family=East+Sea+Dokdo&display=swap');
 .card{
-background-color: #FFFFF6;
+background-color: #FFDC7E;
 width: 1300px;
 margin: 0 auto;
 }
 .card-header{
-padding: 150px;
-height: 50px;
+height: 200px;
+}
+.card-header h2 {
+	font-size: 100px;
+	margin-top: 50px;
+}
+.card-header h2 a {
+	font-family: 'East Sea Dokdo', cursive;
 }
 #left{
 float: left;

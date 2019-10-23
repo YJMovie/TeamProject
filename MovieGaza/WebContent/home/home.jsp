@@ -171,29 +171,25 @@
    
    
    <div style="height: 1000px;background-color: white;">
-      <div id="contents" style="margin:0 auto;height: 1500px; width: 1300px;background-color: #EAEAEA;padding-top: 40px;">
+      <div id="contents" style="margin:0 auto;height: 1500px; width: 1300px;background-color: #FFFFF6;padding-top: 40px;">
       <section>
-      
-               <h2>영화목록</h2>
+      		<h2>개봉순</h2>
                
 			         <div id="wrapper">
 				      <div class="bxslider">
-				        <c:forEach var="list" items="${listRandom }">
-							<%-- <div class="item" style="width: 300px;height: 300px;" >
-								<a href="${path }/Movie/info?moviecode=${list.moviecode}&curPage=1">
+				        <c:forEach var="list" items="${listOpen }">
+							<div class="item" style="width: 300px;height: 300px;" >
+								<a href="${path }/Movie/info?moviecode=${list.moviecode}&curPage=1">${list.open }
 		                       <img src="${path }/images/${list.postfname }" alt="${list.postfname }" width="300px" height="300px"/>
 		                       </a>
-		                    </div> --%>
-		                    <!-- 픽셀 테스트 -->
-							<div class="item" style="width: 250px;height: 250px;" >
-								<a href="${path }/Movie/info?moviecode=${list.moviecode}&curPage=1">
-		                       <img src="http://placehold.it/250x250" alt="${list.postfname }" />
-		                       </a>
-		                    </div>	                    
+		                    </div>
+		                    	                    
 						</c:forEach>
 				      </div> 
 				          
 				    </div>
+				    <hr />
+				    
             <h2>평점순</h2>
             <div id="wrapper">
 		      <div class="bxslider">
@@ -207,6 +203,29 @@
 		      </div> 
 		          
 		    </div>
+		    <hr />
+		    
+		     <h2>영화목록</h2>
+             
+	         <div id="wrapper">
+		      <div class="bxslider">
+		        <c:forEach var="list" items="${listRandom }">
+					<div class="item" style="width: 300px;height: 300px;" >
+						<a href="${path }/Movie/info?moviecode=${list.moviecode}&curPage=1">
+                       <img src="${path }/images/${list.postfname }" alt="${list.postfname }" width="300px" height="300px"/>
+                       </a>
+                    </div>
+                    <%-- <!-- 픽셀 테스트 -->
+					<div class="item" style="width: 250px;height: 250px;" >
+						<a href="${path }/Movie/info?moviecode=${list.moviecode}&curPage=1">
+                       <img src="http://placehold.it/250x250" alt="${list.postfname }" />
+                       </a>
+                    </div> --%>	                    
+				</c:forEach>
+		      </div> 
+		    </div>
+		    <hr />
+		    
             <c:set var="idchk" value="${userid}"
                   scope="session" />
                   <c:set var="recomchk" value="${findWhatGenreSelected}"
@@ -251,6 +270,7 @@
                </table> --%>   
             
             </c:if>
+            <hr />
             
             <c:if test="${idchk != null && findWhatGenreSelected == null}">
                <h2>추천 장르 : ${showGenre}</h2>
