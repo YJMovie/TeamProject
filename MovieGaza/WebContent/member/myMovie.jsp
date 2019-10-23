@@ -17,24 +17,32 @@
 	<%@ include file="../home/header.jsp" %>
 	<div style="height: 1000px;background-color: white;">
 	<section>
-	<div id="contents" style="margin:0 auto;height: 1000px; width: 1300px;background-color: #EAEAEA;padding-top: 40px;">
-		<h2>${sId }님 즐겨찾는 영화</h2>
-		<div align="right">
-			<a href="main"><button>뒤로가기</button></a>
-		</div> <br />
-		<table border="1" style="margin: 0 auto; text-align: center;">
-			<tr>
-				<td>영화제목</td>
-				<td>영화장르</td>
-				<td>출연배우</td>
-				<td>감독</td>
-				<td>개봉일</td>
-				<td>명대사</td>
-				
-				<td>수정/삭제</td>
-			</tr>
-			
-			<c:forEach items="${MovieList}" var="a"> 
+	<div id="contents" style="margin:0 auto;height: 1000px; width: 1300px;background-color: #FFFFF6;padding-top: 40px;">
+		<div style="display: inline-block;margin-left: 325px;">
+		
+			<h2>${sId }님 즐겨찾는 영화</h2>
+		</div>
+		<div style="width: 650px;margin-left: 325px;">
+			<hr style="border: 2px solid #FFDC7E;">
+		
+		</div>
+		
+		
+		<div style="display: inline-block;margin-left: 325px;">
+		<table class="table">
+		  <thead class="thead-dark">
+		    <tr>
+		      <th scope="col">영화제목</th>
+		      <th scope="col">영화장르</th>
+		      <th scope="col">출연배우</th>
+		      <th scope="col">감독</th>
+		      <th scope="col">개봉일</th>
+		      <th scope="col">명대사</th>
+		      <th scope="col">수정/삭제</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <c:forEach items="${MovieList}" var="a"> 
 			<tr>
 				<td>${a.title }</td>
 				<td>장르</td>
@@ -45,7 +53,7 @@
 				
 				<td>
 					<a href="${path}/Member/mymovie_delete?mem_mvcode=${a.moviecode}&mem_userid=${sId}">
-						 <input type="button" value="삭제" id="btndelete" /></a>
+						 <input type="button" class="btn btn-warning" value="삭제" id="btndelete" /></a>
 				</td>
 			</tr>
 			</c:forEach>
@@ -62,7 +70,12 @@
 					</c:if>
 				</td>
 			</tr>
+		  </tbody>
 		</table>
+		</div>
+		<div style="margin-left: 910px;">
+			<a href="mypage?sId=${sId }"><button class="btn btn-warning">뒤로가기</button></a>
+		</div>
 	</div>
 	</section>
 	</div>

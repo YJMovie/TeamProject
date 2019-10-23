@@ -119,7 +119,7 @@ ${curPage } --%>
 <!-- <div style="height: 800px; width: 100%; border: 1px dotted black; margin: 0;"> -->
 <div style="height: 1000px;background-color: white;">
 <section>
-<div id="contents" style="margin:0 auto;height: 1500px; width: 1300px;background-color: #EAEAEA;padding-top: 40px;">
+<div id="contents" style="margin:0 auto;height: 1500px; width: 1300px;background-color: #FFFFF6;padding-top: 40px;">
 <form action="" method="post" name="infoform">
 	<table style="margin-left: 100px;">
 		<tr>
@@ -159,9 +159,9 @@ ${curPage } --%>
 	<div style="text-align: right;">
 	
 		<div style="display: inline-block;">
-			<button id="btnList" class="btn btn-secondary">목록</button>
-			<button id="btnReview" class="btn btn-secondary" value="${sName }" >리뷰하기</button>
-			<button id="btnMemMovie" class="btn btn-secondary" value="${dto.moviecode }">즐겨찾기 추가</button>
+			<button id="btnList" class="btn btn-warning">목록</button>
+			<button id="btnReview" class="btn btn-warning" value="${sName }" >리뷰하기</button>
+			<button id="btnMemMovie" class="btn btn-warning" value="${dto.moviecode }">즐겨찾기 추가</button>
 		</div>
 	</div>
 	<input type="hidden" id="sName" value="${sName }" />

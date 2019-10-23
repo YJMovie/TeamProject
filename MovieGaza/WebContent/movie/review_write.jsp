@@ -129,15 +129,26 @@ r_score>.input.focus {
 <%@ include file="../home/header.jsp" %>
 <%-- ${num } --%>
 <div style="height: 1000px;background-color: white;">
-<div id="contents" style="margin:0 auto;height: 1500px; width: 1300px;background-color: #EAEAEA;padding-top: 40px;">
+<div id="contents" style="margin:0 auto;height: 1500px; width: 1300px;background-color: #FFFFF6;padding-top: 40px;">
+<div style="display: inline-block;margin-left: 355px;">
+
+	<h2>리뷰쓰기</h2>
+</div>
+<div style="width: 590px;margin-left: 355px;">
+	<hr style="border: 2px solid #FFDC7E;">
+
+</div>
 <form name="writeform" action="" method="post">
-	<table border="1">
-		<tr>
-			<td>작성자</td>
-			<td><input type="text" name="writer" value="${sName }" readonly="readonly"></td>
-			<td>평점</td>
-			<td>
-				  <span class="r_score"> <span class="input"> 
+	<div align="center">
+	<div style="display: inline-block;">
+	<table class="table table-bordered">
+	  <thead>
+	    <tr>
+	      <th scope="col" class="table-warning">작성자</th>
+	      <th scope="col"><input type="text" name="writer" value="${sName }" readonly="readonly"></th>
+	      <th scope="col" class="table-warning">평점</th>
+	      <th scope="col">
+	      	 <span class="r_score"> <span class="input"> 
                            <input type="radio" name="r_score" value="1" id="p1"> <label for="p1">1</label> 
                            <input type="radio" name="r_score" value="2" id="p2"> <label for="p2">2</label> 
                            <input type="radio" name="r_score" value="3" id="p3"> <label for="p3">3</label> 
@@ -147,23 +158,29 @@ r_score>.input.focus {
                   </output>
             </span>
             <script src="../script/star.js"></script>
-
-			</td>
-		</tr>
-		<tr>
-			<td>리뷰</td>
-			<td colspan="2">
-				<textarea name="r_comment" id="r_comment" cols="30" rows="10"></textarea>
-			</td>
-			<td>
-				<button id="btnWrite">작성</button><br />
-				<input type="reset" value="다시입력"/>
+	      </th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr>
+	      <th scope="row" class="table-warning">리뷰</th>
+	      <td colspan="2">
+	      	<textarea name="r_comment" id="r_comment" cols="30" rows="10"></textarea>
+	      </td>
+	      <td>
+	      	<button class="btn btn-warning" id="btnWrite">작성</button>
+				<input class="btn btn-warning" type="reset" value="다시입력"/>
 				<input type="hidden" name="moviecode" value="${moviecode }" />
-			</td>
-		</tr>
+	      </td>
+	    </tr>
+	    
+	  </tbody>
 	</table>
+	
+	</div>
+	</div>
 </form>
-<button id="btnPrevious">뒤로</button>
+<button class="btn btn-warning" id="btnPrevious">뒤로</button>
 </div>
 </div>
 <%@ include file="../home/footer.jsp" %>

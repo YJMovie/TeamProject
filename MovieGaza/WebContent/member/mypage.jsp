@@ -40,14 +40,21 @@
 	<%@ include file="../home/menu.jsp"%>
 	<%@ include file="../home/header.jsp"%>
 	
-	<div style="height: 1000px;background-color: white;">
+		<div style="height: 1000px;background-color: white;">
+		<section>
+		<div id="contents" style="margin:0 auto;height: 1000px; width: 1300px;background-color: #FFFFF6;padding-top: 40px;">
+			
+		<div style="display: inline-block;margin-left: 325px;">
 		
-	<section>
-	<div id="contents" style="margin:0 auto;height: 1000px; width: 1300px;background-color: #EAEAEA;padding-top: 40px;">
-		<h2>마이페이지</h2>
-		<div>
-			<a href="${path }/Member/update.do?sId=${sId}"><button type="button" class="btn btn-outline-primary">회원수정</button></a>
-			<a href="myMovie?userid=${sId }"><button type="button" class="btn btn-outline-primary">${sName }님 즐겨찾는 영화</button></a>
+			<h2>마이페이지</h2>
+		</div>
+		<div style="width: 650px;margin-left: 325px;">
+			<hr style="border: 2px solid #FFDC7E;">
+		
+		</div>
+		<div style="display: inline-block;margin-left: 325px;">
+		<a href="${path }/Member/update.do?sId=${sId}"><button type="button" class="btn btn-outline-warning">회원수정</button></a>
+		<a href="myMovie?userid=${sId }"><button type="button" class="btn btn-outline-warning">${sName }님 즐겨찾는 영화</button></a>
 		</div>
 	</div>
 	</section>

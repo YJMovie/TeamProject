@@ -43,9 +43,18 @@
 	<div style="height: 1000px;background-color: white;">
 		
 	<section>
-	<div id="contents" style="margin:0 auto;height: 1000px; width: 1300px;background-color: #EAEAEA;padding-top: 40px;">
-		<h2>회원수정</h2>
+	<div id="contents" style="margin:0 auto;height: 1000px; width: 1300px;background-color: #FFFFF6;padding-top: 40px;">
+		<div style="display: inline-block;margin-left: 325px;">
+		
+			<h2>회원수정</h2>
+		</div>
+		<div style="width: 650px;margin-left: 325px;">
+			<hr style="border: 2px solid #FFDC7E;">
+		
+		</div>
 	   <form action="${path}/Member/memUpdate.do" name="memupdate" method="post">
+	   		<div align="center">
+			<div style="border: 1px solid #FFDC7E;display: inline-block;width: 650px;height: 900px;">
 			<table style="margin: 0 auto;">
 			<tr>
 				<td>
@@ -99,7 +108,7 @@
 					    		<input type="text" class="form-control" id="sample4_postcode" name="sample4_postcode" value="${dto1.sample4_postcode }">
 					    	</div>
 					    	<div class="col">
-								<input type="button" class="btn btn-primary" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
+								<input type="button" class="btn btn-warning" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
 							</div>
 						</div>
 						<div class="form-row">
@@ -155,12 +164,14 @@
 			</tr>
 			<tr>
 				<td>
-					<input type="submit" class="btn btn-primary" value="수정" id="btnList" />
-			        <input type="reset" class="btn btn-primary" value="재작성" />
-			        <input type="button" class="btn btn-primary" value="돌아가기" id="btnBack" />
+					<input type="submit" class="btn btn-warning" value="수정" id="btnList" />
+			        <input type="reset" class="btn btn-warning" value="재작성" />
+			        <input type="button" class="btn btn-warning" value="돌아가기" id="btnBack" />
 				</td>
 			</tr>
 		</table>
+		</div>
+		</div>
 		</form>
 	  </div>
 	  </section>

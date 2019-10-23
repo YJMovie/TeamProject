@@ -185,7 +185,7 @@
 						    	<input type="text" class="form-control" id="userid" name="userid" maxlength="15" aria-describedby="emailHelp" placeholder="ID">
 						    	</div>
 						    	<div class="col-2">
-						    	<input type="button" class="btn btn-primary" value="중복확인" onclick="id_chk()">
+						    	<input type="button" class="btn btn-warning" value="중복확인" onclick="id_chk()">
 						    	</div>
 						    </div>
 					  </div>
@@ -234,7 +234,7 @@
 					    		<input type="text" class="form-control" id="sample4_postcode" name="sample4_postcode" placeholder="우편번호">
 					    	</div>
 					    	<div class="col">
-								<input type="button" class="btn btn-primary" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
+								<input type="button" class="btn btn-warning" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
 							</div>
 						</div>
 						<div class="form-row">
@@ -290,8 +290,8 @@
 			</tr>
 			<tr>
 				<td>
-					<button class="btn btn-primary" id="btnSave" onclick="javascript:checkWrite()">가입하기</button>
-					<button class="btn btn-primary" type="reset">다시작성</button>
+					<button class="btn btn-warning" id="btnSave" onclick="javascript:checkWrite()">가입하기</button>
+					<button class="btn btn-warning" type="reset">다시작성</button>
 				</td>
 			</tr>
 		</table>

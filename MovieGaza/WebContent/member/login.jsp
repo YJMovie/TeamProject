@@ -58,7 +58,6 @@
 	</div>
  	<form action=""name="login"method="post">
  		<div align="center">
- 		
 	 		<div style="border: 1px solid #FFDC7E;display: inline-block;width: 500px;height: 400px;">
 	 		
 		 		<table style="margin-top:80px;">
@@ -80,9 +79,9 @@
 		 			</tr>
 		 			<tr>
 		 				<td>
-		 					<button id="idcheck" class="btn btn-primary">로그인</button>
-		 					<button id="idfind" class="btn btn-primary">아이디찾기</button>
-		 					<button id="pwdfind" class="btn btn-primary">비밀번호찾기</button>
+		 					<button id="idcheck" class="btn btn-warning">로그인</button>
+		 					<button id="idfind" class="btn btn-warning">아이디찾기</button>
+		 					<button id="pwdfind" class="btn btn-warning">비밀번호찾기</button>
 		 				</td>
 		 			</tr>
 		 			<tr>
