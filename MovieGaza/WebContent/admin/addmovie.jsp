@@ -58,7 +58,7 @@
 	<%@ include file="../home/menu.jsp" %>
 	<div style="height: 1000px;background-color: white;">
 	<section>
-	<div id="contents" style="margin:0 auto;height: 1000px; width: 1300px;background-color: #EAEAEA;padding-top: 40px;">
+	<div id="contents" style="margin:0 auto;height: 1000px; width: 1300px;background-color: #FFFFF6;padding-top: 40px;">
 		<h2 style="padding-left: 50px;">관리자페이지</h2>
 		<p align="center">마지막 영화코드:${mvcodeMax }</p>
 		<form action="" name="addmovieform" method="post" enctype="multipart/form-data"> <!-- enctype="multipart/form-data" -->

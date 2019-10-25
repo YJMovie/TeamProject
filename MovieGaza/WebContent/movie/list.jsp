@@ -61,19 +61,23 @@
     	font-family: 'Hi Melody', cursive;
     	font-size: 50px;
     }
+    #category ul li a {
+    	text-decoration: none;
+    	color: black;
+    }
 </style>
 </head>
 <body>
 <%@ include file="../home/menu.jsp" %>
 <%@ include file="../home/header.jsp" %>
 
-<!-- <div style="height: 800px; width: 100%; border: 1px dotted black; margin: 0;"> -->
-<div style="height: 1000px;background-color: white;">
-<section>
-<!-- <div id="contents"> -->
-<div id="contents" style="margin:0 auto;height: 1500px; width: 1300px;background-color: #FFFFF6;padding-top: 40px;">
-<div style="margin: 0 auto;width: 270px;">
-	<ul class="list-group list-group-horizontal-sm">
+
+<div id="contents" style="margin:0 auto;height:1300px; width:1300px;background-color: #FFFFF6;padding-top: 40px;">
+<div style="color: red;font-size: 40px;"align="center">
+<strong>MOVIE LIST</strong>
+</div>
+<div id="category" style="margin: 0 auto;width: 270px;" >
+	<ul class="list-group list-group-horizontal-sm" style="margin-left: 60px;">
 	  <li class="list-group-item"><a href="${path }/Movie/list?category=1">평점순</a></li>
 	  <li class="list-group-item"><a href="${path }/Movie/list?category=2">개봉순</a></li>
 	</ul>
@@ -85,7 +89,7 @@
 				<div style="width: 300px;height: 300px;border: 1px solid black;margin: 20px 20px;">
 			        <img src="${path }/images/${list.postfname }" alt="${list.postfname }" width="300px" height="300px"/>
 			    </div>
-		        <div class="list" style="top:<%=338+i*338%>px;">
+		        <div class="list" style="top:<%=398+i*338%>px;">
 		        <%=i %>
 		        <h1>
 					<a href="${path }/Movie/info?moviecode=${list.moviecode}&curPage=1">${list.title }</a> <br />
@@ -117,8 +121,6 @@
 </table>
 <br />
 <button id="btnHome">홈으로</button>
-</div>
-</section>
 </div>
 <%@ include file="../home/footer.jsp" %>
 </body>

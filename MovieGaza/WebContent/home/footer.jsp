@@ -6,13 +6,17 @@
 
 <link rel="stylesheet" href="${path }/css1/style.css">
 <style>
-#SNS li a {
-	text-decoration: none;
-	color: white;
+#ftmenu_area a {
+   text-decoration: none;
+   color: white;
+}
+#ftmenu_area a: hover {
+   color: lightgrey;
+   text-decoration: none;
 }
 </style>
 
-<footer style="margin: 500px auto 0; width: 1300px;">
+<footer style="margin: 0 auto; width: 1300px;">
 	<div id="footer">
 		<nav>
 			<div id="ftmenu_area">

@@ -159,10 +159,7 @@
 		<%@ include file="../home/menu.jsp"%>
 		<%@ include file="../home/header.jsp"%>
 		
-		<div style="height: 1000px;background-color: white;">
-		
-		<section>
-		<div id="contents" style="margin:0 auto;height: 1500px; width: 1300px;background-color: #FFFFF6;padding-top: 40px;">
+		<div id="contents" style="margin:0 auto;height: 1300px; width: 1300px;background-color: #FFFFF6;padding-top: 40px;">
 		
 		<div style="display: inline-block;margin-left: 325px;">
 		
@@ -299,9 +296,7 @@
 		</div>
 		</form>
 		</div>
-		</section>
 		</div>
-	</div>
 	<%@ include file="../home/footer.jsp" %>
 </body>
 </html>

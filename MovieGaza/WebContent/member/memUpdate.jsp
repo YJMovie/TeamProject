@@ -18,9 +18,21 @@
 			$('#btnBack').click(function(){
 				console.log('back ok');
 				
-				document.memupdate.action="${path}/";
+				document.memupdate.action="${path}/Member/mypage?sId=${sId }";
 				document.memupdate.submit();
-			})
+			});
+			$('#btnDelete').click(function(){
+				console.log('good bye');
+				
+				if(confirm("정말 탈퇴하시겠습니까?") == true){
+					document.memupdate.action="Member/delete";
+					document.memupdate.submit();
+				}
+				else if(confirm("정말 탈퇴하시겠습니까?") == false){
+					
+				}
+				
+			});
 	});
 </script>
 <style type="text/css">
@@ -40,10 +52,7 @@
 	<%@ include file="../home/menu.jsp"%>
 	<%@ include file="../home/header.jsp"%>
 	
-	<div style="height: 1000px;background-color: white;">
-		
-	<section>
-	<div id="contents" style="margin:0 auto;height: 1000px; width: 1300px;background-color: #FFFFF6;padding-top: 40px;">
+	<div id="contents" style="margin:0 auto;height: 1300px; width: 1300px;background-color: #FFFFF6;padding-top: 40px;">
 		<div style="display: inline-block;margin-left: 325px;">
 		
 			<h2>회원수정</h2>
@@ -167,14 +176,13 @@
 					<input type="submit" class="btn btn-warning" value="수정" id="btnList" />
 			        <input type="reset" class="btn btn-warning" value="재작성" />
 			        <input type="button" class="btn btn-warning" value="돌아가기" id="btnBack" />
+			        <input type="button" class="btn btn-warning" value="회원탈퇴" id="btnDelete" />
 				</td>
 			</tr>
 		</table>
 		</div>
 		</div>
 		</form>
-	  </div>
-	  </section>
 	  </div>
 	  <%@ include file="../home/footer.jsp" %>
 </body>

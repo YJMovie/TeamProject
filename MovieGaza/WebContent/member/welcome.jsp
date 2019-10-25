@@ -14,14 +14,22 @@
 	<%@ include file="../home/header.jsp"%>
 	<%@ include file="../home/menu.jsp"%>
 	
-	<div style="height: 1000px;background-color: white;">
+	<div id="contents" style="margin:0 auto;height: 1500px; width: 1300px;background-color: #FFFFF6;padding-top: 40px;">
+		<div style="display: inline-block;margin-left: 325px;">
 		
-	<section>
-	<div id="contents" style="margin:0 auto;height: 1000px; width: 900px;background-color: #EAEAEA;padding-top: 40px;">
-		<h2> ${name }님 환영합니다 </h2>
-		<a href="${path }/Home"><button>홈으로</button></a>
-	</div>
-	</section>
+			<h2>회원가입</h2>
+		</div>
+		<div style="width: 650px;margin-left: 325px;">
+			<hr style="border: 2px solid #FFDC7E;">
+		
+		</div>
+			<div style="display: inline-block;margin-left: 325px;">
+			<h2> ${name }님 환영합니다 </h2>
+			</div>
+			<div style="display: inline-block;margin-left: 325px;">
+			
+				<a href="${path }/Home"><button class="btn btn-warning">홈으로</button></a>
+			</div>
 	</div>
 	<%@ include file="../home/footer.jsp" %>
 </body>

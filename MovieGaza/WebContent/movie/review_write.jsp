@@ -19,7 +19,7 @@
 				$('#rcomment').focus();
 				return;
 			}
-			document.writeform.action = "${path}/Movie/insert";
+			document.writeform.action = "${path}/Movie/insert?curPage=1";
 			document.writeform.submit();
 		});
 		$('#btnPrevious').click(function(){
@@ -128,7 +128,7 @@ r_score>.input.focus {
 <%@ include file="../home/menu.jsp" %>
 <%@ include file="../home/header.jsp" %>
 <%-- ${num } --%>
-<div style="height: 1000px;background-color: white;">
+
 <div id="contents" style="margin:0 auto;height: 1500px; width: 1300px;background-color: #FFFFF6;padding-top: 40px;">
 <div style="display: inline-block;margin-left: 355px;">
 
@@ -182,7 +182,7 @@ r_score>.input.focus {
 </form>
 <button class="btn btn-warning" id="btnPrevious">뒤로</button>
 </div>
-</div>
+
 <%@ include file="../home/footer.jsp" %>
 </body>
 </html>

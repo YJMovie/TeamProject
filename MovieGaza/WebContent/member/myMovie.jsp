@@ -15,8 +15,6 @@
 	
 	<%@ include file="../home/menu.jsp" %>
 	<%@ include file="../home/header.jsp" %>
-	<div style="height: 1000px;background-color: white;">
-	<section>
 	<div id="contents" style="margin:0 auto;height: 1000px; width: 1300px;background-color: #FFFFF6;padding-top: 40px;">
 		<div style="display: inline-block;margin-left: 325px;">
 		
@@ -30,7 +28,7 @@
 		
 		<div style="display: inline-block;margin-left: 325px;">
 		<table class="table">
-		  <thead class="thead-dark">
+		  <thead class="table-warning">
 		    <tr>
 		      <th scope="col">영화제목</th>
 		      <th scope="col">영화장르</th>
@@ -77,7 +75,6 @@
 			<a href="mypage?sId=${sId }"><button class="btn btn-warning">뒤로가기</button></a>
 		</div>
 	</div>
-	</section>
-	</div>
+	<%@ include file="../home/footer.jsp" %>
 </body>
 </html>

@@ -40,7 +40,7 @@
 <body>
 	<%@ include file="menu.jsp"%>
 	<%@ include file="header.jsp"%>
-	<div id="background" style="width:1300px;margin: 0 auto;">
+	<div id="background" style="height:1600px; width:1300px;margin: 0 auto;border: 1px solid red;">
 		<div class="event">
 			<strong>시사회/무대인사</strong><br>
 			<ul class="image">

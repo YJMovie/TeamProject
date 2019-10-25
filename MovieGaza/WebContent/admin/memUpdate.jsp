@@ -43,7 +43,7 @@
 	<div style="height: 1000px;background-color: white;">
 		
 	<section>
-	<div id="contents" style="margin:0 auto;height: 1000px; width: 1300px;background-color: #EAEAEA;padding-top: 40px;">
+	<div id="contents" style="margin:0 auto;height: 1000px; width: 1300px;background-color: #FFFFF6;padding-top: 40px;">
 		<h2>회원수정</h2>
 	   <form action="${path}/Admin/memUpdate" name="memupdate" method="post">
 			<table style="margin: 0 auto;">

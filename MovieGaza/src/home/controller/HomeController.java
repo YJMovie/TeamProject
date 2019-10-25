@@ -49,7 +49,7 @@ public class HomeController extends HttpServlet {
 		String selectGenre2 = Integer.toString(randomGenre);
 		selectGenre = selectGenre.concat(selectGenre2);		 
 		
-		String[] GenreList = {"액션","멜로/로맨스","공포","판타지","SF","스릴러","드라마"};
+		String[] GenreList = {"액션","코믹","공포","로맨스","SF","스릴러","드라마"};
 		
 		String showGenre = GenreList[randomGenre-1];
 		List<MovieDTO> listGenre = dao.movieListGenre(selectGenre);
@@ -71,7 +71,7 @@ public class HomeController extends HttpServlet {
 	         
 	         //유저가 선호하는 영화들 중 랜덤으로 하나의 영화를 가져와 해당 영화의 장르를 가져옴
 	         String findWhatGenreSelected = dao.findWhatGenreSelected(userid);
-	         
+	         System.out.println("선호 장르 : " +  findWhatGenreSelected);
 	         //선호하는 장르가 있을 때는 리스트를 받아와서 전송 없을 시엔 null 전송
 	         if(findWhatGenreSelected !=null) {
 	            List<MovieDTO> userRecommendGenreList = dao.userRecommendGenreList(findWhatGenreSelected);

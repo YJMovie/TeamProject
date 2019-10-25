@@ -61,11 +61,19 @@
 	</select>
 	
 	      <select id="findWhatGenreSelected" resultType="String" parameterType="movie.dto.MovieDTO">
-   select grcode from movie_code where mvcode=(
-   select mem_mvcode from(
-   select mem_mvcode from member_code where mem_userid=#{userid}
-   order by
-   DBMS_RANDOM.RANDOM) where rownum=1)
+
+	select grcode from (
+	select grcode from movie_code where mvcode=(
+	select
+	mem_mvcode from(
+	select mem_mvcode from member_code where
+	mem_userid=#{userid}
+	order by
+	DBMS_RANDOM.RANDOM) where rownum=1) and
+	grcode is not null order by DBMS_RANDOM.RANDOM)
+	where rownum=1
+
+
 
       </select>
    
@@ -180,4 +188,23 @@
 	<delete id="mymovieDelete">
 		delete from member_code where mem_userid = #{mem_userid} and mem_mvcode = #{mem_mvcode}
 	</delete>
+	
+	   <select id="movieRankbyScore" resultType="movie.dto.RankDTO">
+      
+select t1.title,t1.score,t1.open, t2.grname, t2.psname,t1.postfname from 
+(select * from movie_info order by score desc) t1 left join
+(select movie_info.title, wm_concat(distinct genre.genrename) as grname,
+wm_concat(distinct person.personname) as psname
+from movie_info left join movie_code
+on movie_info.moviecode = movie_code.mvcode 
+left join genre
+on movie_code.grcode = genre.genrecode
+left join person
+on (movie_code.pscode = person.personcode
+and substr(movie_code.pscode,1,1)='B')
+group by movie_info.title) t2
+on t1.title = t2.title
+order by t1.score desc
+   </select>
+	
 </mapper>

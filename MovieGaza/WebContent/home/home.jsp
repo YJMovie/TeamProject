@@ -170,16 +170,16 @@
    <%@ include file="header.jsp"%>
    
    
-   <div style="height: 1000px;background-color: white;">
-      <div id="contents" style="margin:0 auto;height: 1500px; width: 1300px;background-color: #FFFFF6;padding-top: 40px;">
-      <section>
+
+      <div id="contents" style="margin:0 auto;height: 2000px; width: 1300px;background-color: #FFFFF6;padding-top: 40px;">
+
       		<h2>개봉순</h2>
                
 			         <div id="wrapper">
 				      <div class="bxslider">
 				        <c:forEach var="list" items="${listOpen }">
 							<div class="item" style="width: 300px;height: 300px;" >
-								<a href="${path }/Movie/info?moviecode=${list.moviecode}&curPage=1">${list.open }
+								<a href="${path }/Movie/info?moviecode=${list.moviecode}&curPage=1">
 		                       <img src="${path }/images/${list.postfname }" alt="${list.postfname }" width="300px" height="300px"/>
 		                       </a>
 		                    </div>
@@ -274,86 +274,58 @@
             
             <c:if test="${idchk != null && findWhatGenreSelected == null}">
                <h2>추천 장르 : ${showGenre}</h2>
-               <table border="1" style="margin: 0 auto;">
-                  <tr>
-                     <c:if test="${curPage > 1 }">                  
-                        <td><a href="${path }/Home?curPage=${curPage-1}">◀</a></td>
-                     </c:if>
-                     <c:forEach var="list" items="${listGenre}">
-                        <td>
-                           <div style="width: 150px;height: 150px;border: 1px solid black;margin-top: 20px;">
-                                <img src="${path }/images/${list.postfname }" alt="${list.postfname }" width="150px" height="150px"/>
-                            </div>
-                           <div class="list2">
-                              ${list.title } <br />
-                              <a href="${path }/Movie/info?moviecode=${list.moviecode}&curPage=1">이미지</a> <br />
-                              ${list.open }<br />
-                              ${list.score }<br />
-                           </div>
-                        </td>                  
-                     </c:forEach>
-                     <c:if test="${curPage < totPage }">
-                        <td><a href="${path }/Home?curPage=${curPage+1}">▶</a></td>
-                     </c:if>
-                  </tr>
-               </table>   
+               <div id="wrapper">
+		      <div class="bxslider">
+		        <c:forEach var="list" items="${listGenre }">
+					<div class="item" style="width: 300px;height: 300px;" >
+						<a href="${path }/Movie/info?moviecode=${list.moviecode}&curPage=1">
+                       <img src="${path }/images/${list.postfname }" alt="${list.score }" width="300px" height="300px"/>
+                       </a>
+                    </div>
+				</c:forEach>     
+		      </div> 
+		          
+		    </div>
+		    <hr />  
             
             </c:if>
             <c:if test="${idchk != null && findWhatGenreSelected !=null}">
                <h2>${userid}님이 선호하는 영화</h2>
-               <table border="1" style="margin: 0 auto;">
-                  <tr>
-                     <c:if test="${curPage > 1 }">                  
-                        <td><a href="${path }/Board/home.do?curPage=${curPage-1}">◀</a></td>
-                     </c:if>
-                     <c:forEach var="list" items="${userGenreList}">
-                        <td>
-                           <div style="width: 150px;height: 150px;border: 1px solid black;margin-top: 20px;">
-                                포스터
-                             </div>
-                           <div class="list2">
-                              ${list.title } <br />
-                              <a href="${path }/Movie/info?moviecode=${list.moviecode}&curPage=1">이미지</a> <br />
-                              ${list.open }<br />
-                              ${list.score }<br />
-                           </div>
-                        </td>                  
-                     </c:forEach>
-                     <c:if test="${curPage < totPage }">
-                        <td><a href="${path }/Board/home.do?curPage=${curPage+1}">▶</a></td>
-                     </c:if>
-                  </tr>
-               </table>   
+               <div id="wrapper">
+		      <div class="bxslider">
+		        <c:forEach var="list" items="${userGenreList }">
+					<div class="item" style="width: 300px;height: 300px;" >
+						<a href="${path }/Movie/info?moviecode=${list.moviecode}&curPage=1">
+                       <img src="${path }/images/${list.postfname }" alt="${list.score }" width="300px" height="300px"/>
+                       </a>
+                    </div>
+				</c:forEach>     
+		      </div> 
+		          
+		    </div>
+		    <hr />
+		     
             
             </c:if>
             
-            
+           <!-- 선호하는 장르와 같은 영화 --> 
             <c:if test="${idchk != null && recomchk !=null}">
                <%-- <h2>${userid}님께 추천하는 추천 장르 : ${showGenre}</h2> --%>
                <h2>${userid}님이 선호하는 장르와 비슷한 영화 : ${findWhatGenreSelected}</h2>
-               <table border="1" style="margin: 0 auto;">
-                  <tr>
-                     <c:if test="${curPage > 1 }">                  
-                        <td><a href="${path }/Board/home.do?curPage=${curPage-1}">◀</a></td>
-                     </c:if>
-                     <c:forEach var="list" items="${userRecommendGenreList}">
-                        <td>
-                           <div style="width: 150px;height: 150px;border: 1px solid black;margin-top: 20px;">
-                                포스터
-                             </div>
-                           <div class="list3">
-                              ${list.title } <br/>
-                              <a href="${path }/Movie/info?moviecode=${list.moviecode}&curPage=1">이미지</a> <br/>
-                              ${list.open }<br/>
-                              ${list.score }<br />
-                           </div>
-                        </td>                  
-                     </c:forEach>
-                     <c:if test="${curPage < totPage }">
-                        <td><a href="${path }/Board/home.do?curPage=${curPage+1}">▶</a></td>
-                     </c:if>
-                  </tr>
-               </table>   
+            <div id="wrapper">
+		      <div class="bxslider">
+		        <c:forEach var="list" items="${userRecommendGenreList }">
+					<div class="item" style="width: 300px;height: 300px;" >
+						<a href="${path }/Movie/info?moviecode=${list.moviecode}&curPage=1">
+                       <img src="${path }/images/${list.postfname }" alt="${list.score }" width="300px" height="300px"/>
+                       </a>
+                    </div>
+				</c:forEach>     
+		      </div> 
+		          
+		    </div>
+		    <hr />
+		    
             
             </c:if>   
             <c:if test="${idchk != null && recomchk ==null}">
@@ -362,9 +334,9 @@
             
             
             </c:if>
-            </section>        
+       
          </div>
-   </div>
+
 
     
    <%@ include file="footer.jsp"%>

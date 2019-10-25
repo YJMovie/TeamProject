@@ -38,6 +38,8 @@
 			if (sName == "") {
 				alert("로그인 하세요.");
 				return;
+			} else {
+				alert("즐겨찾는 영화에 추가되었습니다.");
 			}
 			document.infoform.action = "${path}/Member/favoriteMovie?sId=${sId}&moviecode="+moviecode;
 		});
@@ -117,8 +119,7 @@
 <%-- ${dto.moviecode } <br />
 ${curPage } --%>
 <!-- <div style="height: 800px; width: 100%; border: 1px dotted black; margin: 0;"> -->
-<div style="height: 1000px;background-color: white;">
-<section>
+
 <div id="contents" style="margin:0 auto;height: 1500px; width: 1300px;background-color: #FFFFF6;padding-top: 40px;">
 <form action="" method="post" name="infoform">
 	<table style="margin-left: 100px;">
@@ -169,8 +170,7 @@ ${curPage } --%>
 <hr />
 <div id="reviewList"></div>
 </div>
-</section>
-</div>
+
 <%@ include file="../home/footer.jsp" %>
 </body>
 </html>

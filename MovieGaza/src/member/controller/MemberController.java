@@ -272,6 +272,17 @@ public class MemberController extends HttpServlet {
 			String page = "myMovie?userid="+mem_userid;
 			RequestDispatcher rd = request.getRequestDispatcher(page);
 			rd.forward(request, response);
+		} else if(url.contains("delete")) {
+			System.out.println("Delete");
+			String userid = request.getParameter("userid");
+			
+			dao.memDelete(userid);
+			
+			session.invalidate();
+			
+			String page = "/Home";
+			RequestDispatcher rd = request.getRequestDispatcher(page);
+			rd.forward(request, response);
 		}
 			 
 	}

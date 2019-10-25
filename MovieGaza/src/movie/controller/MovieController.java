@@ -19,11 +19,11 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import common.Constants;
 import movie.dao.MovieDAO;
 import movie.dao.ReviewDAO;
 import movie.dto.MovieCodeDTO;
 import movie.dto.MovieDTO;
+import movie.dto.RankDTO;
 import movie.dto.ReviewDTO;
 
 @WebServlet("/Movie/*")
@@ -98,7 +98,14 @@ public class MovieController extends HttpServlet {
 		} else if (url.contains("info")) {
 			System.out.println("컨트롤러 info"+request.getParameter("moviecode"));
 			System.out.println("현재페이지 info"+request.getParameter("curPage"));
-			int curPage = Integer.parseInt(request.getParameter("curPage"));
+			int curPage=0;
+			
+			try{
+				 curPage = Integer.parseInt(request.getParameter("curPage"));
+			}
+			catch(Exception e) {
+				 curPage = 1;
+			}
 			request.setAttribute("curPage", curPage); //인포페이지와 리뷰리스트로 넘긴다
 			
 			
@@ -112,17 +119,20 @@ public class MovieController extends HttpServlet {
 
 			
 			String moviecode = request.getParameter("moviecode");
+			
 			request.setAttribute("moviecode", moviecode); //인포페이지와 리뷰리스트로 넘긴다
 			
 			   MovieDTO dto = null;
+			   
 			   if(getmvTitle!=null) {
 		             dto = dao.movieTitle(getmvTitle);
 		             moviecode = dao.findmovieCodefromTitle(getmvTitle);
 		             System.out.println(moviecode);
 		         }
-		         else {
+		       
 		             dto = dao.movieInfo(moviecode);
-		         }
+		       
+			   
 		         request.setAttribute("dto", dto);
 
 			//grcode를 가져오자
@@ -244,6 +254,8 @@ public class MovieController extends HttpServlet {
 			String r_comment = request.getParameter("r_comment");
 			String r_mvcode = request.getParameter("moviecode");
 			String writer = request.getParameter("writer");
+			int curPage = Integer.parseInt(request.getParameter("curPage"));
+			System.out.println("insert현재페이지:"+curPage);
 			
 			ReviewDTO rdto = new ReviewDTO();
 			rdto.setR_score(r_score);
@@ -620,7 +632,7 @@ public class MovieController extends HttpServlet {
 
 	         
 	         else if (url.contains("stars")) {
-	            List<MovieDTO> list = dao.movieStarRank();
+	            List<RankDTO> list = dao.movieRankbyScore();
 	            request.setAttribute("listStars", list);
 	            request.setAttribute("chkStar", "Y");
 	            

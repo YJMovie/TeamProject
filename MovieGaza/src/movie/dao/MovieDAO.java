@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import movie.dto.MemberCodeDTO;
 import movie.dto.MovieCodeDTO;
 import movie.dto.MovieDTO;
+import movie.dto.RankDTO;
 import sqlMap.MybatisManager;
 
 public class MovieDAO {
@@ -195,6 +196,13 @@ public class MovieDAO {
 		session.close();
 	}
 	
+	   public List<RankDTO> movieRankbyScore() {
+		      SqlSession session = MybatisManager.getInstance().openSession();
+		      List<RankDTO> list = session.selectList("movie.movieRankbyScore");
+		      	System.out.println(list);
+		      session.close();
+		      return list;
+		   }
 	
 }
 

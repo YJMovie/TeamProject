@@ -1,7 +1,10 @@
 package search.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import movie.dao.MovieDAO;
+import movie.dto.MovieCodeDTO;
 import movie.dto.MovieDTO;
 
 
@@ -63,7 +67,39 @@ public class SearchController extends HttpServlet {
 			System.out.println("현재 블록:"+curBlock);
 			
 			List<MovieDTO> list = dao.movieSearch(keyword,start,end);
-			request.setAttribute("list", list);
+			
+			// 영화별 장르를 리스트로 주기. 임의의dto를 map으로 만들고 map타입 list를 주어서 setattribute
+	         List<Map<String, Object>> maplist = new ArrayList<Map<String,Object>>();
+	         String[] genrename = new String[list.size()];
+	         for (int i = 0; i < genrename.length; i++) {
+	            genrename[i] = "";
+	         }
+	         for (int i = 0; i < list.size(); i++) {
+	            String moviegenre = "";
+	            Map<String, Object> map = new HashMap<String, Object>();
+	            map.put("moviecode", list.get(i).getMoviecode());
+	            map.put("title", list.get(i).getTitle());
+	            map.put("score", list.get(i).getScore());
+	            map.put("postfname", list.get(i).getPostfname());
+	            map.put("open",list.get(i).getOpen());
+	            List<MovieCodeDTO> grlist = dao.moviecodeGrcode(list.get(i).getMoviecode());
+	            for (int j = 0; j < genrename.length; j++) {
+	               
+	               try {
+	                  genrename[j] = dao.movieGenre(grlist.get(j).getGrcode())+"/";
+	               } catch (Exception e) {
+	                  // TODO: handle exception
+	                  continue;
+	               }
+	               moviegenre += genrename[j];
+	            }
+	            System.out.println(moviegenre);
+	            map.put("moviegenre", moviegenre);
+	            maplist.add(map);
+	         }
+	         
+	         request.setAttribute("list", maplist);
+			
 			
 			String page = "/home/search.jsp";
 			RequestDispatcher rd = request.getRequestDispatcher(page);
